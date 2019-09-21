@@ -1,0 +1,163 @@
+@import "functions";
+@import "mixins";
+
+#time{
+    min-width:100px;
+}
+
+a {
+    color: darken(color(secondary),20%);
+    text-decoration: none;
+}
+
+a:hover {
+    color: darken(color(secondary),10%);
+}
+
+.container {
+    background: color(primary);
+    padding: 0 15px 5vh 15px;
+}
+
+.emphasize {
+    margin: 0.5rem 0 1.5rem 0;
+    padding: 0.75rem 1.25rem;
+    border-radius: 5px;
+    background: rgba(231, 164, 5, 0.2);
+    display:flex;
+    flex-direction:column;
+   > * {
+
+   }
+}
+
+.emphasize-in-paper {
+    margin: -1rem -2rem 0 -2rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 5px;
+    background: rgba(231, 164, 5, 0.2);
+    display: flex;
+    flex-direction: column;
+
+    > * {
+    }
+}
+
+.paper-container {
+    margin-bottom: 1.45rem;
+    color: whitesmoke;
+
+    h1 {
+        margin-top: 0;
+        font-size: 0.5 * 3.052em;
+    }
+
+    h2 {
+        font-size: 0.5 * 2.441em;
+    }
+
+    h3 {
+        font-size: 0.5 * 1.953em;
+    }
+
+    h4 {
+        font-size: 0.5 * 1.563em;
+    }
+
+    h5 {
+        font-size: 0.5 * 1.25em;
+    }
+}
+
+.paper-container article {
+    color: var(--colorBase);
+}
+
+.two-flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+
+    > :first-child {
+        flex: 1 1 auto;
+    }
+
+    > :last-child {
+        flex: 1 1 50%;
+    }
+}
+
+.two-grid {
+    display: grid;
+    grid-template: auto auto / auto;
+
+    a {
+        color: darken(color(secondary),20%);
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: darken(color(secondary),10%);
+    }
+
+    p {
+        line-height: 2;
+        text-align: justify;
+        text-justify: kashida;
+    }
+}
+
+.three-grid {
+    display: grid;
+    grid-template: auto auto auto / auto;
+
+    a {
+        color: darken(color(secondary),20%);
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: darken(color(secondary),10%);
+    }
+
+    p {
+        line-height: 2;
+        text-align: justify;
+        text-justify: kashida;
+    }
+}
+
+@include size(desktop) {
+    #time{
+        min-width:150px;
+    }
+
+    .container {
+        padding: 0 var(--XSpacing) 5vh var(--XSpacing);
+    }
+
+    .two-grid {
+        grid-template: auto / 1fr 1fr;
+        column-gap: 30px;
+    }
+
+    .three-grid {
+        grid-template: auto / 1fr 1fr 1fr;
+        column-gap: 30px;
+    }
+
+    .emphasize-in-paper {
+        margin: -2rem -4rem 0 -4rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .service-container {
+        grid-template: auto auto / auto;
+    }
+
+    .service-container .article-container {
+        grid-template: auto / auto 1fr;
+    }
+}

@@ -1,0 +1,32 @@
+:root {
+    --color1: #111111;
+    --color2:#8FC4DA;
+}
+
+div.image-and-content-container{
+    display:flex;
+}
+
+div.image-container {
+    flex: 0 0 300px;
+    height: 450px;
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center top;
+}
+article.text-container {
+    flex: 1 1 auto;
+    padding: 2rem 3rem;
+    background: white;
+    box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.2);
+}
+
+@media (max-width:800px) {
+    div.image-and-content-container {
+        flex-direction: column;
+    }
+
+    div.image-container {
+        flex: 0 0 600px;
+    }
+}

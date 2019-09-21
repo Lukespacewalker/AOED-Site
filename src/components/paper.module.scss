@@ -1,0 +1,116 @@
+@import "functions";
+@import "mixins";
+
+.article-container {
+    margin-bottom: var(--marginBase);
+
+    h1, h2, h3, h4, h5 {
+        line-height: 1.25em;
+        font-family: 'Noto Sans','Sarabun', sans-serif;
+    }
+
+    .article-attachments-container {
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        background-color: rgb(250,250,250);
+        margin: 1rem -2rem -1rem -2rem;
+        padding: 1rem 4rem 1rem 4rem;
+    }
+
+    .inner-article-container {
+        border-radius: 5px;
+        overflow: hidden;
+        display: grid;
+        height: 100%;
+        grid-template-areas: "aside" "content";
+        grid-template-rows: auto 1fr;
+        background: white;
+        box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.2);
+    }
+
+    aside {
+        grid-area: aside;
+        text-align: center;
+
+        * {
+            color: black;
+        }
+
+        img {
+            height: auto;
+            display: block;
+        }
+    }
+
+    article {
+        grid-area: content;
+        padding: 1rem 1.5rem;
+
+
+        a {
+            color: darken(color(secondary),20%);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: darken(color(secondary),10%);
+        }
+
+        p {
+            line-height: 2;
+            /*text-indent: 2rem;*/
+            text-align: justify;
+            text-justify: kashida;
+        }
+    }
+
+    article.no-aside {
+        grid-area: aside / aside / content / content;
+    }
+
+    article.trans {
+        background: transparent;
+        box-shadow: none;
+    }
+}
+
+.article-container article p:nth-last-of-type(1) {
+    margin: 0;
+}
+
+.article-container.wide {
+    margin: 0px -15px 0px -15px;
+
+    .inner-article-container {
+        padding: 0 15px 0 15px;
+        border-radius: unset;
+    }
+}
+
+@include size(landscape-tablet) {
+    .article-container {
+
+        .article-attachments-container {
+            margin: 1rem -4rem -2rem -4rem;
+            padding: 1rem 4rem 1rem 4rem;
+        }
+
+        article {
+            padding: 2rem 2.5rem;
+        }
+
+        .inner-article-container.sbs {
+            grid-template-areas: "aside content";
+            grid-template-columns: 1fr 1.5fr;
+            grid-template-rows: auto;
+        }
+    }
+
+    .article-container.wide {
+        margin: 0px (-$XSpacing) 0px (-$XSpacing);
+
+        .inner-article-container {
+            padding: 0 $XSpacing 0 $XSpacing;
+        }
+    }
+}

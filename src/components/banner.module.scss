@@ -1,0 +1,43 @@
+@import "functions";
+@import "mixins";
+
+.gradient {
+    background: linear-gradient(rgba(color(primary),0.1) 50%, rgba(color(primary),1));
+    height: 100vh;
+    width: 100%;
+    min-height: 600px;
+    position: absolute;
+}
+
+.banner-container {
+    height: 100vh;
+    min-height: 600px;
+    position: relative;
+
+    .banner-text {
+        h1, h2, h3, h4, h5 {
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 3rem;
+            /*color: lighten(color(secondary),20%);*/
+        }
+    }
+}
+
+
+.banner-container .banner-text {
+    color: white;
+    position: absolute;
+    left: var(--XSpacing);
+    bottom: 5%;
+    max-width: 1200px;
+    width: calc(100vw - var(--XSpacing) - var(--XSpacing));
+    transform: translateY(-50%);
+    animation: fadein 2s;
+    text-shadow: 0px 0px 8px rgba(0,0,0,0.8);
+}
+
+@include size(landscape-tablet) {
+}
