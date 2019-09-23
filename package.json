@@ -1,7 +1,7 @@
 {
   "name": "AOED",
   "private": true,
-  "description": "Association of Occupational and Environmental Medicine",
+  "description": "Thailand Association of Occupational and Environmental Disease",
   "version": "1.0.0",
   "author": "Suttisak Denduangchai <suttisak.lukesp@outlook.com>",
   "dependencies": {

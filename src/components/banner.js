@@ -18,7 +18,7 @@ const Banner = ({ siteTitle, siteSubtitle, siteShortTitle }) => {
                 <Header siteTitle={siteShortTitle} />
                 <div className={style.bannerText}> 
                     <h1>{siteTitle}</h1>
-                    <h2 lang="en" style={{ fontSize: `2rem` }}>Thailand Association of Occupational and Environmental Medicine</h2>
+                    <h2 lang="en" style={{ fontSize: `2rem` }}>Thailand Association of Occupational and Environmental Disease</h2>
                 </div>
             </div>)}
         />);
