@@ -6,18 +6,8 @@ module.exports = {
         description: `สมาคมโรคจากการประกอบอาชีพและสิ่งแวดล้อมแห่งประเทศไทย`,
         author: `นพ. สุทธิศักดิ์ เด่นดวงใจ`,
         menus: [{
-            order: 1,
-            name: `เกี่ยวกับสมาพันธ์`,
-            submenus: [
-                {
-                    order: 1,
-                    name: `ข้อตกลงความร่วมมือ`,
-                    link: `info/agreement`
-                }
-            ]
-        }, {
             order: 2,
-            name: `สมาคมโรคจากการประกอบอาชีพและสิ่งแวดล้อม`,
+            name: `เกี่ยวกับสมาคม`,
             submenus: [
                 {
                     order: 1,
@@ -31,8 +21,8 @@ module.exports = {
                 },
                 {
                     order: 3,
-                    name: `ประกาศ`,
-                    link: `oem/notices`
+                    name: `ประชาสัมพันธ์`,
+                    link: `news`
                 }
             ]
         }, {
@@ -41,8 +31,8 @@ module.exports = {
             submenus: [
                 {
                     order: 1,
-                    name: `บทความวิชาการ`,
-                    link: `education/articles`
+                    name: `บทความ`,
+                    link: `articles`
                 },
                 {
                     order: 2,

@@ -5,7 +5,7 @@ import Img from "gatsby-image";
 import Header from "./header/header";
 import style from "./banner.module.scss";
 import { StaticQuery, graphql } from "gatsby";
-import loop from "../videos/loop2.mp4";
+import loop from "../videos/loop.mp4";
 
 const Banner = ({ siteTitle, siteSubtitle, siteShortTitle }) => {
     return (
@@ -18,7 +18,7 @@ const Banner = ({ siteTitle, siteSubtitle, siteShortTitle }) => {
                 <Header siteTitle={siteShortTitle} />
                 <div className={style.bannerText}> 
                     <h1>{siteTitle}</h1>
-                    <h2 lang="en" style={{ fontSize: `1rem` }}>{siteSubtitle}</h2>
+                    <h2 lang="en" style={{ fontSize: `2rem` }}>Thailand Association of Occupational and Environmental Medicine</h2>
                 </div>
             </div>)}
         />);

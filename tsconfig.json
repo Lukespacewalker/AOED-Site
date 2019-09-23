@@ -5,7 +5,8 @@
     "jsx": "react", /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
     "baseUrl": "src",
     "paths": {
-      "@components/*": [ "components/*" ]
+      "@components/*": [ "components/*" ],
+      "@images/*": [ "images/*" ]
     }
   }
 }

@@ -6,7 +6,7 @@ import Paper from "@components/paper";
 import SEO from "@components/seo";
 import style from "./index.module.scss";
 
-class NewsIndex extends React.Component<{ data: any }, {}> {
+class ArticlesIndex extends React.Component<{ data: any }, {}> {
     constructor(props) {
         super(props);
     }
@@ -16,7 +16,7 @@ class NewsIndex extends React.Component<{ data: any }, {}> {
             const { fields: { slug }, frontmatter: { excerpt, title, attachments } } = node;
             if (attachments !== undefined && attachments != null && attachments.length > 0) {
                 return (
-                    <Paper key={i} sbs side={<Img style={{ height: `250px`}} fluid={attachments[0].childImageSharp.fluid} alt={title} />}>
+                    <Paper key={i} sbs side={<Img style={{ height: `250px` }} fluid={attachments[0].childImageSharp.fluid} alt={title} />}>
                         <h1>{title}</h1>
                         <p>{excerpt}</p>
                         <Link to={slug}>อ่านต่อ</Link>
@@ -33,8 +33,8 @@ class NewsIndex extends React.Component<{ data: any }, {}> {
 
     render() {
         const { data: { news } } = this.props;
-        return (<Layout title="ประชาสัมพันธ์">
-            <SEO title="ประชาสัมพันธ์" />
+        return (<Layout title="บทความ">
+            <SEO title="บทความ" />
             <div className={style.container}>
                 {this.itemRenderer(news.nodes)}
             </div>
@@ -44,7 +44,7 @@ class NewsIndex extends React.Component<{ data: any }, {}> {
 
 export const pageQuery = graphql`
   query {
-        news: allMdx(sort: {fields: frontmatter___date, order: DESC},filter: {frontmatter: {type: {eq: "news"}}}) {
+        news: allMdx(sort: {fields: frontmatter___date, order: DESC},filter: {frontmatter: {type: {eq: "articles"}}}) {
             nodes {
               fields {
                 slug
@@ -65,4 +65,4 @@ export const pageQuery = graphql`
   }
 `;
 
-export default NewsIndex;
+export default ArticlesIndex;
