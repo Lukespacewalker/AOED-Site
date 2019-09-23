@@ -1,5 +1,6 @@
 # AOED-Site
-Association of occupational and environmental diseases website
+The Association of Occupational and Environmental Diseases of Thailand official website
+Hosting on Netlify CDN at https://tcohs.netlify.com
 
 # How to complie the website
 

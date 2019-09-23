@@ -28,7 +28,7 @@ class IndexPage extends React.Component<{ data: any }, {}> {
                 );
             }
             else return (
-                <Paper key={i}>
+                <Paper onClick={this.navigationHandler(slug)} key={i}>
                     <p>{excerpt}</p>
                 </Paper>
             );
@@ -50,7 +50,7 @@ class IndexPage extends React.Component<{ data: any }, {}> {
                 <SEO
                     title="หน้าแรก"
                     keywords={[`TCOHS`]} />
-                <Banner siteTitle={meta.title} />
+                <Banner siteTitle={meta.title} siteSubtitle={meta.subtitle} />
                 <div className="container">
                     <main className="paper-container">
                         <h1>ขอแสดงความยินดี</h1>
@@ -98,6 +98,7 @@ export const query = graphql`
             site {
             siteMetadata {
                 title
+                subtitle
                 author
             }
         }
