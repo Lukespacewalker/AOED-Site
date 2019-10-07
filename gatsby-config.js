@@ -1,16 +1,17 @@
 module.exports = {
     siteMetadata: {
-        siteUrl: `https://www.tcohs.com`,
+        siteUrl: `https://www.aoed.org`,
         title: `สมาคมโรคจากการประกอบอาชีพและสิ่งแวดล้อมแห่งประเทศไทย`,
         shortTitle: `AOED`,
-        subtitle:`The Association of Occupational and Environmental Diseases of Thailand`,
+        subtitle: `The Association of Occupational and Environmental Diseases of Thailand`,
         description: `สมาคมโรคจากการประกอบอาชีพและสิ่งแวดล้อมแห่งประเทศไทย`,
         author: `นพ. สุทธิศักดิ์ เด่นดวงใจ`,
         menus: [{
             order: 2,
             name: `เกี่ยวกับสมาคม`,
+
             submenus: [
-                {
+                /*{
                     order: 1,
                     name: `ประวัติสมาคมโรค`,
                     link: `oem/about`
@@ -19,7 +20,7 @@ module.exports = {
                     order: 2,
                     name: `ตรวจสอบรายชื่อแพทย์`,
                     link: `oem/physicians`
-                },
+                },*/
                 {
                     order: 3,
                     name: `ประชาสัมพันธ์`,
@@ -29,19 +30,21 @@ module.exports = {
         }, {
             order: 3,
             name: `วิชาการ`,
+            emphasize: false,
             submenus: [
                 {
                     order: 1,
                     name: `บทความ`,
                     link: `articles`
-                },
+                }
+                /*,
                 {
                     order: 2,
                     name: `แนะนำผลงานวิจัย`,
                     link: `education/researches`
-                }
+                }*/
             ]
-        }, {
+        }/*, {
             order: 4,
             name: `ดาวน์โหลด`,
             emphasize: true,
@@ -57,14 +60,14 @@ module.exports = {
                     link: `download/slides`
                 }
             ]
-        }
+        }*/
         ]
     },
     plugins: [
         {
             resolve: `gatsby-plugin-canonical-urls`,
             options: {
-                siteUrl: `https://tcohs.com`
+                siteUrl: `https://aoed.org`
             }
         },
         {
