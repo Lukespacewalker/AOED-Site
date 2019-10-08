@@ -3,6 +3,7 @@ import { StaticQuery, graphql, Link } from "gatsby";
 import { IMenu, ISubmenu } from "./Imenu";
 import { Menu, SubMenu } from "./menu";
 import styles from "./header.module.scss";
+import logo from "@images/icon.png";
 
 interface IHeaderMenuProps {
     menus: IMenu[];
@@ -122,7 +123,7 @@ class Header extends React.Component<IHeaderProps, {}>{
 
                     render={data => {
                 const { siteTitle, isFrontPage } = this.props;
-                const { site: { siteMetadata: { shortTitle, menus } } }: { site: { siteMetadata: { shortTitle:string, menus: IMenu[] } } } = data;
+                const { site: { siteMetadata: { shortTitle, menus } } }: { site: { siteMetadata: { shortTitle:string; menus: IMenu[] } } } = data;
 
                 let headerClassname = `${styles.siteHeader} ${isFrontPage ? styles.frontPage : ""} ${this.state.isPaneOpen ? styles.showingNav : ""}`;
 
@@ -133,6 +134,7 @@ class Header extends React.Component<IHeaderProps, {}>{
                         }}
                         >
                             <div className={styles.logo}>
+                                <img src={logo} style={{width:`100px`}}/>
                                 <h1 lang="en"><Link to="/">{shortTitle}</Link></h1>
                             </div>
                         </div>
@@ -140,8 +142,7 @@ class Header extends React.Component<IHeaderProps, {}>{
                     </header>
                 )
             }
-            }
-                />)
+            }/>)
     }
 
 }

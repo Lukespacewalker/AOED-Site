@@ -100,13 +100,13 @@ module.exports = {
         {
             resolve: `gatsby-plugin-manifest`,
             options: {
-                name: `gatsby-starter-default`,
-                short_name: `starter`,
+                name: `The Association of Occupational and Environmental Diseases of Thailand`,
+                short_name: `aoed.org`,
                 start_url: `/`,
-                background_color: `#663399`,
-                theme_color: `#663399`,
+                background_color: `#293d5e`,
+                theme_color: `#293d5e`,
                 display: `minimal-ui`,
-                icon: `src/images/gatsby-icon.png` // This path is relative to the root of the site.
+                icon: `src/images/icon.png` // This path is relative to the root of the site.
             }
         },
         {
