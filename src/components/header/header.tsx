@@ -106,6 +106,7 @@ class Header extends React.Component<IHeaderProps, {}>{
                     site {
                         siteMetadata {
                             shortTitle
+                            title
                             menus {
                                 order
                                 name
@@ -122,8 +123,8 @@ class Header extends React.Component<IHeaderProps, {}>{
             `}
 
                     render={data => {
-                const { siteTitle, isFrontPage } = this.props;
-                const { site: { siteMetadata: { shortTitle, menus } } }: { site: { siteMetadata: { shortTitle:string; menus: IMenu[] } } } = data;
+                const { isFrontPage } = this.props;
+                const { site: { siteMetadata: { title, shortTitle, menus } } }: { site: { siteMetadata: { title: string; shortTitle: string; menus: IMenu[] } } } = data;
 
                 let headerClassname = `${styles.siteHeader} ${isFrontPage ? styles.frontPage : ""} ${this.state.isPaneOpen ? styles.showingNav : ""}`;
 
@@ -134,8 +135,11 @@ class Header extends React.Component<IHeaderProps, {}>{
                         }}
                         >
                             <div className={styles.logo}>
-                                <img src={logo} style={{width:`100px`}}/>
-                                <h1 lang="en"><Link to="/">{shortTitle}</Link></h1>
+                                <Link to="/"><img src={logo} style={{ width: `100px` }} /></Link>
+                                <div>
+                                    <h1 lang="en"><Link to="/">{shortTitle}</Link></h1>
+                                    <h2><Link to="/">สมาคมโรคจากการประกอบอาชีพ<br/>และสิ่งแวดล้อมแห่งประเทศไทย</Link></h2>
+                                </div>
                             </div>
                         </div>
                         <HeaderMenu menus={menus} onPaneToggle={this.onPaneToggleHandler} />

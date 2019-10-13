@@ -22,12 +22,12 @@ export class Menu extends React.Component<IMenuProps, {}> {
         const { onSelectedItem } = this.props;
         if (menu.link != null) {
             if (menu.link.substr(0, 5) === "http") {
-                return (<a className={menu.emphasize ? styles.emphasize : styles.normal} key={menu.order} href={menu.link}>{menu.name}</a>)
+                return (<a className={styles.main+" "+ (menu.emphasize ? styles.emphasize : styles.normal)} key={menu.order} href={menu.link}>{menu.name}</a>)
             } else {
-                return (<Link activeClassName={styles.linkActive} className={menu.emphasize ? styles.emphasize : styles.normal} key={menu.order} to={`/${menu.link}`}>{menu.name}</Link>)
+                return (<Link activeClassName={styles.linkActive} className={styles.main + " " + (menu.emphasize ? styles.emphasize : styles.normal)} key={menu.order} to={`/${menu.link}`}>{menu.name}</Link>)
             }
         } else {
-            return (<a className={menu.emphasize ? styles.emphasize : styles.normal} key={menu.order} onClick={onSelectedItem.bind(this, menu.order)}>{menu.name} +</a>)
+            return (<a className={styles.main + " "+ (menu.emphasize ? styles.emphasize : styles.normal)} key={menu.order} onClick={onSelectedItem.bind(this, menu.order)}>{menu.name} +</a>)
         }
     }
 

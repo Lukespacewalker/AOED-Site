@@ -1,4 +1,13 @@
 @font-face {
+    font-family: 'supermarket';
+    src: local('supermarket'),
+         url('supermarket.woff2') format('woff2'),
+         url('supermarket.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'RSU';
     src: local('RSU'),
          url('RSU.woff2') format('woff2'),

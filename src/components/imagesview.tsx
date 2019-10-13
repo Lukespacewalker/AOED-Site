@@ -3,8 +3,8 @@ import { StaticQuery, graphql, Link } from "gatsby";
 import Img from "gatsby-image";
 import styles from "./imagesview.module.scss";
 
-import back_icon from "../images/ui/left-arrow.svg";
-import next_icon from "../images/ui/right-arrow.svg";
+import back_icon from "@images/ui/left-arrow.svg";
+import next_icon from "@images/ui/right-arrow.svg";
 
 interface IImageViewProps {
     fluids: Array<any>
