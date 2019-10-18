@@ -16,7 +16,7 @@ class ArticlesIndex extends React.Component<{ data: any }, {}> {
             const { fields: { slug }, frontmatter: { excerpt, title, attachments } } = node;
             if (attachments !== undefined && attachments != null && attachments.length > 0) {
                 return (
-                    <Paper key={i} sbs side={<Img style={{ height: `250px` }} fluid={attachments[0].childImageSharp.fluid} alt={title} />}>
+                    <Paper key={i} sbs side={<Img style={{ height: `275px` }} fluid={attachments[0].childImageSharp.fluid} alt={title} />}>
                         <h1>{title}</h1>
                         <p>{excerpt}</p>
                         <Link to={slug}>อ่านต่อ</Link>

@@ -72,16 +72,6 @@ class Banner extends React.Component<{ siteTitle: string, siteSubtitle: string, 
             render={data => (<div className={style.bannerContainer}>
                 <Carousal>
                     <div className={cstyle.item}>
-                        <Img fluid={data.file.childImageSharp.fluid} alt="background" style={{ height: `100%` }} />
-                        <div className={style.specialBannerText}>
-                            <div>
-                                <h1>ธ สถิตในดวงใจนิจนิรันดร์</h1>
-                                <h2>ข้าพระพุทธเจ้า </h2>
-                                <h2>สมาคมโรคจากการประกอบอาชีพและสิ่งแวดล้อมแห่งประเทศไทย</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={cstyle.item}>
                         <video src={loop} autoPlay={true} muted={true} loop={true} style={{
                             height: `100%`,
                             width: `100%`,
@@ -90,6 +80,16 @@ class Banner extends React.Component<{ siteTitle: string, siteSubtitle: string, 
                         <div className={style.bannerText}>
                             <h1>{siteTitle}</h1>
                             <h2 lang="en" style={{ fontSize: `2rem` }}>{siteSubtitle}</h2>
+                        </div>
+                    </div>
+                    <div className={cstyle.item}>
+                        <Img fluid={data.file.childImageSharp.fluid} alt="background" style={{ height: `100%` }} />
+                        <div className={style.specialBannerText}>
+                            <div>
+                                <h1>ธ สถิตในดวงใจนิจนิรันดร์</h1>
+                                <h2>ข้าพระพุทธเจ้า </h2>
+                                <h2>สมาคมโรคจากการประกอบอาชีพและสิ่งแวดล้อมแห่งประเทศไทย</h2>
+                            </div>
                         </div>
                     </div>
                 </Carousal>

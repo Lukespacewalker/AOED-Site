@@ -53,12 +53,7 @@ class IndexPage extends React.Component<{ data: any }, {}> {
                 <Banner siteTitle={meta.title} siteSubtitle={meta.subtitle} />
                 <div className="container">
                     <main className="paper-container">
-                        <h1>ขอแสดงความยินดี</h1>
-                        <div style={{ overflow: `hidden`, borderRadius: `5px` }}>
-                        <Img  fluid={congrat.childImageSharp.fluid} alt="congrat" />
-                        </div>
-
-                        <h1 style={{ marginTop: `1em` }}>ประชาสัมพันธ์ <Link to="/news">ทั้งหมด</Link> </h1>
+                        <h1>ประชาสัมพันธ์ <Link to="/news">ทั้งหมด</Link> </h1>
                         <div className="two-grid">
                             {this.newsRenderer(news)}
                         </div>
@@ -66,6 +61,11 @@ class IndexPage extends React.Component<{ data: any }, {}> {
                         <h1>เรื่องราวที่น่าสนใจ <Link to="/articles">ทั้งหมด</Link> </h1>
                         <div className="two-grid">
                             {this.newsRenderer(articles)}
+                        </div>
+
+                        <h1>ขอแสดงความยินดี</h1>
+                        <div style={{ overflow: `hidden`, borderRadius: `5px` }}>
+                            <Img fluid={congrat.childImageSharp.fluid} alt="congrat" />
                         </div>
                     </main>
                 </div>
