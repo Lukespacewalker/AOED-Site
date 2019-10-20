@@ -27,7 +27,7 @@ a.normal.sub-link-active {
     color: darken(adjust-hue(color(secondary), -3% ),10%) !important;
 }
 
-@include size(landscape-tablet) {
+@include size(desktop) {
 
     a.main {
         padding: 0 0.75rem !important;

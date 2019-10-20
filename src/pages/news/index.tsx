@@ -1,5 +1,5 @@
 import * as React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql, Link, navigate} from "gatsby";
 import Img from "gatsby-image";
 import Layout from "@components/layout";
 import Paper from "@components/paper";
@@ -11,12 +11,18 @@ class NewsIndex extends React.Component<{ data: any }, {}> {
         super(props);
     }
 
+    private navigationHandler(target: string) {
+        return (event) => {
+            navigate(target);
+        };
+    }
+
     private itemRenderer(nodes: Array<any>) {
         return nodes.map((node,i) => {
             const { fields: { slug }, frontmatter: { excerpt, title, attachments } } = node;
             if (attachments !== undefined && attachments != null && attachments.length > 0) {
                 return (
-                    <Paper key={i} sbs side={<Img style={{ height: `275px`}} fluid={attachments[0].childImageSharp.fluid} alt={title} />}>
+                    <Paper style={{ cursor: `pointer` }}  onClick={this.navigationHandler(slug)} key={i} sbs side={<Img style={{ height: `100%`}} fluid={attachments[0].childImageSharp.fluid} alt={title} />}>
                         <h1>{title}</h1>
                         <p>{excerpt}</p>
                         <Link to={slug}>อ่านต่อ</Link>

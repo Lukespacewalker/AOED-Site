@@ -11,12 +11,14 @@ interface ILayoutProps {
     title: string,
     by: string,
     customImage: FluidObject,
+    bigSplash: boolean,
     children: any,
 }
 
 class Layout extends React.Component<ILayoutProps, {}> {
     public static defaultProps = {
         customImage: null,
+        bigSplash: true,
         by: null
     };
 
@@ -25,22 +27,24 @@ class Layout extends React.Component<ILayoutProps, {}> {
     }
 
     render() {
-        const { data: { site, file }, title, by, customImage, children } = this.props;
+        const { data: { site, file }, title, by, customImage, bigSplash, children } = this.props;
 
         let image = customImage !== null ? (<Img fluid={customImage} alt="background" style={{
             height: "100%",
             position: "absolute",
+            zIndex: "-3",
             width: "100%"
         }} />) : (<Img fluid={file.childImageSharp.fluid} alt="background" style={{
             height: "100%",
             position: "absolute",
+            zIndex: "-3",
             width: "100%"
         }} />);
         return (
             <>
-                <div className={style.bannerContainer + ` ` + (customImage !== null ? style.tall : ``)}>
+                <div className={style.bannerContainer + ` ` + (customImage !== null && bigSplash ? style.tall : ``)}>
                     {image}
-                    <div className={style.gradient + ` ` + (customImage !== null ? style.tall : ``)} />
+                    <div className={style.gradient + ` ` + (customImage !== null && bigSplash ? style.tall : ``)} />
                     <Header />
                     <div className={style.titleContainer}>
                         <h1 className={style.title}>{title}</h1>

@@ -15,12 +15,12 @@ class IndexPage extends React.Component<{ data: any }, {}> {
         };
     }
 
-    private newsRenderer(nodes : Array<any>) {
-        return nodes.map((node,i) => {
+    private newsRenderer(nodes: Array<any>) {
+        return nodes.map((node, i) => {
             const { fields: { slug }, frontmatter: { excerpt, title, attachments } } = node;
             if (attachments !== undefined && attachments != null && attachments.length > 0) {
                 return (
-                    <Paper key={i} onClick={this.navigationHandler(slug)} side={<Img style={{ height: `350px` }} fluid={attachments[0].childImageSharp.fluid} alt={title} />}>
+                    <Paper style={{ cursor: `pointer` }}  key={i} onClick={this.navigationHandler(slug)} side={<Img style={{ height: `350px` }} fluid={attachments[0].childImageSharp.fluid} alt={title} />}>
                         <h1>{title}</h1>
                         <p>{excerpt}</p>
                         <Link to={slug}>อ่านต่อ</Link>
@@ -28,7 +28,7 @@ class IndexPage extends React.Component<{ data: any }, {}> {
                 );
             }
             else return (
-                <Paper onClick={this.navigationHandler(slug)} key={i}>
+                <Paper key={i}>
                     <p>{excerpt}</p>
                 </Paper>
             );
@@ -42,14 +42,15 @@ class IndexPage extends React.Component<{ data: any }, {}> {
     render() {
         const { data }: { data: any } = this.props;
         const { site: { siteMetadata: meta } } = data;  // ECMA6 Destructuring Pattern
-        const { news: { nodes:news } } = data;
+        const { news: { nodes: news } } = data;
         const { articles: { nodes: articles } } = data;
-        const { congrat } = data;
+        const { congrat, ogimage: { ogimagePublicURL } } = data;
         return (
             <>
                 <SEO
                     title="หน้าแรก"
-                    keywords={[`AOED`, `Occupational`,`Medicine`,`สมาคมโรคจากการประกอบอาชีพและสิ่งแวดล้อมแห่งประเทศไทย`,`อาชีวเวชศาสตร์`, `โรคจากการประกอบอาชีพ`,`สิ่งแวดล้อม`,`สมาคม`]} />
+                    image={ogimagePublicURL}
+                    keywords={[`AOED`, `Occupational`, `Medicine`, `สมาคมโรคจากการประกอบอาชีพและสิ่งแวดล้อมแห่งประเทศไทย`, `อาชีวเวชศาสตร์`, `โรคจากการประกอบอาชีพ`, `สิ่งแวดล้อม`, `สมาคม`]} />
                 <Banner siteTitle={meta.title} siteSubtitle={meta.subtitle} />
                 <div className="container">
                     <main className="paper-container">
@@ -96,27 +97,32 @@ export const query = graphql`
  }
     query {
             site {
-            siteMetadata {
-                title
-                subtitle
-                author
+                siteMetadata {
+                    title
+                    subtitle
+                    author
+                }
             }
-        }
 
-        news: allMdx(limit:6,sort: {fields: frontmatter___date, order: DESC},filter: {frontmatter: {type: {eq: "news"}}}) {
-            ...MDXFragment
-        }
-        articles: allMdx(limit:6,sort: {fields: frontmatter___date, order: DESC},filter: {frontmatter: {type: {eq: "articles"}}}) {
-            ...MDXFragment
-        }
-
-        congrat : file(relativePath:  {eq: "congratulation.jpg"}) {
-        childImageSharp {
-             fluid(quality: 90, maxWidth: 4096) {
-            ...GatsbyImageSharpFluid_withWebp
+            news: allMdx(limit:6,sort: {fields: frontmatter___date, order: DESC},filter: {frontmatter: {type: {eq: "news"}}}) {
+                ...MDXFragment
             }
-        }
-      }
+
+            articles: allMdx(limit:6,sort: {fields: frontmatter___date, order: DESC},filter: {frontmatter: {type: {eq: "articles"}}}) {
+                ...MDXFragment
+            }
+
+            congrat : file(relativePath:  {eq: "congratulation.jpg"}) {
+                childImageSharp {
+                     fluid(quality: 90, maxWidth: 4096) {
+                    ...GatsbyImageSharpFluid_withWebp
+                    }
+                }
+            }
+
+            ogimage : file(relativePath: {eq: "main_ogimage.png"}) {
+                publicURL
+            }
 
     }
 `;

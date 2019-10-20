@@ -13,11 +13,11 @@ footer {
         color: color(secondary);
     }
 
-    .location {
+    .left {
         grid-area: a;
     }
 
-    .telephone {
+    .right {
         grid-area: b;
     }
 
@@ -26,8 +26,7 @@ footer {
         opacity: 0.5;
     }
 
-    .author {
-        opacity: 0.9;
+    .bottom {
         grid-area: c;
     }
 
@@ -46,6 +45,19 @@ footer {
             margin-left: 0;
         }
     }
+
+    .icon {
+        height: 48px;
+        filter: grayscale(1);
+        opacity: 0.5;
+        margin-right: 20px;
+        transition: all 0.25s ease;
+    }
+
+    .icon:hover, .icon:active {
+        filter: grayscale(0);
+        opacity: 1;
+    }
 }
 
 footer.dark {
@@ -55,6 +67,6 @@ footer.dark {
 
 @media (max-width:599px) {
     footer {
-        grid-template: "a" auto "b" auto "c" auto / 1fr;
+        grid-template: "b" auto "a" auto "c" auto / 1fr;
     }
 }

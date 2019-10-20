@@ -51,7 +51,7 @@ module.exports = {
             submenus: [
                 {
                     order: 1,
-                    name: `ประกาศสมรรถณะแพทย์อาชีวเวชศาสตร์`,
+                    name: `สมรรถนะแพทย์อาชีวเวชศาสตร์`,
                     link: `ocmed/competencies`
                 },
                 {

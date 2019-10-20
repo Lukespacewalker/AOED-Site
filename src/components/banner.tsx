@@ -94,7 +94,7 @@ class Banner extends React.Component<{ siteTitle: string, siteSubtitle: string, 
                     </div>
                 </Carousal>
                 <div className={style.gradient} />
-                <Header siteTitle={siteShortTitle} />
+                <Header siteTitle={siteShortTitle} isFrontPage={true} />
             </div>)} />);
     }
 }

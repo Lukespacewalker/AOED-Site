@@ -12,15 +12,18 @@ class InformationPage extends React.Component<{ data: any }, {}> {
     }
 
     render() {
-        const { data: { mdx: { frontmatter: { title, attachments ,by}, body } } } = this.props;
+        const { data: { mdx: { frontmatter: { title, attachments, by, excerpt}, body } } } = this.props;
         let image = null;
+        let ogImage = null;
         if (attachments !== undefined && attachments != null && attachments.length > 0) {
             image = attachments[0].childImageSharp.fluid;
+            ogImage = attachments[0].publicURL;
         }
+
 
         return (
             <Layout title={title} by={by} customImage={image} >
-                <SEO title={title} />
+                {excerpt != null ? (<SEO title={title} description={excerpt} image={ogImage} />):``}
                 <div className="MDXRenderer-container">
                     <MDXRenderer images={attachments}>{body}</MDXRenderer>
                 </div>
@@ -37,6 +40,7 @@ export const pageQuery = graphql`
             title
             tag
             by
+            excerpt
             attachments {
                 publicURL
                 childImageSharp {
