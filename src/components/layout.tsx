@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { FluidObject } from "gatsby-image";
 import Img from "gatsby-image";
@@ -9,13 +9,15 @@ import style from "./layout.module.scss";
 interface ILayoutProps {
     data: any;
     title: string,
+    by: string,
     customImage: FluidObject,
     children: any,
 }
 
 class Layout extends React.Component<ILayoutProps, {}> {
     public static defaultProps = {
-        customImage: null
+        customImage: null,
+        by: null
     };
 
     constructor(props) {
@@ -23,14 +25,14 @@ class Layout extends React.Component<ILayoutProps, {}> {
     }
 
     render() {
-        const { data: { site, file }, title, customImage, children } = this.props;
+        const { data: { site, file }, title, by, customImage, children } = this.props;
 
         let image = customImage !== null ? (<Img fluid={customImage} alt="background" style={{
-            height: "75vh",
+            height: "100%",
             position: "absolute",
             width: "100%"
         }} />) : (<Img fluid={file.childImageSharp.fluid} alt="background" style={{
-            height: "30vh",
+            height: "100%",
             position: "absolute",
             width: "100%"
         }} />);
@@ -40,7 +42,10 @@ class Layout extends React.Component<ILayoutProps, {}> {
                     {image}
                     <div className={style.gradient + ` ` + (customImage !== null ? style.tall : ``)} />
                     <Header />
-                    <h1 className={style.title}>{title}</h1>
+                    <div className={style.titleContainer}>
+                        <h1 className={style.title}>{title}</h1>
+                        {by != null ? (<div className={style.by}>โดย {by}</div>) : ``}
+                    </div>
                 </div>
                 <div className={style.layout}>
                     <main className={style.childrenContainer}>{children}</main>

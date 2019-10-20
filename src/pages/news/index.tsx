@@ -33,8 +33,8 @@ class NewsIndex extends React.Component<{ data: any }, {}> {
 
     render() {
         const { data: { news } } = this.props;
-        return (<Layout title="ประชาสัมพันธ์">
-            <SEO title="ประชาสัมพันธ์" />
+        return (<Layout title="แนะนำกิจกรรม">
+            <SEO title="แนะนำกิจกรรม" />
             <div className={style.container}>
                 {this.itemRenderer(news.nodes)}
             </div>

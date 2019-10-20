@@ -88,10 +88,7 @@ a:hover {
     }
 }
 
-.two-grid {
-    display: grid;
-    grid-template: auto auto / auto;
-
+.two-grid, .three-grid {
     a {
         color: darken(color(secondary),20%);
         text-decoration: none;
@@ -103,29 +100,18 @@ a:hover {
 
     p {
         line-height: 2;
-        text-align: justify;
-        text-justify: kashida;
+        text-align: left;
     }
+}
+
+.two-grid {
+    display: grid;
+    grid-template: auto auto / auto;
 }
 
 .three-grid {
     display: grid;
-    grid-template: auto auto auto / auto;
-
-    a {
-        color: darken(color(secondary),20%);
-        text-decoration: none;
-    }
-
-    a:hover {
-        color: darken(color(secondary),10%);
-    }
-
-    p {
-        line-height: 2;
-        text-align: justify;
-        text-justify: kashida;
-    }
+    grid-template: auto auto auto / auto
 }
 
 @include size(desktop) {

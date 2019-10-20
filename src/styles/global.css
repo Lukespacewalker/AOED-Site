@@ -9,6 +9,10 @@
     --XSpacing: 10vw;
 }
 
+html {
+    overflow-y: auto;
+}
+
 body {
     /*background: rgba(248,248,248,1);*/
     overflow-x: hidden;

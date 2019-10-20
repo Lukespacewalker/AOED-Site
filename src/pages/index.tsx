@@ -49,11 +49,11 @@ class IndexPage extends React.Component<{ data: any }, {}> {
             <>
                 <SEO
                     title="หน้าแรก"
-                    keywords={[`TCOHS`]} />
+                    keywords={[`AOED`, `Occupational`,`Medicine`,`สมาคมโรคจากการประกอบอาชีพและสิ่งแวดล้อมแห่งประเทศไทย`,`อาชีวเวชศาสตร์`, `โรคจากการประกอบอาชีพ`,`สิ่งแวดล้อม`,`สมาคม`]} />
                 <Banner siteTitle={meta.title} siteSubtitle={meta.subtitle} />
                 <div className="container">
                     <main className="paper-container">
-                        <h1>ประชาสัมพันธ์ <Link to="/news">ทั้งหมด</Link> </h1>
+                        <h1>กิจกรรมแนะนำ <Link to="/news">ทั้งหมด</Link> </h1>
                         <div className="two-grid">
                             {this.newsRenderer(news)}
                         </div>

@@ -1,6 +1,20 @@
+@import "functions";
+@import "mixins";
+
 .MDXRenderer-container {
     p {
         text-indent: 2.5em !important;
         line-height: 2.5 !important;
+    }
+
+    li {
+        line-height: 2 !important;
+    }
+}
+
+@include size(desktop) {
+    .MDXRenderer-container {
+        max-width:65vw;
+        margin:0 auto;
     }
 }
