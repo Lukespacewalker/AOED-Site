@@ -2,6 +2,9 @@
 The Association of Occupational and Environmental Diseases of Thailand official website
 Hosting on Netlify CDN at https://tcohs.netlify.com
 
+# Netlify Deployment
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9b9b26c3-6609-4db6-b771-53c2a995256f/deploy-status)](https://app.netlify.com/sites/aoed/deploys)
+
 # How to complie the website
 
 ## Automatic compilation using Use Netlify CI/CD 🛰🚀

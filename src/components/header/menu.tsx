@@ -44,12 +44,13 @@ export class SubMenu extends React.Component<ISubmenuProps, {}> {
         super(props);
     }
 
-    renderMenu(menu: ISubmenu) {
+    renderMenu(menu: ISubmenu,mainmenuIndex: number) {
         if (menu.link != null) {
+            //const seed = Math.trunc(Math.random() * 100);
             if (menu.link.substr(0, 4) === "http") {
-                return (<a className={menu.emphasize ? styles.emphasize : styles.normal} key={menu.order} href={menu.link}>{menu.name}</a>)
+                return (<a className={menu.emphasize ? styles.emphasize : styles.normal} key={mainmenuIndex+menu.order} href={menu.link}>{menu.name}</a>)
             } else {
-                return (<Link activeClassName={styles.subLinkActive} className={menu.emphasize ? styles.emphasize : styles.normal} key={menu.order} to={`/${menu.link}`}>{menu.name}</Link>)
+                return (<Link activeClassName={styles.subLinkActive} className={menu.emphasize ? styles.emphasize : styles.normal} key={mainmenuIndex+menu.order} to={`/${menu.link}`}>{menu.name}</Link>)
             }
         } else {
 
@@ -61,7 +62,7 @@ export class SubMenu extends React.Component<ISubmenuProps, {}> {
         if (items === undefined || items == null) return null;
         return (
             <>
-                {items.map(menu => this.renderMenu(menu))}
+                {items.map((menu,index) => this.renderMenu(menu,index))}
             </>
         );
     }

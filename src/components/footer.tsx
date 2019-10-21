@@ -25,7 +25,8 @@ class Footer extends React.Component<{ dark: boolean, author: string }, {}> {
                 </div>
                 <div className={style.left}> © {new Date().getFullYear()} สงวนลิขสิทธิ์ สมาคมโรคจากการประกอบอาชีพและสิ่งแวดล้อมแห่งประเทศไทย
                     <br /> สร้างสรรค์โดย <a href="https://lukespacewalker.github.io">{author}</a>
-                    <br /> Powered by <a href="https://www.gatsbyjs.org/">Gatsby</a> Hosted by <a href="https://www.netlify.com/">Netlify</a>
+                    <br /> Made with <a href="https://www.gatsbyjs.org/">Gatsby</a> Developed with <a href="https://visualstudio.microsoft.com/">Visual Studio 2019</a>
+                    <br /> CI/CD and Hosting by <a href="https://app.netlify.com/sites/aoed/deploys"><img style={{ verticalAlign: `text-top` }} src="https://api.netlify.com/api/v1/badges/9b9b26c3-6609-4db6-b771-53c2a995256f/deploy-status" /></a>
                 </div>
             </footer>
         );
