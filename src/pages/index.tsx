@@ -20,7 +20,7 @@ class IndexPage extends React.Component<{ data: any }, {}> {
             const { fields: { slug }, frontmatter: { excerpt, title, attachments } } = node;
             if (attachments !== undefined && attachments != null && attachments.length > 0) {
                 return (
-                    <Paper style={{ cursor: `pointer` }}  key={i} onClick={this.navigationHandler(slug)} side={<Img style={{ height: `350px` }} fluid={attachments[0].childImageSharp.fluid} alt={title} />}>
+                    <Paper style={{ cursor: `pointer` }}  key={i} onClick={this.navigationHandler(slug)} side={<Img style={{ height: `100%` }} fluid={attachments[0].childImageSharp.fluid} alt={title} />}>
                         <h1>{title}</h1>
                         <p>{excerpt}</p>
                         <Link to={slug}>อ่านต่อ</Link>

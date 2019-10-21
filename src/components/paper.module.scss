@@ -23,7 +23,7 @@
         display: grid;
         height: 100%;
         grid-template-areas: "aside" "content";
-        grid-template-rows: auto 1fr;
+        grid-template-rows: minmax(auto,350px) 1fr;
         background: white;
         box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.15);
     }
@@ -31,6 +31,7 @@
     aside {
         grid-area: aside;
         text-align: center;
+        position: relative;
 
         * {
             color: black;
@@ -101,7 +102,7 @@
         .inner-article-container.sbs {
             grid-template-areas: "aside content";
             grid-template-columns: 1fr 1.5fr;
-            grid-template-rows: minmax(auto,300px);
+            grid-template-rows: minmax(350px,auto);
         }
     }
 
