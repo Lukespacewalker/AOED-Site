@@ -9,7 +9,8 @@ import style from "./layout.module.scss";
 interface ILayoutProps {
     data: any;
     title: string,
-    by: string,
+    type: string,
+    date: string,
     customImage: FluidObject,
     bigSplash: boolean,
     children: any,
@@ -27,7 +28,7 @@ class Layout extends React.Component<ILayoutProps, {}> {
     }
 
     render() {
-        const { data: { site, file }, title, by, customImage, bigSplash, children } = this.props;
+        const { data: { site, file }, title, type, date, customImage, bigSplash, children } = this.props;
 
         let image = customImage !== null ? (<Img fluid={customImage} alt="background" style={{
             height: "100%",
@@ -48,7 +49,7 @@ class Layout extends React.Component<ILayoutProps, {}> {
                     <Header />
                     <div className={style.titleContainer}>
                         <h1 className={style.title}>{title}</h1>
-                        {by != null ? (<div className={style.by}>โดย {by}</div>) : ``}
+                        {date != null && (type === "news" || type === "articles")? (<div className={style.by}>{date}</div>) : ``}
                     </div>
                 </div>
                 <div className={style.layout}>

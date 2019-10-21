@@ -13,7 +13,8 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         resolve: {
             alias: {
                 "@components": path.resolve(__dirname, "src/components"),
-                "@images": path.resolve(__dirname, "src/images")
+                "@images": path.resolve(__dirname, "src/images"),
+                "@authors": path.resolve(__dirname, "src/contents/authors"),
             }
         }
     });
@@ -47,16 +48,28 @@ exports.createPages = ({ graphql, actions }) => {
       }
     }
   `).then(result => {
-      result.data.allMdx.edges.forEach(({ node }) => {
-          createPage({
-              path: node.fields.slug,
-              component: path.resolve(`./src/templates/information-page.tsx`),
-              context: {
-                  // Data passed to context is available
-                  // in page queries as GraphQL variables.
-                  slug: node.fields.slug
-              }
-          });
-      });
+        result.data.allMdx.edges.forEach(({ node }) => {
+            createPage({
+                path: node.fields.slug,
+                component: path.resolve(`./src/templates/information-page.tsx`),
+                context: {
+                    // Data passed to context is available
+                    // in page queries as GraphQL variables.
+                    slug: node.fields.slug
+                }
+            });
+        });
     });
 };
+
+exports.createSchemaCustomization = ({ actions, schema }) => {
+    const { createTypes } = actions;
+    const typeDefs = [
+        "type Mdx implements Node { frontmatter: MdxFrontmatter }",
+        `type MdxFrontmatter {
+            date: Date @dateformat(formatString: "dddd, DD MMMM YYYY", locale: "th")
+            authors: [AuthorslistJson] @link(by: "unique") 
+        }`
+    ];
+    createTypes(typeDefs);
+}

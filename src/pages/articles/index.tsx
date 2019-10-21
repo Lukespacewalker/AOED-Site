@@ -19,11 +19,12 @@ class ArticlesIndex extends React.Component<{ data: any }, {}> {
 
     private itemRenderer(nodes: Array<any>) {
         return nodes.map((node,i) => {
-            const { fields: { slug }, frontmatter: { excerpt, title, attachments } } = node;
+            const { fields: { slug }, frontmatter: { excerpt, date, title, attachments } } = node;
             if (attachments !== undefined && attachments != null && attachments.length > 0) {
                 return (
                     <Paper style={{ cursor: `pointer` }} onClick={this.navigationHandler(slug)} key={i} sbs side={<Img style={{ height: `100%`}} fluid={attachments[0].childImageSharp.fluid} alt={title} />}>
                         <h1>{title}</h1>
+                        <h3>{date}</h3>
                         <p>{excerpt}</p>
                         <Link to={slug}>อ่านต่อ</Link>
                     </Paper>
@@ -58,6 +59,7 @@ export const pageQuery = graphql`
               frontmatter {
                 title
                 excerpt
+                date
                 attachments {
                     childImageSharp {
                         fluid(quality: 90, maxWidth: 4096) {

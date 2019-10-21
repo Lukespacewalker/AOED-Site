@@ -101,7 +101,7 @@
         .inner-article-container.sbs {
             grid-template-areas: "aside content";
             grid-template-columns: 1fr 1.5fr;
-            grid-template-rows: auto;
+            grid-template-rows: minmax(auto,300px);
         }
     }
 
