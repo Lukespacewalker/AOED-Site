@@ -66,17 +66,18 @@ class Banner extends React.Component<{ siteTitle: string, siteSubtitle: string, 
     }
 
     render() {
+        let videoClassName = cstyle.video;
+        if (typeof window !== 'undefined' && /Edge/.test(navigator.userAgent)) {
+            videoClassName = cstyle.edgevideo;
+        }
+
         const { siteTitle, siteSubtitle, siteShortTitle } = this.props;
         return (<StaticQuery
             query={query}
             render={data => (<div className={style.bannerContainer}>
                 <Carousal>
                     <div className={cstyle.item}>
-                        <video src={loop} autoPlay={true} muted={true} loop={true} style={{
-                            height: `100%`,
-                            width: `100%`,
-                            objectFit: "cover",
-                        }}></video>
+                        <video className={videoClassName} src={loop} autoPlay={true} muted={true} loop={true}></video>
                         <div className={style.bannerText}>
                             <h1>{siteTitle}</h1>
                             <h2 lang="en" style={{ fontSize: `2rem` }}>{siteSubtitle}</h2>

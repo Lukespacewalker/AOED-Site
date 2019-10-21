@@ -108,6 +108,13 @@ small:lang(en), .text_small:lang(en) {
     }
 }
 
+
+@media (max-width:1026px) {
+    html {
+        font-size: 14px;
+    }
+}
+
 @media (max-width:600px) {
     html {
         font-size: 12px;

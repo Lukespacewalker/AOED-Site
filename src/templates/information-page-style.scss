@@ -14,7 +14,7 @@
     padding: 1rem 1.5rem;
     align-items: center;
     display: grid;
-    grid-template: "image title" "image positions";
+    grid-template-areas: "image title" "image positions";
     grid-template-columns: auto 1fr;
     grid-column-gap: 2rem;
 }
