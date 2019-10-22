@@ -4,7 +4,7 @@ module.exports = {
         title: `สมาคมโรคจากการประกอบอาชีพและสิ่งแวดล้อมแห่งประเทศไทย`,
         shortTitle: `AOED`,
         subtitle: `The Association of Occupational and Environmental Diseases of Thailand`,
-        description: `สมาคมโรคจากการประกอบอาชีพและสิ่งแวดล้อมแห่งประเทศไทย`,
+        description: `เว็บไซต์หลักของ สมาคมโรคจากการประกอบอาชีพและสิ่งแวดล้อมแห่งประเทศไทย The Association of Occupational and Environmental Diseases of Thailand`,
         author: `นพ. สุทธิศักดิ์ เด่นดวงใจ`,
         menus: [{
             order: 2,
@@ -23,7 +23,7 @@ module.exports = {
                 },*/
                 {
                     order: 3,
-                    name: `กิจกรรม`,
+                    name: `ข่าวสาร`,
                     link: `news`
                 }
             ]

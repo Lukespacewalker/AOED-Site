@@ -54,7 +54,7 @@ class IndexPage extends React.Component<{ data: any }, {}> {
                 <Banner siteTitle={meta.title} siteSubtitle={meta.subtitle} />
                 <div className="container">
                     <main className="paper-container">
-                        <h1>กิจกรรมแนะนำ <Link to="/news">ทั้งหมด</Link> </h1>
+                        <h1>ข่าวสาร <Link to="/news">ทั้งหมด</Link> </h1>
                         <div className="two-grid">
                             {this.newsRenderer(news)}
                         </div>
