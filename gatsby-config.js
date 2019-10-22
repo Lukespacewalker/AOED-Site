@@ -106,7 +106,7 @@ module.exports = {
         {
             resolve: `gatsby-plugin-canonical-urls`,
             options: {
-                siteUrl: `https://aoed.org`
+                siteUrl: `https://www.aoed.org`
             }
         },
         {
