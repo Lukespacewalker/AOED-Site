@@ -5,7 +5,7 @@
  */
 
 // You can delete this file if you're not using it
-import "./src/styles/layout.css";
+import "./src/styles/_reset.css";
 import "./src/styles/global.css";
 
 export const onServiceWorkerUpdateReady = () => {

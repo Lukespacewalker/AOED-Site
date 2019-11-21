@@ -1,0 +1,118 @@
+@import "functions";
+@import "mixins";
+
+.gradient {
+  background:    linear-gradient(
+    to bottom,
+    rgba(color(primary), 0.1) 0%,
+    rgba(color(primary), 0.101) 18.6%,
+    rgba(color(primary), 0.104) 34.7%,
+    rgba(color(primary), 0.112) 48.4%,
+    rgba(color(primary), 0.124) 59.9%,
+    rgba(color(primary), 0.143) 69.5%,
+    rgba(color(primary), 0.171) 77.2%,
+    rgba(color(primary), 0.207) 83.4%,
+    rgba(color(primary), 0.254) 88.2%,
+    rgba(color(primary), 0.314) 91.9%,
+    rgba(color(primary), 0.387) 94.5%,
+    rgba(color(primary), 0.474) 96.4%,
+    rgba(color(primary), 0.578) 97.7%,
+    rgba(color(primary), 0.699) 98.6%,
+    rgba(color(primary), 0.84) 99.3%,
+    rgba(color(primary),1) 100%
+  );
+  height: 100vh;
+  width: 100%;
+  min-height: 600px;
+  position: absolute;
+  pointer-events: none;
+}
+
+.banner-container {
+  height: 100vh;
+  min-height: 600px;
+  position: relative;
+  background: rgb(40, 40, 40);
+
+  .banner-text {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 3rem;
+      /*color: lighten(color(secondary),20%);*/
+    }
+  }
+}
+
+.banner-container .banner-text,
+.banner-container .banner-display {
+  position: absolute;
+  animation: fadein 2s;
+}
+
+.banner-container .banner-display {
+  width: calc(100vw);
+  height: calc(100% - 120px);
+  bottom: 0%;
+  //top: 50%;
+  //left: 50%;
+  //transform: translateY(-50%) translateX(-50%);
+}
+
+.banner-container .banner-text {
+  color: white;
+  left: 35px;
+  bottom: 5%;
+  transform: translateY(-50%);
+  text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.8);
+}
+
+.banner-container .special-banner-text {
+  color: rgb(236, 231, 112);
+  position: absolute;
+  left: 50%;
+  min-width: 475px;
+  bottom: 30px;
+
+  > div {
+    position: relative;
+    left: -53%;
+  }
+
+  h1,
+  h2 {
+    font-family: supermarket;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: calc(40px + 1.2vw);
+    text-shadow: 0 0 5px rgba(236, 231, 112, 0.7);
+  }
+
+  h2 {
+    margin: 0;
+    text-shadow: 0 0 5px rgba(236, 231, 112, 0.5);
+    font-size: calc(24px + 1.2vw);
+  }
+}
+
+@include size(desktop) {
+
+
+.banner-container .banner-display {
+    width: 100%;
+    height: calc(100% - 140px);
+}
+
+.banner-container .banner-text {
+    width: calc(100% - var(--XSpacing) - var(--XSpacing));
+    left: calc(15px + var(--XSpacing));
+  }
+}

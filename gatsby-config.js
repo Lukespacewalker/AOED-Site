@@ -115,7 +115,15 @@ module.exports = {
                 includePaths: ['src/styles']
             }
         },
-        `gatsby-plugin-mdx`,
+        {
+            resolve: `gatsby-plugin-mdx`,
+            options: {
+                extensions: ['.mdx', '.md'],
+                //defaultLayout: require.resolve('./src/components/blog-post-layout.js'),
+                remarkPlugins: [require("remark-slug")],
+                rehypePlugins:[]
+            }
+        },
         `gatsby-plugin-no-sourcemaps`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-sitemap`,

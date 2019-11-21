@@ -8,6 +8,14 @@
 }
 
 @font-face {
+    font-family: 'fontello';
+    src: url('fontello.woff2') format('woff2'),
+         url('fontello.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+@font-face {
     font-family: 'RSU';
     src: local('RSU'),
          url('RSU.woff2') format('woff2'),

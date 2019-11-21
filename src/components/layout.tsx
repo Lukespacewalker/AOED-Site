@@ -2,8 +2,8 @@
 import { graphql, useStaticQuery } from "gatsby";
 import { FluidObject } from "gatsby-image";
 import Img from "gatsby-image";
-import Header from "./header/header";
-import Footer from "./footer";
+import Header from "@components/header";
+import Footer from "@components/footer";
 import style from "./layout.module.scss";
 
 interface ILayoutProps {

@@ -19,6 +19,12 @@ body {
     font-family: 'Noto Sans','Sarabun', sans-serif;
 }
 
+.font-icon{
+    font-family: 'fontello';
+    font-size: 0.75em;
+    margin-right:0.5em;
+}
+
 .link-active {
     color: var(--colorAccent);
 }

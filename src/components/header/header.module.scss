@@ -222,7 +222,7 @@ nav.main-menu.show {
 
 @include size(desktop) {
     .header-container {
-        padding: 50px var(--XSpacing) 20px var(--XSpacing);
+        padding: 15px var(--XSpacing) 20px var(--XSpacing);
     }
     /* Header */
     header.site-header {

@@ -123,13 +123,13 @@ class Header extends React.Component<IHeaderProps, {}>{
             `}
 
                     render={data => {
-                const { isFrontPage } = this.props;
+                const { isFrontPage ,...others} = this.props;
                 const { site: { siteMetadata: { title, shortTitle, menus } } }: { site: { siteMetadata: { title: string; shortTitle: string; menus: IMenu[] } } } = data;
 
                 let headerClassname = `${styles.siteHeader} ${isFrontPage ? styles.frontPage : ""} ${this.state.isPaneOpen ? styles.showingNav : ""}`;
 
                 return (
-                    <div className={styles.headerContainer}>
+                    <div className={styles.headerContainer} {...others}>
                         <header className={headerClassname}>
                             <div className={styles.titleContainer}>
                                 <div className={styles.logo}>
