@@ -14,6 +14,8 @@ class Carousal extends React.Component<{}, {}> {
 
     private childrenRefs : Array<React.RefObject<HTMLDivElement>>
 
+    private myRef = React.createRef();
+
     private maxChildId : number;
 
     state = {
@@ -50,9 +52,10 @@ class Carousal extends React.Component<{}, {}> {
             }
         }
         
+        
         return (
             <div className={cstyle.container}>
-                <div className={cstyle.childrenContainer}>
+                <div ref={this.myRef} className={cstyle.childrenContainer}>
                     {children}
                 </div>
                 <div className={cstyle.back} onClick={this.prev}>
@@ -70,9 +73,12 @@ class Carousal extends React.Component<{}, {}> {
 
     componentDidUpdate(){
         const elem = (this.refs[this.state.index] as HTMLElement);
+        let viewer = this.myRef.current as HTMLElement;
         if (typeof window !== 'undefined' && /Edge/.test(navigator.userAgent)) {
-            elem.scrollIntoView()
+            //viewer.scrollTo({left:elem.offsetLeft, behavior:"smooth"});
+            elem.scrollIntoView({behavior: "smooth", inline: "start"})
         }else{
+            viewer.scrollTo({left:elem.offsetLeft, behavior:"smooth"});
             elem.scrollIntoView({behavior: "smooth", inline: "start"})
         }
     }

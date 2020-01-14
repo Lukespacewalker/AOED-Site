@@ -1,0 +1,45 @@
+@import "functions";
+@import "mixins";
+
+.container{
+    margin-top: 121px;
+
+    :global {
+        .gatsby-image-wrapper > div:first-child{
+            padding-bottom: 0!important;
+          }
+    }
+}
+
+.title-super-container{
+    position: relative;
+    margin-bottom: 40px;
+
+    .title-container{
+        position: absolute;
+        bottom: 0;
+    }
+
+    .title{
+        font-family: "Convection","Noto Sans", "RSU";
+        font-size: 4em;
+        color:white;
+        background: color(base);
+        padding: 0.25em;
+    }
+}
+
+.image{
+    height: 300px;
+}
+
+@include size(desktop) {
+    .container{
+        margin-top: 141px;
+    
+    }
+
+    .image{
+        height: 450px;
+    }
+}

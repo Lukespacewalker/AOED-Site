@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
-import styles from "./paper.module.scss";
 import { InView } from "react-intersection-observer";
+
+import "./paper.scss";
 
 class Paper extends React.Component<
   {
@@ -35,14 +36,14 @@ class Paper extends React.Component<
       ...othersProps
     } = this.props;
 
-    const classname = `${transparent ? styles.trans : ``} ${
-      side ? `` : styles.noAside
+    const classname = `${transparent ? `trans` : ``} ${
+      side ? `` : `no-aside`
     }`;
-    const containerClassName = `${styles.articleContainer} ${
-      wide ? styles.wide : ``
+    const containerClassName = `${`article-container`} ${
+      wide ? `wide` : ``
     } `;
-    const innerContainerClassName = `${styles.innerArticleContainer} ${
-      sbs ? styles.sbs : ``
+    const innerContainerClassName = `${`inner-article-container`} ${
+      sbs ? `sbs` : ``
     }`;
 
     return (
@@ -55,7 +56,7 @@ class Paper extends React.Component<
               className={
                 containerClassName +
                 " " +
-                (this.hasAlreadyShown || inView ? styles.show : styles.hide)
+                (this.hasAlreadyShown || inView ? `show` : `hide`)
               }
               style={style}
               {...othersProps}

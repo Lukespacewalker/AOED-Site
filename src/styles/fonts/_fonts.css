@@ -49,3 +49,39 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'Cascadia Code PL';
+    src: local('Cascadia Code PL Regular'), local('CascadiaCodePL-Regular'),
+        url('CascadiaCodePL-Regular.woff2') format('woff2'),
+        url('CascadiaCodePL-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cascadia Mono PL';
+    src: local('Cascadia Mono PL Regular'), local('CascadiaMonoPL-Regular'),
+        url('CascadiaMonoPL-Regular.woff2') format('woff2'),
+        url('CascadiaMonoPL-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cascadia Code';
+    src: local('Cascadia Code Regular'), local('CascadiaCode-Regular'),
+        url('CascadiaCode-Regular.woff2') format('woff2'),
+        url('CascadiaCode-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cascadia Mono';
+    src: local('Cascadia Mono Regular'), local('CascadiaMono-Regular'),
+        url('CascadiaMono-Regular.woff2') format('woff2'),
+        url('CascadiaMono-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

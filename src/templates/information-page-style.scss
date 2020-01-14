@@ -30,12 +30,16 @@
 .title-container {
     grid-area: title;
     font-size: 1.2rem;
+    white-space: pre;
+    text-align: center;
 }
 
 .positions-container {
     grid-area: positions;
+    text-align: center;
     line-height:2;
     align-self: start;
+    white-space: pre;
 
     >div:not(:last-child){
         border-bottom: 1px solid rgba(color(secondary),0.6);
@@ -48,14 +52,10 @@
 }
 
 
-.MDXRenderer-container {
-    p {
-        text-indent: 2.5em;
-        line-height: 2.5;
-    }
-
-    li {
-        line-height: 2;
+.MDXRenderer-body {
+    .gatsby-image-wrapper{
+        box-shadow: shadow(large);
+        margin-bottom: 1.5rem;
     }
 }
 
@@ -65,11 +65,6 @@
         margin-bottom: unset;
         font-size: 0.8rem;
         border-right: 1px solid color(secondary);
-    }
-
-    .positions-container {
-        text-align: center;
-
     }
 
     .image-container {
@@ -85,11 +80,4 @@
         border-bottom: 1px solid color(secondary);
     }
 
-    .MDXRenderer-container { 
-        display: grid;
-        grid-template-columns: fit-content(350px) 1fr;
-        column-gap: 2em;
-        max-width: 85vw;
-        margin: 0 auto;
-    }
 }

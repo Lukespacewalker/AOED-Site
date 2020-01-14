@@ -1,6 +1,6 @@
 import * as React from "react";
 import { graphql , Link} from "gatsby";
-import Layout from "@components/layout";
+import ListLayout from "@components/layout/listlayout";
 import SEO from "@components/seo";
 
 const browser = typeof window !== "undefined" && window;
@@ -13,10 +13,10 @@ class Page404 extends React.Component<{ data: any }, {}> {
     render() {
         const { data: { file: { childImageSharp: { fluid } } } } = this.props;
         return browser && (
-            <Layout customImage={fluid} title="404: ไม่พบหน้านี้">
+            <ListLayout image={fluid} title="404: ไม่พบหน้านี้">
                 <p>โปรดตรวจสอบ URL ใหม่อีกครั้ง</p>
                 <p>หรือกลับไปยัง <Link to="/">หน้าแรก</Link></p>
-            </Layout>);
+            </ListLayout>);
     }
 }
 

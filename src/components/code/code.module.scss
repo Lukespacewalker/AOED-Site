@@ -1,0 +1,38 @@
+.code {
+  background: rgba(30, 30, 30, 0.9);
+  color: white;
+  border-radius: 5px;
+
+  p {
+    text-indent: 0 !important;
+    line-height: 1.5 !important;
+  }
+
+  b{
+      color:rgb(255, 201, 83);
+      font-weight: normal;
+  }
+
+  em{
+    color:rgb(19, 216, 98);
+    font-style: normal;
+  }
+
+  pre {
+    padding: 0;
+  }
+
+  > pre {
+    padding: 1.25em;
+  }
+
+  code {
+    font-family: "Cascadia Mono" !important;
+  }
+}
+
+.cascadia-code{
+  code {
+    font-family: "Cascadia Code" !important;
+  }
+}

@@ -6,11 +6,11 @@ footer {
     grid-gap: 1rem;
     font-size: 0.8rem;
     padding: 1rem var(--XSpacing) 1rem var(--XSpacing);
-    background: rgba(248,248,248,1);
     color: black;
+    background: rgb(248,248,248);
 
     a {
-        color: color(secondary);
+        color: color(primary);
     }
 
     .left, .right {
@@ -68,11 +68,31 @@ footer {
         filter: grayscale(0);
         opacity: 1;
     }
+
 }
 
-footer.dark {
-    background: color(primary);
-    color: whitesmoke;
+#fivepx{
+    fill:rgb(50,50,50);
+}
+
+@media (prefers-color-scheme: light) {
+    footer{
+        background: rgb(248,248,248);
+    }
+    #fivepx{
+        fill:rgb(50,50,50);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    footer{
+        background: rgb(20,20,20);
+        color:whitesmoke;
+    }
+    
+    #fivepx{
+        fill:rgb(255,255,255);
+    }
 }
 
 @media (max-width:599px) {

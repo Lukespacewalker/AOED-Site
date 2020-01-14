@@ -1,13 +1,8 @@
 @import "functions";
 @import "mixins";
 
-:root {
-    --color1: #111111;
-    --color2: #8FC4DA;
-}
-
 .gradient {
-    background: linear-gradient(rgba(color(primary),0.1) 60%, rgba(color(primary),0.7));
+    background: linear-gradient(rgba(color(base),0.1) 60%, rgba(color(base),0.7));
     height: 100%;
     width: 100%;
     position: absolute;
@@ -19,23 +14,25 @@
     height: 75vh;
 }
 
+.title-container {
+    margin-top: 141px;
+    /*
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    z-index: -1;
+    */
+}
+
 .banner-container {
     min-height: 35vh;
     position: relative;
     z-index: 2;
 
-    .title-container {
-        position: absolute;
-        width: 100%;
-        bottom: 0;
-        z-index: -1;
-    }
-
     .title {
         color: whitesmoke;
         /*left: var(--XSpacing);*/
         text-align: center;
-        text-shadow: 0px 0px 6px rgba(0,0,0,0.8);
     }
 
     .by {
@@ -50,6 +47,10 @@
 
 .banner-container.tall {
     height: 75vh;
+
+    .title{
+        background: color(primary);
+    }
 }
 
 .layout {

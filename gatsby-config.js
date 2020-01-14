@@ -6,7 +6,20 @@ module.exports = {
         subtitle: `The Association of Occupational and Environmental Diseases of Thailand`,
         description: `เว็บไซต์หลักของ สมาคมโรคจากการประกอบอาชีพและสิ่งแวดล้อมแห่งประเทศไทย The Association of Occupational and Environmental Diseases of Thailand`,
         author: `นพ. สุทธิศักดิ์ เด่นดวงใจ`,
-        menus: [{
+        menus: [
+            {
+                order: 1,
+                name: `องค์กร`,
+    
+                submenus: [
+                    {
+                        order: 1,
+                        name: `ประวัติสมาคม`,
+                        link: `organization/history`
+                    }
+                ]
+            },
+            {
             order: 2,
             name: `ประชาสัมพันธ์`,
 
@@ -59,16 +72,22 @@ module.exports = {
                     name: `แนวทางเวชปฏิบัติ`,
                     link: `ocmed/guidelines`
                 }
-                /*,
+                ,
                 {
                     order: 2,
-                    name: `แนะนำผลงานวิจัย`,
-                    link: `education/researches`
-                }*/
+                    name: `กฎหมาย`,
+                    link: `ocmed/laws`
+                }
+                ,
+                {
+                    order: 3,
+                    name: `มาตรฐานคุณวุฒิความรู้ความชำนาญในการประกอบวิชาชีพเวชกรรม`,
+                    link: `ocmed/wfme`
+                }
             ]
         }, {
             order: 5,
-            name: `ติดต่อ`,
+            name: `ติดตาม`,
             emphasize: false,
             submenus: [
                 {

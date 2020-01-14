@@ -5,6 +5,9 @@ import SEO from "@components/seo";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { MDXProvider } from "@mdx-js/react";
 import Img from "gatsby-image";
+import { Pre } from "@components/code";
+import scrollTo from "@components/scroller";
+import ArticleLayout from "@components/layout/articlelayout";
 
 import "./information-page-style.scss";
 
@@ -22,38 +25,68 @@ interface TOCItem {
   items: Array<TOCItem> | null;
 }
 
-class H1 extends React.Component<{}, {}> {
+class H1 extends React.Component<{ useToc: boolean }, {}> {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const { children, ...other } = this.props;
+    const { useToc, children, ...other } = this.props;
     return (
       <h1 {...other}>
-        <a href="#toc" className="font-icon">
-          &#xe800;
-        </a>
+        {useToc ? (
+          <a href="#toc" className="font-icon" onClick={scrollTo}>
+            &#xe800;
+          </a>
+        ) : (
+          ""
+        )}
         {children}
       </h1>
     );
   }
 }
 
-class H2 extends React.Component<{}, {}> {
+class H2 extends React.Component<{ useToc: boolean }, {}> {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const { children, ...other } = this.props;
+    const { useToc, children, ...other } = this.props;
     return (
       <h2 {...other}>
-        <a href="#toc" className="font-icon">
-          &#xe800;
-        </a>
+        {useToc ? (
+          <a href="#toc" className="font-icon" onClick={scrollTo}>
+            &#xe800;
+          </a>
+        ) : (
+          ""
+        )}
         {children}
       </h2>
+    );
+  }
+}
+
+class H3 extends React.Component<{ useToc: boolean }, {}> {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const { useToc, children, ...other } = this.props;
+    return (
+      <h3 {...other}>
+        {useToc ? (
+          <a href="#toc" className="font-icon" onClick={scrollTo}>
+            &#xe800;
+          </a>
+        ) : (
+          ""
+        )}
+        {children}
+      </h3>
     );
   }
 }
@@ -92,14 +125,18 @@ class InformationPage extends React.Component<{ data: any }, {}> {
       if (toc.items != undefined && toc.items.length > 0)
         return (
           <li key={parentIndex + index}>
-            <a href={toc.url}>{toc.title}</a>
+            <a href={toc.url} onClick={scrollTo}>
+              {toc.title}
+            </a>
             <ul>{this.renderTOCItem(toc.items, index * 100)}</ul>
           </li>
         );
       else
         return (
           <li key={parentIndex + index}>
-            <a href={toc.url}>{toc.title}</a>
+            <a href={toc.url} onClick={scrollTo}>
+              {toc.title}
+            </a>
           </li>
         );
     });
@@ -118,20 +155,6 @@ class InformationPage extends React.Component<{ data: any }, {}> {
       return "";
     }
   }
-  /*
-
-  componentDidMount() {
-    var node = ReactDOM.findDOMNode(this);
-    //if (node instanceof HTMLElement) {
-    const h1s = [...node.querySelectorAll<HTMLElement>("h1")] as Array<
-      HTMLElement
-    >;
-    h1s.forEach(h1 => {
-      console.log(h1);
-      h1.innerHTML = "<a href=#toc>" + h1.innerHTML + "</a>";
-    });
-    //}
-  }*/
 
   render() {
     const {
@@ -139,9 +162,9 @@ class InformationPage extends React.Component<{ data: any }, {}> {
         mdx: {
           tableOfContents: { items },
           frontmatter: { title, type, attachments, date, authors: a, excerpt },
-          body
-        }
-      }
+          body,
+        },
+      },
     } = this.props;
     const authors: Array<IAuthor> = a;
     const tocs = items as Array<TOCItem>;
@@ -163,38 +186,42 @@ class InformationPage extends React.Component<{ data: any }, {}> {
       ogImage = attachments[0].publicURL;
     }
 
-    let shallRenderSide = (<div></div>);
+    let asideContent = <div></div>;
     if (authors != null || tocs != null) {
-      shallRenderSide = (
-        <div className="MDXRenderer-side">
+      asideContent = (
+        <>
           {authors != null ? this.renderAuthors(authors) : ``}
           {tocs != null ? this.renderTOC(tocs) : ``}
-        </div>
+        </>
       );
     }
 
     return (
-      <Layout title={title} date={date} customImage={image} type={type}>
+      <ArticleLayout
+        title={title}
+        date={date}
+        image={image}
+        aside={asideContent}
+      >
         {excerpt != null ? (
-          <SEO title={title} description={excerpt} image={ogImage} />
+          <SEO title={title} description={excerpt} imageUrl={ogImage} />
         ) : (
           ``
         )}
-        <div className="MDXRenderer-container">
-          {shallRenderSide}
-          <div className="MDXRenderer-body">
-            <MDXProvider
-              components={{
-                // Map HTML element tag to React component
-                h1: H1,
-                h2: H2
-              }}
-            >
-              <MDXRenderer images={attachments}>{body}</MDXRenderer>
-            </MDXProvider>
-          </div>
+        <div className="MDXRenderer-body">
+          <MDXProvider
+            components={{
+              // Map HTML element tag to React component
+              h1: (props) => <H1 useToc={this.useTOC} {...props}></H1>,
+              h2: (props) => <H2 useToc={this.useTOC} {...props}></H2>,
+              h3: (props) => <H3 useToc={this.useTOC} {...props}></H3>,
+              pre: Pre,
+            }}
+          >
+            <MDXRenderer images={attachments}>{body}</MDXRenderer>
+          </MDXProvider>
         </div>
-      </Layout>
+      </ArticleLayout>
     );
   }
 }

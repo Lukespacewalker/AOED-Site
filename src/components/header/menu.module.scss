@@ -1,56 +1,85 @@
 @import "functions";
 @import "mixins";
 
-a.normal, a.emphasize {
-    padding: 0.75rem;
-    color: color(primary);
-    cursor: pointer;
-    transition: background 0.3s cubic-bezier(0.77,0.2,0.05,1.0), color 0.3s cubic-bezier(0.77,0.2,0.05,1.0),text-shadow 0.3s cubic-bezier(0.77,0.2,0.05,1.0);
-}
-
+/* Dimension */
+a.normal,
 a.emphasize {
-    color: black;
+  font-size: 1.5rem;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: background 0.3s cubic-bezier(0.77, 0.2, 0.05, 1),
+    color 0.3s cubic-bezier(0.77, 0.2, 0.05, 1),
+    text-shadow 0.3s cubic-bezier(0.77, 0.2, 0.05, 1);
+}
+
+@include size(higher-desktop) {
+  a.main {
+    padding: 0 0.75rem !important;
+  }
+
+  a.emphasize {
     border: 1px solid color(secondary);
-    /*text-shadow: 0px 0px 5px color(secondary);*/
+    font-weight: normal;
+    margin: 0.25rem;
+    padding: 0.5rem;
+  }
+
+  a.emphasize:hover,
+  a.emphasize.link-active {
+    text-shadow: none;
+  }
 }
 
-a.emphasize:hover {
-    background: color(secondary);
-    color: white !important;
+/* Color */
+
+a.normal {
+  color: color(base);
 }
 
-a.normal.link-active, a.emphasize.link-active {
-    color: lighten(color(secondary),15%) !important;
+a.normal:hover {
+  color: color(secondary);
+}
+a.normal.link-active:hover {
+  color: lighten(color(secondary), 5%);
 }
 
-a.normal.sub-link-active {
-    color: darken(adjust-hue(color(secondary), -3% ),10%) !important;
+a.normal.link-active {
+  color: color(primary);
 }
 
-@include size(desktop) {
+@media (prefers-color-scheme: light) {
+  a.normal {
+    color: color(base);
+  }
 
-    a.main {
-        padding: 0 0.75rem !important;
-    }
+  a.normal:hover {
+    color: color(secondary);
+  }
+  a.normal.link-active:hover {
+    color: lighten(color(secondary), 5%);
+  }
 
-    a.normal {
-        color: white;
-        text-shadow: 0px 0px 8px black;
-    }
+  a.normal.link-active {
+    color: color(primary);
+  }
+}
 
-    a.emphasize {
-        border: 1px solid color(secondary);
-        font-weight: normal;
-        text-shadow: 0px 0px 8px black;
-        margin: 0.25rem;
-        padding: 0.5rem;
-        background: rgba(color(secondary),0.5);
-        color: white;
-    }
+@media (prefers-color-scheme: dark) {
+  a.normal {
+    color: white;
+  }
 
-    a.emphasize:hover, a.emphasize.link-active {
-        background: color(secondary);
-        text-shadow: none;
-        color: rgb(51,51,51) !important;
-    }
+  a.normal:hover {
+    color: lighten(color(secondary), 5%);
+    text-shadow: 0px 0px 7px lighten(color(secondary), 5%);
+  }
+  a.normal.link-active:hover {
+    color: lighten(color(secondary), 15%);
+    text-shadow: 0px 0px 7px lighten(color(secondary), 15%);
+  }
+
+  a.normal.link-active {
+    color: lighten(color(primary), 15%);
+  }
+
 }

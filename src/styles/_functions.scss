@@ -8,3 +8,22 @@
     @warn "Unknown `#{$key}` in $colors.";
     @return null;
 }
+
+@function shadow($key) {
+    @if map-has-key($shadow, $key) {
+        @return map-get($shadow, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $shadow.";
+    @return null;
+}
+
+
+@function glow($key) {
+    @if map-has-key($glow, $key) {
+        @return map-get($glow, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $glow.";
+    @return null;
+}
