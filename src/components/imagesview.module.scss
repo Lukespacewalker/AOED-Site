@@ -2,110 +2,118 @@
 @import "mixins";
 
 .root-grid {
-    display: grid;
-    margin-bottom: var(--marginBase);
-    grid-template: "i i i" auto "m m m" auto "c c c" auto / 1fr 1fr 1fr;
+  display: grid;
+  margin-bottom: var(--marginBase);
+  grid-template: "i i i" 600px "m m m" auto "c c c" auto / 1fr 1fr 1fr;
 
-    article {
-        background: white;
-        border-radius: 0 0 5px 5px;
-        box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.2);
-        padding: 1rem 2rem;
+  article {
+    background: white;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
+    padding: 1rem 2rem;
 
-        a {
-            color: darken(color(secondary),20%);
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: darken(color(secondary),10%);
-        }
-
-        p {
-            line-height: 2;
-            text-align: justify;
-            text-justify: kashida;
-        }
+    p {
+      line-height: 2;
+      text-align: justify;
+      text-justify: kashida;
     }
+  }
+
+  @media (prefers-color-scheme: light) {
+    article {
+      background: white;
+    }
+  }
+  @media (prefers-color-scheme: dark) {
+    article {
+      background: rgb(20, 20, 20);
+      color: white;
+      box-shadow: glow(large);
+    }
+  }
 }
 
 .children-area {
-    grid-area: c;
+  grid-area: c;
+  > *:first-child{
+    margin-top:0;
+  }
 }
 
 .imagelist-area {
-    grid-area: m;
-    background: rgba(0,0,0,0.2);
-    display: flex;
-    padding: 10px 0 10px 0;
-    flex-direction: row;
+  grid-area: m;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  padding: 10px 0 10px 0;
+  flex-direction: row;
+  overflow-y: auto;
 
-    > * {
-        margin: 0 6px 0 0;
-        opacity: 0.5;
-        width: 100px;
-        transition: opacity 0.3s ease;
-        cursor: pointer;
-    }
+  > * {
+    margin: 0 6px 0 0;
+    opacity: 0.5;
+    width: 100px;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+  }
 
-    > *:hover, .selected {
-        opacity: 1;
-    }
+  > *:hover,
+  .selected {
+    opacity: 1;
+  }
 }
 
 .main-area {
-    grid-area: i;
-    position: relative;
-    touch-action: pan-y pinch-zoom;
+  grid-area: i;
+  position: relative;
+  touch-action: pan-y pinch-zoom;
 
-    .back, .next {
-        opacity: 0;
-        cursor: pointer;
-        transition: opacity 0.4s ease;
+  .back,
+  .next {
+    opacity: 0;
+    cursor: pointer;
+    transition: opacity 0.4s ease;
+    position: absolute;
+    width: 80px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .back {
+    left: 0;
+
+    path {
+      fill: white;
     }
+  }
 
-    .back {
-        position: absolute;
-        left: 0;
-        width: 80px;
-        top: 50%;
+  .next {
+    right: 0;
 
-        path {
-            fill: white;
-        }
+    path {
+      fill: white;
     }
-
-    .next {
-        position: absolute;
-        right: 0;
-        width: 80px;
-        top: 50%;
-
-
-        path {
-            fill: white;
-        }
-    }
+  }
 }
 
 .main-area:hover {
-    .back, .next {
-        opacity: 1;
-    }
+  .back,
+  .next {
+    opacity: 1;
+  }
 }
 
 @include size(portait-tablet) {
-    .root-grid {
-        grid-template: "i i m" auto "i i m" auto "c c c" auto / 1fr 1fr 150px;
-    }
+  .root-grid {
+    grid-template: "i i m" 300px "i i m" 300px "c c c" auto / 1fr 1fr 150px;
+  }
 
-    .imagelist-area {
-        padding: 0 0 0 10px;
-        flex-direction: column;
+  .imagelist-area {
+    padding: 0 0 0 10px;
+    flex-direction: column;
 
-        > * {
-            width: auto;
-            margin: 0 0 6px 0;
-        }
+    > * {
+      width: auto;
+      margin: 0 0 6px 0;
     }
+  }
 }

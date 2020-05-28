@@ -48,6 +48,42 @@
     "avatar": "ploypatt.jpg"
   },
   {
+    "id": 51,
+    "unique": "theerasit",
+    "name": "นพ. ธีระศิษฏ์ เฉินบำรุง",
+    "position": [
+      "แพทย์อาชีวเวชศาสตร์\r\nหัวหน้ากลุ่มงานอาชีวเวชกรรม โรงพยาบาลระยอง"
+    ],
+    "avatar": "theerasit.jpg"
+  },
+  {
+    "id": 52,
+    "unique": "apidech",
+    "name": "นพ. อภิเดช ชีวะประเสริฐ",
+    "position": [
+      "แพทย์อาชีวเวชศาสตร์\r\nโรงพยาบาลอรัญประเทศ"
+    ],
+    "avatar": "apidech.png"
+  },
+  {
+    "id": 53,
+    "unique": "sita",
+    "name": "พญ. ศิตา งามการ",
+    "position": [
+      "แพทย์อาชีวเวชศาสตร์"
+    ],
+    "avatar": "sita.jpg"
+  },
+  {
+    "id": 54,
+    "unique": "piyapat",
+    "name": "นพ. ปิยะพัทธ์ ปั้นดี",
+    "position": [
+      "แพทย์อาชีวเวชศาสตร์"
+    ],
+    "avatar": "piyapat.jpg"
+  },
+  {
     "id": 100,
     "unique": "nrhioem",
     "name": "สถาบันอาชีวเวชศาสตร์\r\nและเวชศาสตร์สิ่งแวดล้อม",

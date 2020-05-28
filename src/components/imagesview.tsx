@@ -70,7 +70,8 @@ class ImagesView extends React.Component<IImageViewProps, {}>{
 
 
     state = {
-        index: 0
+        index: 0,
+        cover: false,
     }
 
     prev() {
@@ -90,7 +91,7 @@ class ImagesView extends React.Component<IImageViewProps, {}>{
     }
 
     generateMainImage(fluid: any) {
-        return (<Img fluid={fluid} alt="main_image" />);
+        return (<Img style={{height:"100%"}} fluid={fluid} alt="main_image" />);
     }
 
     generateThumbnailImages(fluids: Array<any>) {

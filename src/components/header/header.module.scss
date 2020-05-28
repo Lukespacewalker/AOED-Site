@@ -20,6 +20,7 @@
 /* Logo */
 .logo {
   background-image: url(../../images/logo_dark.png);
+  width:300px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -94,11 +95,6 @@
   }
 }
 
-.front-page {
-  //background: transparent;
-  //backdrop-filter: unset;
-}
-
 #menuToggle {
   z-index: 10;
   grid-area: toggle;
@@ -128,7 +124,7 @@
     z-index: 1;
     transform-origin: 4px 0px;
     transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
-      background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
   }
 
   span:first-child {
@@ -240,11 +236,10 @@ nav.main-menu.show {
 }
 
 @include size(phone) {
-  /*
-    .date-container {
-        padding-left: 1rem;
-    }
-    */
+  header.site-header {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "logo date toggle";
+  }
 }
 
 @include size(desktop) {
@@ -335,7 +330,6 @@ nav.main-menu.show {
       text-shadow: unset;
     }
   }
-
   @media (prefers-color-scheme: light) {
     nav.sub-menu {
       background: white;

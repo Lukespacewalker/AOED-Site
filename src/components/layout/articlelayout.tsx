@@ -32,9 +32,17 @@ class ArticleLayout extends React.Component<
         <div className={`container ${articleStyle.contentContainer}`}>
           <aside className={articleStyle.aside}>{aside}</aside>
           <main>
-            <div>
-              <Img className={articleStyle.mainImage} fluid={image} alt="background" />
-            </div>
+            {image != null ? (
+              <div>
+                <Img
+                  className={articleStyle.mainImage}
+                  fluid={image}
+                  alt="background"
+                />
+              </div>
+            ) : (
+              <></>
+            )}
             {children}
           </main>
         </div>

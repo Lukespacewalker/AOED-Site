@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 import { InView } from "react-intersection-observer";
-
 import "./paper.scss";
 
 class Paper extends React.Component<
@@ -18,10 +17,10 @@ class Paper extends React.Component<
   constructor(props) {
     super(props);
   }
-
+/*
   public static propTypes = {
     children: PropTypes.node.isRequired
-  };
+  };*/
 
   private hasAlreadyShown = false;
 

@@ -2,6 +2,8 @@
 @import "mixins";
 
 .content-container {
+    width: 100%;
+    
     p {
         text-indent: 2.5em;
         line-height: 2;

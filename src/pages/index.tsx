@@ -2,16 +2,10 @@ import * as React from "react";
 import { graphql, Link, navigate } from "gatsby";
 import Footer from "@components/footer";
 import SEO from "@components/seo";
-import Banner from "@components/banner";
 import Header from "@components/header";
 import Paper from "@components/paper";
 import Img from "gatsby-image";
 
-import Carousal from "@components/carousal";
-import style from "@components/banner/banner.module.scss";
-import cstyle from "@components/carousal/carousal.module.scss";
-// Parts
-import Intro from "@components/indexpage_parts/intro";
 // Styles
 import yt_icon from "@images/ui/youtube_icon.png";
 import "./index.scss";
@@ -60,6 +54,7 @@ class IndexPage extends React.Component<{ data: any }, {}> {
             <h1>{title}</h1>
             <div className="date">{date}</div>
             <p>{excerpt}</p>
+            <Link to={slug}>อ่านต่อ</Link>
           </Paper>
         );
     });
@@ -179,7 +174,7 @@ export const query = graphql`
     }
 
     news: allMdx(
-      limit: 6
+      limit: 8
       sort: { fields: frontmatter___date, order: DESC }
       filter: { frontmatter: { type: { eq: "news" } } }
     ) {
@@ -187,7 +182,7 @@ export const query = graphql`
     }
 
     articles: allMdx(
-      limit: 6
+      limit: 8
       sort: { fields: frontmatter___date, order: DESC }
       filter: { frontmatter: { type: { eq: "articles" } } }
     ) {

@@ -6,6 +6,8 @@ import { StaticQuery, graphql } from "gatsby";
 interface ISEOProp{
     description: string,
     imageUrl :string,
+    imageWidth :number,
+    imageHeight :number,
     lang:string,
     meta:Array<any>,
     keywords:Array<string>,
@@ -29,7 +31,7 @@ class SEO extends React.Component<ISEOProp,any>{
 
     
     render(){
-        const { description, imageUrl, lang, meta, keywords, title } = this.props;
+        const { description, imageUrl,imageWidth,imageHeight, lang, meta, keywords, title } = this.props;
         return (
             <StaticQuery
             query={detailsQuery}
@@ -37,7 +39,9 @@ class SEO extends React.Component<ISEOProp,any>{
                 const metaDescription =
                     description || data.site.siteMetadata.description;
                 let ogImageUrl = imageUrl || data.ogimage.publicURL;
-                ogImageUrl = "https://lukespacewalker.github.io"+ogImageUrl;
+                let ogImageWidth = imageWidth || data.ogimage.childImageSharp.resolutions.width;
+                let ogImageHeight = imageHeight || data.ogimage.childImageSharp.resolutions.height;
+                ogImageUrl = "https://www.aoed.org"+ogImageUrl;
                 return (
                     <Helmet
                         htmlAttributes={{
@@ -62,6 +66,14 @@ class SEO extends React.Component<ISEOProp,any>{
                             {
                                 property: `og:image`,
                                 content: ogImageUrl,
+                            },
+                            {
+                                property: `og:image:width`,
+                                content: ogImageWidth,
+                            },
+                            {
+                                property: `og:image:height`,
+                                content: ogImageHeight,
                             },
                             {
                                 property: `twitter:image`,
@@ -128,6 +140,12 @@ const detailsQuery = graphql`
 
     ogimage : file(relativePath: {eq: "main_ogimage.png"}) {
         publicURL
+        childImageSharp {
+            resolutions {
+              height
+              width
+            }
+          }
     }
   }
 `;

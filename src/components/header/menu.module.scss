@@ -70,16 +70,16 @@ a.normal.link-active {
   }
 
   a.normal:hover {
-    color: lighten(color(secondary), 5%);
-    text-shadow: 0px 0px 7px lighten(color(secondary), 5%);
+    color: lighten(color(secondary), $light-factor);
+    text-shadow: 0px 0px 7px lighten(color(secondary), $light-factor);
   }
   a.normal.link-active:hover {
-    color: lighten(color(secondary), 15%);
-    text-shadow: 0px 0px 7px lighten(color(secondary), 15%);
+    color: lighten(color(secondary), $light-factor-more);
+    text-shadow: 0px 0px 7px lighten(color(secondary), $light-factor-more);
   }
 
   a.normal.link-active {
-    color: lighten(color(primary), 15%);
+    color: lighten(color(primary), $light-factor-more);
   }
 
 }

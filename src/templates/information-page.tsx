@@ -1,102 +1,28 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import Layout from "@components/layout";
 import SEO from "@components/seo";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { MDXProvider } from "@mdx-js/react";
 import Img from "gatsby-image";
 import { Pre } from "@components/code";
-import scrollTo from "@components/scroller";
+import scrollTo, { scrollToId } from "@components/scroller";
 import ArticleLayout from "@components/layout/articlelayout";
+import {H1,H2,H3,H4, DetailTocItem, IAuthor, TOCItem} from "./template";
 
 import "./information-page-style.scss";
-
-interface IAuthor {
-  id: number;
-  unique: string;
-  name: string;
-  position: Array<string>;
-  avatar: any;
-}
-
-interface TOCItem {
-  url: string;
-  title: string;
-  items: Array<TOCItem> | null;
-}
-
-class H1 extends React.Component<{ useToc: boolean }, {}> {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { useToc, children, ...other } = this.props;
-    return (
-      <h1 {...other}>
-        {useToc ? (
-          <a href="#toc" className="font-icon" onClick={scrollTo}>
-            &#xe800;
-          </a>
-        ) : (
-          ""
-        )}
-        {children}
-      </h1>
-    );
-  }
-}
-
-class H2 extends React.Component<{ useToc: boolean }, {}> {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { useToc, children, ...other } = this.props;
-    return (
-      <h2 {...other}>
-        {useToc ? (
-          <a href="#toc" className="font-icon" onClick={scrollTo}>
-            &#xe800;
-          </a>
-        ) : (
-          ""
-        )}
-        {children}
-      </h2>
-    );
-  }
-}
-
-class H3 extends React.Component<{ useToc: boolean }, {}> {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { useToc, children, ...other } = this.props;
-    return (
-      <h3 {...other}>
-        {useToc ? (
-          <a href="#toc" className="font-icon" onClick={scrollTo}>
-            &#xe800;
-          </a>
-        ) : (
-          ""
-        )}
-        {children}
-      </h3>
-    );
-  }
-}
-
 class InformationPage extends React.Component<{ data: any }, {}> {
   constructor(props) {
     super(props);
+    if (typeof window !== "undefined") {
+      this.target = decodeURIComponent(window.location.hash),
+      this.target = this.target.replace('#', '');
+      // delete hash so the page won't scroll to it
+      window.location.hash = "";
+    }
   }
-
   private useTOC = false;
+  
+  private target : string;
 
   renderAuthors(authorsList: Array<IAuthor>) {
     const nodes = authorsList.map((author, index) => {
@@ -124,12 +50,13 @@ class InformationPage extends React.Component<{ data: any }, {}> {
     const list = tocs.map((toc, index) => {
       if (toc.items != undefined && toc.items.length > 0)
         return (
-          <li key={parentIndex + index}>
-            <a href={toc.url} onClick={scrollTo}>
-              {toc.title}
-            </a>
-            <ul>{this.renderTOCItem(toc.items, index * 100)}</ul>
-          </li>
+          <DetailTocItem
+            key={parentIndex + index}
+            title={toc.title}
+            url={toc.url}
+          >
+            {this.renderTOCItem(toc.items, index * 100)}
+          </DetailTocItem>
         );
       else
         return (
@@ -153,6 +80,14 @@ class InformationPage extends React.Component<{ data: any }, {}> {
       );
     } else {
       return "";
+    }
+  }
+
+  componentDidMount(){
+    if(this.target!==""){
+      scrollToId(this.target)
+    }else{
+      this.target = "";
     }
   }
 
@@ -183,7 +118,7 @@ class InformationPage extends React.Component<{ data: any }, {}> {
             image = attachment.childImageSharp.fluid;
         }
       );
-      ogImage = attachments[0].publicURL;
+      ogImage = attachments[0];
     }
 
     let asideContent = <div></div>;
@@ -204,9 +139,9 @@ class InformationPage extends React.Component<{ data: any }, {}> {
         aside={asideContent}
       >
         {excerpt != null ? (
-          <SEO title={title} description={excerpt} imageUrl={ogImage} />
+          <SEO title={title} description={excerpt} imageUrl={ogImage.publicURL} imageWidth={ogImage.childImageSharp.resolutions.width} imageHeight={ogImage.childImageSharp.resolutions.height}/>
         ) : (
-          ``
+          <SEO title={title} description={excerpt} />
         )}
         <div className="MDXRenderer-body">
           <MDXProvider
@@ -215,6 +150,7 @@ class InformationPage extends React.Component<{ data: any }, {}> {
               h1: (props) => <H1 useToc={this.useTOC} {...props}></H1>,
               h2: (props) => <H2 useToc={this.useTOC} {...props}></H2>,
               h3: (props) => <H3 useToc={this.useTOC} {...props}></H3>,
+              h4: (props) => <H4 useToc={this.useTOC} {...props}></H4>,
               pre: Pre,
             }}
           >
@@ -258,6 +194,10 @@ export const pageQuery = graphql`
             # Specify the image processing specifications right in the query.
             fluid(quality: 90, maxWidth: 4096) {
               ...GatsbyImageSharpFluid_withWebp
+            }
+            resolutions {
+              height
+              width
             }
           }
         }

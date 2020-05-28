@@ -3,8 +3,6 @@ import { StaticQuery, graphql, Link } from "gatsby";
 import { IMenu, ISubmenu } from "./Imenu";
 import { Menu, SubMenu } from "./menu";
 import styles from "./header.module.scss";
-import logo_dark from "@images/logo_dark.png";
-import logo_light from "@images/logo_light.png";
 import { scrollToTop } from "@components/scroller";
 
 interface IHeaderMenuProps {
@@ -110,7 +108,6 @@ class HeaderMenu extends React.Component<IHeaderMenuProps, {}> {
 }
 
 interface IHeaderProps {
-  siteTitle: string;
   isFrontPage: boolean;
 }
 

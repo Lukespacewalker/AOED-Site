@@ -42,7 +42,7 @@ class LawsIndex extends React.Component<{ data: any }, {}> {
         <h1>ประกาศกระทรวง</h1>
         <h2>กระทรวงแรงงาน</h2>
         <div className="box">
-          <a href="http://www.ratchakitcha.soc.go.th/DATA/PDF/2540/E/039/7.PDF">ประกาศกระทรวงแรงงานและสวัสอิการสังคม เรื่อง หลักเกณฑ์การวินิจฉัยและการประเมินการสูญเสียสมรรถภาพของผู้ป่วยหรือบาดเจ็บด้วยโรคจากการทำงาน</a>
+          <a href="http://www.ratchakitcha.soc.go.th/DATA/PDF/2540/E/039/7.PDF">ประกาศกระทรวงแรงงานและสวัสดิการสังคม เรื่อง หลักเกณฑ์การวินิจฉัยและการประเมินการสูญเสียสมรรถภาพของผู้ป่วยหรือบาดเจ็บด้วยโรคจากการทำงาน</a>
         </div>
 
         
@@ -53,7 +53,7 @@ class LawsIndex extends React.Component<{ data: any }, {}> {
 
 export const pageQuery = graphql`
   query {
-    file(relativePath: { eq: "splash/guide.jpg" }) {
+    file(relativePath: { eq: "splash/laws.jpg" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.
         fluid(quality: 90, maxWidth: 4096) {

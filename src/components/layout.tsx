@@ -29,7 +29,7 @@ class Layout extends React.Component<ILayoutProps, {}> {
 
   render() {
     const {
-      data: { site, file },
+      //data: { site, file },
       title,
       type,
       date,
@@ -43,6 +43,7 @@ class Layout extends React.Component<ILayoutProps, {}> {
       zIndex: "-3",
       width: "100%",
     };
+    /*
     let image =
       customImage !== null ? (
         <Img fluid={customImage} alt="background" style={imageStyle} />
@@ -52,34 +53,16 @@ class Layout extends React.Component<ILayoutProps, {}> {
           alt="background"
           style={imageStyle}
         />
-      );
+      );*/
+
     return (
       <>
         <Header />
-        <div className={style.titleContainer}>
-          <h1 className={style.title}>{title}</h1>
-          <span>
-            {date != null ? <div className={style.by}>{date}</div> : ``}
-          </span>
-        </div>
         <div className={style.layout}>
-          <main className={style.childrenContainer}>
-            <div
-              className={
-                style.bannerContainer +
-                ` ` +
-                (customImage !== null && bigSplash ? style.tall : ``)
-              }
-            >
-              {image}
-              <div
-                className={(customImage !== null && bigSplash ? style.tall : ``)}
-              />
-            </div>
-            {children}
-          </main>
+          <h1 className={style.title}>{title}</h1>
+          <main className={style.childrenContainer}>{children}</main>
         </div>
-        <Footer/>
+        <Footer />
       </>
     );
   }
@@ -125,7 +108,6 @@ const withGraphQL = (Component: any) => {
   return (props: any) => {
     const data = useStaticQuery(graphql`
       query SiteTitleQuery {
-
         file(relativePath: { eq: "splash/article.jpg" }) {
           childImageSharp {
             # Specify the image processing specifications right in the query.
@@ -140,4 +122,4 @@ const withGraphQL = (Component: any) => {
   };
 };
 
-export default withGraphQL(Layout);
+export default Layout;

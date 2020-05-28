@@ -1,0 +1,139 @@
+#main {
+  OL,
+  UL {
+    margin-left: 2.9rem;
+  }
+
+  th {
+    text-align: center;
+  }
+}
+
+#special {
+  counter-reset: chapter;
+
+  H1 {
+    counter-reset: section item;
+    counter-increment: chapter;
+  }
+
+  H2 {
+    counter-reset: sub-section item;
+    counter-increment: section;
+  }
+
+  H3 {
+    counter-reset: item;
+    counter-increment: sub-section;
+  }
+
+  UL {
+    margin-left: 2.9rem;
+  }
+
+  OL OL {
+    counter-reset: item;
+  }
+
+  OL > LI {
+    display: block;
+  }
+  OL > LI:before {
+    content: counter(chapter) "." counter(section) "." counters(item, ".") " ";
+    counter-increment: item;
+  }
+
+  .ignore {
+    OL > LI {
+      display: list-item;
+    }
+    OL > LI:before {
+      content: unset;
+    }
+  }
+
+  #chapter2 {
+    OL > LI:before {
+      content: counter(chapter) "." counter(item) " ";
+    }
+  }
+
+  .level-2-deep {
+    OL > LI:before {
+      content: counter(chapter) "." counter(item) " ";
+    }
+  }
+
+  .level-4-deep {
+    OL > LI:before {
+      content: counter(chapter) "." counter(section) "." counter(sub-section)
+        "." counter(item) " ";
+    }
+  }
+
+  .nested {
+    > OL > LI:before {
+      content: counter(item) ". "!important;
+    }
+    OL > LI:before {
+      content: counters(item, ".") " ";
+    }
+  }
+}
+
+#special2 {
+  counter-increment: chapter;
+  counter-reset: section;
+
+  H2 {
+    counter-increment: section;
+  }
+
+  OL {
+    counter-reset: item;
+  }
+
+  UL {
+    margin-left: 2.9rem;
+  }
+
+  OL > LI {
+    display: block;
+  }
+  OL > LI:before {
+    content: counter(chapter) "." counter(section) "." counters(item, ".") " ";
+    counter-increment: item;
+  }
+}
+
+#extra3 {
+  ul {
+    margin: 0;
+    > LI {
+      display: block;
+    }
+    > LI:before {
+      content: "";
+    }
+  }
+
+  th {
+    text-align: center;
+  }
+
+  tbody {
+    tr:first-child {
+      th:first-child {
+        max-width: 250px;
+      }
+    }
+  }
+}
+
+.check-table {
+  tr {
+    td:not(:first-child) {
+      text-align: center;
+    }
+  }
+}

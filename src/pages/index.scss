@@ -6,9 +6,6 @@
 }
 
 .container {
-  position: relative;
-  padding: 0 15px 2vh 15px;
-
   h1 {
     padding-top: 0.5em;
   }
@@ -60,16 +57,16 @@
   justify-items: center;
   align-items: center;
   row-gap: 1em;
-  
-  > .youtube-container{
+
+  > .youtube-container {
     position: relative;
     overflow: hidden;
     width: 100%;
     border-radius: 3px;
-    padding-top: 56.25%; 
+    padding-top: 56.25%;
   }
 
-  iframe{
+  iframe {
     position: absolute;
     top: 0;
     left: 0;
@@ -103,103 +100,9 @@
   flex-direction: column;
 }
 
-.two-flex {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: stretch;
-
-  > :first-child {
-    flex: 1 1 auto;
-  }
-
-  > :last-child {
-    flex: 1 1 50%;
-  }
-}
-
-.two-grid,
-.two-asymmentrical-grid,
-.three-grid {
-  p {
-    line-height: 2;
-    text-align: left;
-  }
-}
-
-.two-asymmetrical-grid {
-  display: grid;
-  grid-template: auto auto / auto;
-}
-
-.two-grid {
-  display: grid;
-  grid-template: auto auto / auto;
-}
-
-.three-grid {
-  display: grid;
-  grid-template: auto auto auto / auto;
-}
-
-.super-grid {
-  display: grid;
-  grid-template: auto / 1fr 1fr 1fr 1fr;
-  column-gap: 30px;
-
-  /** Fix **/
-  .gatsby-image-wrapper > div:first-child{
-    padding-bottom: 0!important;
-  }
-
-  > *:not(:first-child):not(:nth-child(2)) {
-    grid-column: span 4;
-
-    .inner-article-container {
-      //grid-template-rows: minmax(auto, 200px) 1fr;
-      grid-template-areas: "aside content";
-      grid-template-columns: auto 60%;
-      grid-template-rows: auto;
-
-      article {
-        font-size: 14px;
-        padding: 1em 1.5em;
-      }
-      h1 {
-        font-size: 1.25em;
-        font-weight: bold;
-      }
-    }
-  }
-
-  > *:first-child,
-  > *:nth-child(2) {
-    grid-column: span 4;
-  }
-}
-
 @include size(desktop) {
   #time {
     min-width: 150px;
-  }
-
-  .container {
-    padding: 0 var(--XSpacing) 2vh var(--XSpacing);
-  }
-
-  .two-asymmetrical-grid {
-    grid-template: auto / auto 1fr;
-    column-gap: 30px;
-  }
-
-  .two-grid {
-    grid-template: auto / 1fr 1fr;
-    column-gap: 30px;
-  }
-
-  .three-grid {
-    grid-template: auto / 1fr 1fr 1fr;
-    column-gap: 30px;
   }
 
   .emphasize-in-paper {
@@ -208,13 +111,6 @@
 
   .intro-container {
     height: calc(100vh - 161px);
-  }
-
-  .super-grid {
-    > *:first-child,
-    > *:nth-child(2) {
-      grid-column: span 2;
-    }
   }
 }
 
@@ -225,8 +121,8 @@
     justify-items: left;
     row-gap: 0;
 
-    >.youtube-container {
-      height:315px;
+    > .youtube-container {
+      height: 315px;
       width: 560px;
     }
   }

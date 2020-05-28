@@ -54,7 +54,7 @@ class Carousal extends React.Component<{}, {}> {
         
         
         return (
-            <div className={cstyle.container}>
+            <div className={`${cstyle.container} ${this.maxChildId>0? cstyle.show: ""}`}>
                 <div ref={this.myRef} className={cstyle.childrenContainer}>
                     {children}
                 </div>
