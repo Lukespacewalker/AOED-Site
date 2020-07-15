@@ -14,7 +14,6 @@ exports.onCreateWebpackConfig = ({ actions }) => {
             alias: {
                 "@components": path.resolve(__dirname, "src/components"),
                 "@images": path.resolve(__dirname, "src/images"),
-                "@videos": path.resolve(__dirname, "src/videos"),
                 "@authors": path.resolve(__dirname, "src/contents/authors"),
             }
         }
@@ -25,7 +24,6 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     const { createNodeField } = actions;
     if (node.internal.type === `Mdx`) {
         const slug = createFilePath({ node, getNode, basePath: `pages` });
-        console.log(slug);
         createNodeField({
             node,
             name: `slug`,
