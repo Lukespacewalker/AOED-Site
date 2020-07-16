@@ -153,10 +153,10 @@ export const query = graphql`
       frontmatter {
         title
         excerpt
-        date
+        date(formatString: "dddd, DD MMMM YYYY", locale: "th")
         attachments {
           childImageSharp {
-            fluid(quality: 90, maxWidth: 4096) {
+            fluid(quality: 90, maxWidth: 2048)  {
               ...GatsbyImageSharpFluid_withWebp
             }
           }
@@ -174,7 +174,7 @@ export const query = graphql`
     }
 
     news: allMdx(
-      limit: 8
+      limit: 4
       sort: { fields: frontmatter___date, order: DESC }
       filter: { frontmatter: { type: { eq: "news" } } }
     ) {
@@ -182,7 +182,7 @@ export const query = graphql`
     }
 
     articles: allMdx(
-      limit: 8
+      limit: 10
       sort: { fields: frontmatter___date, order: DESC }
       filter: { frontmatter: { type: { eq: "articles" } } }
     ) {

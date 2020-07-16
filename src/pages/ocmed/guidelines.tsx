@@ -74,7 +74,7 @@ export const pageQuery = graphql`
     file(relativePath: { eq: "splash/guide.jpg" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.
-        fluid(quality: 90, maxWidth: 4096) {
+        fluid(quality: 90, maxWidth: 2048)  {
           ...GatsbyImageSharpFluid_withWebp
         }
       }

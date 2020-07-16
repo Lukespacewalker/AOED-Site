@@ -66,9 +66,9 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
     const typeDefs = [
         "type Mdx implements Node { frontmatter: MdxFrontmatter }",
         `type MdxFrontmatter {
-            date: Date @dateformat(formatString: "dddd, DD MMMM YYYY", locale: "th")
             authors: [AuthorslistJson] @link(by: "unique") 
         }`
+        //date: Date @dateformat(formatString: "dddd, DD MMMM YYYY", locale: "th")
     ];
     createTypes(typeDefs);
 }

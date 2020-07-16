@@ -83,10 +83,10 @@ export const pageQuery = graphql`
         frontmatter {
           title
           excerpt
-          date
+          date(formatString: "dddd, DD MMMM YYYY", locale: "th")
           attachments {
             childImageSharp {
-              fluid(quality: 90, maxWidth: 4096) {
+              fluid(quality: 90, maxWidth: 2048)  {
                 ...GatsbyImageSharpFluid_withWebp
               }
             }
@@ -99,7 +99,7 @@ export const pageQuery = graphql`
       publicURL
       childImageSharp {
         # Specify the image processing specifications right in the query.
-        fluid(quality: 90, maxWidth: 4096) {
+        fluid(quality: 90, maxWidth: 2048)  {
           ...GatsbyImageSharpFluid_withWebp
         }
       }

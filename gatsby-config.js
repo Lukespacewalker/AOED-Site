@@ -131,7 +131,10 @@ module.exports = {
         {
             resolve: 'gatsby-plugin-sass',
             options: {
-                includePaths: ['src/styles']
+                sassOptions:{
+                    includePaths: ['src/styles']
+                },
+                implementation: require('sass')
             }
         },
         {

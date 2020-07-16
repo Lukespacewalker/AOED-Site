@@ -111,7 +111,7 @@ const withGraphQL = (Component: any) => {
         file(relativePath: { eq: "splash/article.jpg" }) {
           childImageSharp {
             # Specify the image processing specifications right in the query.
-            fluid(quality: 90, maxWidth: 4096) {
+            fluid(quality: 90, maxWidth: 2048)  {
               ...GatsbyImageSharpFluid_withWebp
             }
           }

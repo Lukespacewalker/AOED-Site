@@ -8,6 +8,7 @@ import { Pre } from "@components/code";
 import scrollTo, { scrollToId } from "@components/scroller";
 import ArticleLayout from "@components/layout/articlelayout";
 import {H1,H2,H3,H4, DetailTocItem, IAuthor, TOCItem} from "./template";
+import ImagesView from "@components/imagesview";
 
 import "./information-page-style.scss";
 class InformationPage extends React.Component<{ data: any }, {}> {
@@ -96,7 +97,8 @@ class InformationPage extends React.Component<{ data: any }, {}> {
       data: {
         mdx: {
           tableOfContents: { items },
-          frontmatter: { title, type, attachments, date, authors: a, excerpt },
+          frontmatter: { title, type, attachments, useGallery,date, authors: a, excerpt },
+          
           body,
         },
       },
@@ -135,7 +137,8 @@ class InformationPage extends React.Component<{ data: any }, {}> {
       <ArticleLayout
         title={title}
         date={date}
-        image={image}
+        
+        image={!useGallery?image:null}
         aside={asideContent}
       >
         {excerpt != null ? (
@@ -144,6 +147,13 @@ class InformationPage extends React.Component<{ data: any }, {}> {
           <SEO title={title} description={excerpt} />
         )}
         <div className="MDXRenderer-body">
+        {useGallery ? (
+            <ImagesView
+              fluids={attachments.map((a) => a.childImageSharp.fluid)}
+            ></ImagesView>
+          ) : (
+            ""
+          )}
           <MDXProvider
             components={{
               // Map HTML element tag to React component
@@ -171,7 +181,8 @@ export const pageQuery = graphql`
         title
         type
         tag
-        date
+        useGallery
+        date(formatString: "dddd, DD MMMM YYYY", locale: "th")
         authors {
           id
           name
@@ -192,7 +203,7 @@ export const pageQuery = graphql`
           publicURL
           childImageSharp {
             # Specify the image processing specifications right in the query.
-            fluid(quality: 90, maxWidth: 4096) {
+            fluid(quality: 90, maxWidth: 2048)  {
               ...GatsbyImageSharpFluid_withWebp
             }
             resolutions {

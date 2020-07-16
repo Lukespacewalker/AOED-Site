@@ -13,7 +13,7 @@ const query = graphql`
   query {
     authorimage: file(relativePath: { eq: "author.jpg" }) {
       childImageSharp {
-        fluid(quality: 90, maxWidth: 4096) {
+        fluid(quality: 90, maxWidth: 2048)  {
           ...GatsbyImageSharpFluid_withWebp
         }
       }

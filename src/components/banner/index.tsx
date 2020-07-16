@@ -54,7 +54,7 @@ const query = graphql`
   query {
     file(relativePath: { eq: "splash.jpg" }) {
       childImageSharp {
-        fluid(quality: 90, maxWidth: 4096) {
+        fluid(quality: 90, maxWidth: 2048)  {
           ...GatsbyImageSharpFluid_withWebp
         }
       }
