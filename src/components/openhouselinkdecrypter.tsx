@@ -1,8 +1,6 @@
 import * as React from "react";
 class LinkDecrypter extends React.Component<{}, {}> {
   private date = new Date();
-  private targetDate = new Date("2021-02-25T09:00:00+07:00");
-
   constructor(props) {
     super(props);
   }
@@ -12,7 +10,7 @@ class LinkDecrypter extends React.Component<{}, {}> {
   };
 
   componentDidMount() {
-    if (this.date >= this.targetDate) {
+    if (this.date>= new Date("2021-02-25T09:00:00+07:00") && this.date < new Date("2021-02-26T00:00:00+07:00")) {
       fetch("/.netlify/functions/key")
         .then(function (response) {
           if (!response.ok) {
@@ -37,7 +35,7 @@ class LinkDecrypter extends React.Component<{}, {}> {
     } else {
       this.setState({
         text:
-          "ขณะนี้ยังไม่เปิดให้ลงทะเบียน จะเปิดให้ลงทะเบียนเพิ่มวันที่ 25 กุมภาพันธ์ 2021 เวลา 09:00 น. วันเดียวเท่านั้น"
+          "ขณะนี้ปิดรับลงทะเบียนแล้ว"
       });
     }
   }
