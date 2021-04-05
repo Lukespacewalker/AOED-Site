@@ -11,7 +11,7 @@ class Page404 extends React.Component<{ data: any }, {}> {
     }
 
     render() {
-        const { data: { file: { childImageSharp: { fluid } } } } = this.props;
+        const { data: { file: { childImageSharp: { gatsbyImageData } } } } = this.props;
         return browser && (
             <ListLayout image={fluid} title="404: ไม่พบหน้านี้">
                 <p>โปรดตรวจสอบ URL ใหม่อีกครั้ง</p>
@@ -23,10 +23,7 @@ class Page404 extends React.Component<{ data: any }, {}> {
 export const pageQuery = graphql`
 query{
       file(relativePath:  {eq: "splash/404.jpg"}) {
-        childImageSharp {
-             fluid(quality: 90, maxWidth: 2048)  {
-            ...GatsbyImageSharpFluid_withWebp
-            }
+        childImageSharp {gatsbyImageData(layout: FULL_WIDTH)
         }
       }
 }

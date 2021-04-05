@@ -3,8 +3,9 @@ import { graphql, Link, navigate } from "gatsby";
 import Footer from "@components/footer";
 import SEO from "@components/seo";
 import Header from "@components/header";
+import Banner from "@components/banner";
 import Paper from "@components/paper";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 // Styles
 import yt_icon from "@images/ui/youtube_icon.png";
@@ -21,13 +22,13 @@ class IndexPage extends React.Component<{ data: any }, {}> {
     return nodes.map((node, i) => {
       const {
         fields: { slug },
-        frontmatter: { excerpt, title,date, attachments },
+        frontmatter: { excerpt, title, date, attachments },
       } = node;
       if (
         attachments !== undefined &&
         attachments != null &&
-        attachments.length > 0
-        && attachments[0] != null
+        attachments.length > 0 &&
+        attachments[0] != null
       ) {
         return (
           <Paper
@@ -35,9 +36,9 @@ class IndexPage extends React.Component<{ data: any }, {}> {
             key={i}
             onClick={this.navigationHandler(slug)}
             side={
-              <Img
+              <GatsbyImage
                 style={{ height: `100%` }}
-                fluid={attachments[0].childImageSharp.fluid}
+                image={attachments[0].childImageSharp.gatsbyImageData}
                 alt={title}
               />
             }
@@ -90,11 +91,12 @@ class IndexPage extends React.Component<{ data: any }, {}> {
             `อาชีวเวชศาสตร์`,
             `โรคจากการประกอบอาชีพ`,
             `สิ่งแวดล้อม`,
-            `สมาคม`
+            `สมาคม`,
           ]}
         />
         <Header siteTitle="" isFrontPage={true} />
-        <div className="container" style={{marginTop:`125px`}}>
+        <Banner />
+        <div className="container" style={{ marginTop: `25px` }}>
           <div id="youtube">
             <a href="https://www.youtube.com/channel/UCqfU3FdLjGk3mdW-IbJ-1uA">
               <img id="youtube" src={yt_icon} />
@@ -104,6 +106,28 @@ class IndexPage extends React.Component<{ data: any }, {}> {
             </a>
           </div>
           <div className="youtube-grid">
+            <div className="youtube-container">
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/-Ahai-K6crA"
+                frameBorder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+            <div>
+              <h3>
+                วิดีโอบันทึกงาน Online Occupational Medicine Open House ครั้งที่
+                2.5
+              </h3>
+              <p>
+                สาขา Occupational Medicine นั้น คืออะไร เรียนอะไรบ้าง
+                จบแล้วทำงานอะไร และการอบรม 2 เดือนต่างจากเรียน 3 ปี อย่างไร
+              </p>
+            </div>
+          </div>
+          <div className="youtube-grid" style={{marginTop:`2em`}}>
             <div className="youtube-container">
               <iframe
                 width="560"
@@ -118,12 +142,18 @@ class IndexPage extends React.Component<{ data: any }, {}> {
             <div>
               <h3>การรับมือกับไวรัส COVID19 ในที่ทำงาน</h3>
               <p>
-  ผลกระทบที่บริษัท จะได้รับจากการระบาดของไวรัสโควิดในปีนี้มีมากมาย ไม่ว่าจะเป็น การลาป่วย ของพนักงานทั้งจากการเจ็บป่วย และความกังวล ทำให้ขาดคนทำงาน ความต้องการสินต้าประเภท ที่เกี่ยวข้องกับ อุปกรณ์ป้องกันเชื้อโรคมีมากขึ้น หรือปัญหาการขนส่งสินค้าของ supplier ทำให้บริษัท ไม่ได้รับสินค้าตามกำหนด ผู้ประกอบการ จึงต้องเตรียม แผนรับมือ เอาไว้ เพื่อให้เกิดความเสียหายน้อยที่สุด              </p>
+                ผลกระทบที่บริษัท จะได้รับจากการระบาดของไวรัสโควิดในปีนี้มีมากมาย
+                ไม่ว่าจะเป็น การลาป่วย ของพนักงานทั้งจากการเจ็บป่วย และความกังวล
+                ทำให้ขาดคนทำงาน ความต้องการสินต้าประเภท ที่เกี่ยวข้องกับ
+                อุปกรณ์ป้องกันเชื้อโรคมีมากขึ้น หรือปัญหาการขนส่งสินค้าของ
+                supplier ทำให้บริษัท ไม่ได้รับสินค้าตามกำหนด ผู้ประกอบการ
+                จึงต้องเตรียม แผนรับมือ เอาไว้ เพื่อให้เกิดความเสียหายน้อยที่สุด{" "}
+              </p>
             </div>
           </div>
         </div>
         <div className="container">
-        <h1 id="news">
+          <h1 id="news">
             ข่าวสารล่าสุด
             <Link to="/news">
               <span style={{ fontSize: `0.6em` }}> ดูทั้งหมด</span>
@@ -156,9 +186,7 @@ export const query = graphql`
         date(formatString: "dddd, DD MMMM YYYY", locale: "th")
         attachments {
           childImageSharp {
-            fluid(quality: 90, maxWidth: 2048)  {
-              ...GatsbyImageSharpFluid_withWebp
-            }
+            gatsbyImageData(layout: FULL_WIDTH)
           }
         }
       }
@@ -192,7 +220,6 @@ export const query = graphql`
     ogimage: file(relativePath: { eq: "main_ogimage.png" }) {
       publicURL
     }
-
   }
 `;
 export default IndexPage;

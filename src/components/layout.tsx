@@ -1,17 +1,16 @@
 ﻿import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
-import { FluidObject } from "gatsby-image";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import Header from "@components/header";
 import Footer from "@components/footer";
-import style from "./layout.module.scss";
+import {layout,titleStyle,childrenContainer} from "./layout.module.scss";
 
 interface ILayoutProps {
   data: any;
   title: string;
   type: string;
   date: string;
-  customImage: FluidObject;
+  customImage: any;
   bigSplash: boolean;
   children: any;
 }
@@ -46,10 +45,10 @@ class Layout extends React.Component<ILayoutProps, {}> {
     /*
     let image =
       customImage !== null ? (
-        <Img fluid={customImage} alt="background" style={imageStyle} />
+        <GatsbyImage image={customImage} alt="background" style={imageStyle} />
       ) : (
-        <Img
-          fluid={file.childImageSharp.fluid}
+        <GatsbyImage
+          image={file.childImageSharp.gatsbyImageData}
           alt="background"
           style={imageStyle}
         />
@@ -58,9 +57,9 @@ class Layout extends React.Component<ILayoutProps, {}> {
     return (
       <>
         <Header />
-        <div className={style.layout}>
-          <h1 className={style.title}>{title}</h1>
-          <main className={style.childrenContainer}>{children}</main>
+        <div className={layout}>
+          <h1 className={titleStyle}>{title}</h1>
+          <main className={childrenContainer}>{children}</main>
         </div>
         <Footer />
       </>
@@ -110,10 +109,7 @@ const withGraphQL = (Component: any) => {
       query SiteTitleQuery {
         file(relativePath: { eq: "splash/article.jpg" }) {
           childImageSharp {
-            # Specify the image processing specifications right in the query.
-            fluid(quality: 90, maxWidth: 2048)  {
-              ...GatsbyImageSharpFluid_withWebp
-            }
+            gatsbyImageData(layout: FULL_WIDTH)
           }
         }
       }

@@ -1,10 +1,10 @@
 import * as React from "react";
 import { graphql, Link, navigate } from "gatsby";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import ListLayout from "@components/layout/listlayout";
 import Paper from "@components/paper";
 import SEO from "@components/seo";
-import style from "./index.module.scss";
+import {container} from "./index.module.scss";
 
 class NewsIndex extends React.Component<{ data: any }, {}> {
   constructor(props) {
@@ -35,9 +35,9 @@ class NewsIndex extends React.Component<{ data: any }, {}> {
             key={i}
             sbs
             side={
-              <Img
+              <GatsbyImage
                 style={{ position: `absolute`, width: `100%`, height: `100%` }}
-                fluid={attachments[0].childImageSharp.fluid}
+                image={attachments[0].childImageSharp.gatsbyImageData}
                 alt={title}
               />
             }
@@ -59,12 +59,12 @@ class NewsIndex extends React.Component<{ data: any }, {}> {
 
   render() {
     const {
-      data: { articles , file : {publicURL, childImageSharp: {fluid:image} } }
+      data: { articles , file : {publicURL, childImageSharp: { gatsbyImageData:image} } }
     } = this.props;
     return (
       <ListLayout title="บทความ" image={image}>
         <SEO title="บทความ" />
-        <div className={style.container}>{this.itemRenderer(articles.nodes)}</div>
+        <div className={container}>{this.itemRenderer(articles.nodes)}</div>
       </ListLayout>
     );
   }
@@ -85,10 +85,7 @@ export const pageQuery = graphql`
           excerpt
           date(formatString: "dddd, DD MMMM YYYY", locale: "th")
           attachments {
-            childImageSharp {
-              fluid(quality: 90, maxWidth: 2048)  {
-                ...GatsbyImageSharpFluid_withWebp
-              }
+            childImageSharp {gatsbyImageData(layout: FULL_WIDTH)
             }
           }
         }
@@ -98,10 +95,7 @@ export const pageQuery = graphql`
     file(relativePath: { eq: "splash/article.jpg" }) {
       publicURL
       childImageSharp {
-        # Specify the image processing specifications right in the query.
-        fluid(quality: 90, maxWidth: 2048)  {
-          ...GatsbyImageSharpFluid_withWebp
-        }
+        gatsbyImageData(layout: FULL_WIDTH)
       }
     }
   }

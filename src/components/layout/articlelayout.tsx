@@ -1,11 +1,11 @@
 import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { FluidObject } from "gatsby-image";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import Header from "@components/header";
 import Footer from "@components/footer";
-import style from "./listlayout.module.scss";
-import articleStyle from "./articlelayout.module.scss";
+import {title as titleStyle,container} from "./listlayout.module.scss";
+import {aside as asideStyle,contentContainer,mainImage} from "./articlelayout.module.scss";
 
 class ArticleLayout extends React.Component<
   {
@@ -25,18 +25,18 @@ class ArticleLayout extends React.Component<
     return (
       <>
         <Header />
-        <header className={`container ${style.container}`}>
-          <h1 className={style.title}>{title}</h1>
+        <header className={`container ${container}`}>
+          <h1 className={titleStyle}>{title}</h1>
           <span>{date}</span>
         </header>
-        <div className={`container ${articleStyle.contentContainer}`}>
-          <aside className={articleStyle.aside}>{aside}</aside>
+        <div className={`container ${contentContainer}`}>
+          <aside className={asideStyle}>{aside}</aside>
           <main>
             {image != null ? (
               <div>
-                <Img
-                  className={articleStyle.mainImage}
-                  fluid={image}
+                <GatsbyImage
+                  className={mainImage}
+                  image={image}
                   alt="background"
                 />
               </div>

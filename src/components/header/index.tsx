@@ -2,7 +2,7 @@
 import { StaticQuery, graphql, Link } from "gatsby";
 import { IMenu, ISubmenu } from "./Imenu";
 import { Menu, SubMenu } from "./menu";
-import styles from "./header.module.scss";
+import {show,hide,mainMenu,subMenu,menuToggle,dark as darkStyle,siteHeader,showingNav,headerContainer,titleContainer,notTop,logo} from "./header.module.scss";
 import { scrollToTop } from "@components/scroller";
 
 interface IHeaderMenuProps {
@@ -56,8 +56,8 @@ class HeaderMenu extends React.Component<IHeaderMenuProps, {}> {
   render() {
     const { menus, dark } = this.props;
     let className = this.state.isPaneOpen
-      ? styles.show + " " + styles.mainMenu
-      : styles.mainMenu;
+      ? show + " " + mainMenu
+      : mainMenu;
     return (
       <>
         <nav className={className}>
@@ -66,11 +66,11 @@ class HeaderMenu extends React.Component<IHeaderMenuProps, {}> {
               menu.submenus != null ? (
                 <nav
                   className={
-                    styles.subMenu +
+                    subMenu +
                     ` ${
                       menu.order === this.state.selectedMenu
-                        ? styles.show
-                        : styles.hide
+                        ? show
+                        : hide
                     }`
                   }
                 >
@@ -93,8 +93,8 @@ class HeaderMenu extends React.Component<IHeaderMenuProps, {}> {
           })}
         </nav>
         <div
-          id={styles.menuToggle}
-          className={dark ? styles.dark : ""}
+          id={menuToggle}
+          className={dark ? darkStyle : ""}
           onClick={this.onClick.bind(this)}
         >
           <input type="checkbox" checked={this.state.isPaneOpen} />
@@ -179,22 +179,22 @@ class Header extends React.Component<IHeaderProps, {}> {
             };
           } = data;
 
-          let headerClassname = `${styles.siteHeader} ${
-            isFrontPage ? styles.frontPage : ""
-          } ${this.state.isPaneOpen ? styles.showingNav : ""}`;
+          let headerClassname = `${siteHeader} ${
+            isFrontPage ? "" : ""
+          } ${this.state.isPaneOpen ? showingNav : ""}`;
           let isDark =
             true || this.state.isPaneOpen || isFrontPage || !this.state.isOnTop;
           return (
             <div
               className={
-                styles.headerContainer +
+                headerContainer +
                 " " +
-                (this.state.isOnTop ? "" : styles.notTop)
+                (this.state.isOnTop ? "" : notTop)
               }
             >
               <header className={headerClassname}>
-                <div className={styles.titleContainer}>
-                  <div className={styles.logo}>
+                <div className={titleContainer}>
+                  <div className={logo}>
                     {isFrontPage ? (
                       <a onClick={scrollToTop}>
                       </a>

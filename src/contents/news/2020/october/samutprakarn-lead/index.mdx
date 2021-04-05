@@ -1,4 +1,4 @@
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import Paper from "@components/paper";
 
 export const frontmatter = {
@@ -16,7 +16,7 @@ export const frontmatter = {
 
 ---
 
-<Img fluid={props.images[1].childImageSharp.fluid} alt="poster" />
+<GatsbyImage image={props.images[1].childImageSharp.gatsbyImageData} alt="poster" />
 
 # เวลาและสถานที่
 

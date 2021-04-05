@@ -1,7 +1,7 @@
 import * as React from "react";
 import { StaticQuery, graphql, Link } from "gatsby";
-import Img from "gatsby-image";
-import styles from "./imagesview.module.scss";
+import { GatsbyImage } from "gatsby-plugin-image";
+import { selected, rootGrid, mainArea, childrenArea, imagelistArea, imagelistWrapper, zoom, cover, contain, back,next  } from "./imagesview.module.scss";
 
 import back_icon from "@images/ui/left-arrow.svg";
 import next_icon from "@images/ui/right-arrow.svg";
@@ -98,9 +98,9 @@ class ImagesView extends React.Component<IImageViewProps, {}> {
 
   generateMainImage(fluid: any) {
     return (
-      <Img
+      <GatsbyImage
         style={{ height: "100%" }}
-        fluid={fluid}
+        image={fluid}
         alt="main_image"
         imgStyle={{ objectFit: this.state.cover? `cover`:`contain` }}
       />
@@ -109,14 +109,14 @@ class ImagesView extends React.Component<IImageViewProps, {}> {
 
   generateThumbnailImages(fluids: Array<any>) {
     return fluids.map((item, index) => {
-      const selectedStyle = index == this.state.index ? styles.selected : "";
+      const selectedStyle = index == this.state.index ? selected : "";
       return (
         <div
           key={index}
           onClick={this.goto.bind(this, index)}
           className={selectedStyle}
         >
-          <Img fluid={item} alt="main_image" />
+          <GatsbyImage image={item} alt="main_image" />
         </div>
       );
     });
@@ -128,15 +128,15 @@ class ImagesView extends React.Component<IImageViewProps, {}> {
 
   render() {
     return (
-      <div className={styles.rootGrid}>
+      <div className={rootGrid}>
         <div
-          className={styles.mainArea}
+          className={mainArea}
           onTouchStart={this._onTouchStart}
           onTouchMove={this._onTouchMove}
           onTouchEnd={this._onTouchEnd}
         >
           {this.generateMainImage(this.props.fluids[this.state.index])}
-          <div className={`${styles.back} ${this.state.cover? styles.cover : styles.contain}`} onClick={this.prev}>
+          <div className={`${back} ${this.state.cover? cover : contain}`} onClick={this.prev}>
             <svg
               version="1.1"
               viewBox="0 0 129 129"
@@ -149,7 +149,7 @@ class ImagesView extends React.Component<IImageViewProps, {}> {
               </g>
             </svg>
           </div>
-          <div className={`${styles.next} ${this.state.cover? styles.cover : styles.contain}`} onClick={this.next}>
+          <div className={`${next} ${this.state.cover? cover : contain}`} onClick={this.next}>
             <svg
               version="1.1"
               viewBox="0 0 129 129"
@@ -162,17 +162,17 @@ class ImagesView extends React.Component<IImageViewProps, {}> {
               </g>
             </svg>
           </div>
-          <div className={`${styles.zoom} ${this.state.cover? styles.cover : styles.contain}`} onClick={this.zoom}>
+          <div className={`${zoom} ${this.state.cover? cover : contain}`} onClick={this.zoom}>
           <svg width="60" height="60" viewBox="0 0 18 18"><path style={{fill:`#FFFFFF`}} d="M4.5 11H3v4h4v-1.5H4.5V11zM3 7h1.5V4.5H7V3H3v4zm10.5 6.5H11V15h4v-4h-1.5v2.5zM11 3v1.5h2.5V7H15V3h-4z"/></svg>
           </div>
         </div>
-        <div className={styles.imagelistArea}>
-          <div className={styles.imagelistWrapper}>
+        <div className={imagelistArea}>
+          <div className={imagelistWrapper}>
           {this.generateThumbnailImages(this.props.fluids)}
           </div>
         </div>
         {this.props.children != null ? (
-          <article className={styles.childrenArea}>
+          <article className={childrenArea}>
             {this.props.children}
           </article>
         ) : (

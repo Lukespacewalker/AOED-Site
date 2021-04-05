@@ -39,8 +39,8 @@ class SEO extends React.Component<ISEOProp,any>{
                 const metaDescription =
                     description || data.site.siteMetadata.description;
                 let ogImageUrl = imageUrl || data.ogimage.publicURL;
-                let ogImageWidth = imageWidth || data.ogimage.childImageSharp.resolutions.width;
-                let ogImageHeight = imageHeight || data.ogimage.childImageSharp.resolutions.height;
+                let ogImageWidth = imageWidth || data.ogimage.childImageSharp.original.width;
+                let ogImageHeight = imageHeight || data.ogimage.childImageSharp.original.height;
                 ogImageUrl = "https://www.aoed.org"+ogImageUrl;
                 return (
                     <Helmet
@@ -141,7 +141,7 @@ const detailsQuery = graphql`
     ogimage : file(relativePath: {eq: "main_ogimage.png"}) {
         publicURL
         childImageSharp {
-            resolutions {
+            original {
               height
               width
             }

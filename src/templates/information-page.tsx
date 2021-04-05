@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import SEO from "@components/seo";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { MDXProvider } from "@mdx-js/react";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import { Pre } from "@components/code";
 import scrollTo, { scrollToId } from "@components/scroller";
 import ArticleLayout from "@components/layout/articlelayout";
@@ -33,9 +33,9 @@ class InformationPage extends React.Component<{ data: any }, {}> {
       return (
         <div className="author" key={index}>
           <div className="image-container">
-            <Img
+            <GatsbyImage
               style={{ borderRadius: `50%` }}
-              fixed={author.avatar.childImageSharp.fixed}
+              image={author.avatar.childImageSharp.gatsbyImageData}
               alt={author.name}
             />
           </div>
@@ -113,11 +113,11 @@ class InformationPage extends React.Component<{ data: any }, {}> {
       attachments.length > 0 &&
       attachments[0] != null
     ) {
-      image = attachments[0].childImageSharp.fluid;
+      image = attachments[0].childImageSharp.gatsbyImageData;
       attachments.forEach(
         (attachment: { name: string; childImageSharp: any }) => {
           if (attachment.name.indexOf("_bg") != -1)
-            image = attachment.childImageSharp.fluid;
+            image = attachment.childImageSharp.gatsbyImageData;
         }
       );
       ogImage = attachments[0];
@@ -142,14 +142,14 @@ class InformationPage extends React.Component<{ data: any }, {}> {
         aside={asideContent}
       >
         {excerpt != null ? (
-          <SEO title={title} description={excerpt} imageUrl={ogImage.publicURL} imageWidth={ogImage.childImageSharp.resolutions.width} imageHeight={ogImage.childImageSharp.resolutions.height}/>
+          <SEO title={title} description={excerpt} imageUrl={ogImage.publicURL} imageWidth={ogImage.childImageSharp.original.width} imageHeight={ogImage.childImageSharp.original.height}/>
         ) : (
           <SEO title={title} description={excerpt} />
         )}
         <div className="MDXRenderer-body">
         {useGallery ? (
             <ImagesView
-              fluids={attachments.map((a) => a.childImageSharp.fluid)}
+              fluids={attachments.map((a) => a.childImageSharp.gatsbyImageData)}
             ></ImagesView>
           ) : (
             ""
@@ -189,11 +189,7 @@ export const pageQuery = graphql`
           position
           avatar {
             childImageSharp {
-              # Specify the image processing specifications right in the query.
-              # Makes it trivial to update as your page's design changes.
-              fixed(cropFocus: NORTH, quality: 90, width: 150, height: 150) {
-                ...GatsbyImageSharpFixed
-              }
+              gatsbyImageData(layout: CONSTRAINED,width:200,height:200)
             }
           }
         }
@@ -202,11 +198,8 @@ export const pageQuery = graphql`
           name
           publicURL
           childImageSharp {
-            # Specify the image processing specifications right in the query.
-            fluid(quality: 90, maxWidth: 2048)  {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-            resolutions {
+            gatsbyImageData(layout: FULL_WIDTH)
+            original {
               height
               width
             }

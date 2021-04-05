@@ -12,11 +12,14 @@
 
 /* Root Element */
 
-html,body, div#___gatsby, div#gatsby-focus-wrapper{
+html,
+body,
+div#___gatsby,
+div#gatsby-focus-wrapper {
   min-height: 100vh;
 }
 
-div#gatsby-focus-wrapper{
+div#gatsby-focus-wrapper {
   display: flex;
   flex-direction: column;
 }
@@ -28,6 +31,7 @@ html {
 
 body {
   background: rgb(250, 250, 250);
+  line-height: 1.5;
   overflow-x: hidden;
   font-family: "Segoe UI", "Noto Sans", "Sarabun", sans-serif;
 }
@@ -68,7 +72,7 @@ a:hover {
 
 @media (prefers-color-scheme: dark) {
   a {
-    color: lighten(color(primary),15%);
+    color: lighten(color(primary), 15%);
   }
 
   a:hover {
@@ -106,7 +110,7 @@ h4,
 h5 {
   font-weight: normal;
   margin: 0.75em 0 1rem;
-  font-family: "Segoe UI", "Noto Sans", "RSU", sans-serif;
+  font-family: "Segoe UI", "Noto Sans", "Sarabun Light", sans-serif;
   line-height: 1.15;
 }
 
@@ -161,6 +165,42 @@ small:lang(en),
   font-size: 0.833em;
 }
 
+/** Form */
+button {
+  padding: 0.5em 1em;
+  outline: none;
+  border: none;
+  transition: all 0.5s ease;
+}
+
+button:hover,button.selected {
+  background: color(primary);
+  color: white;
+  padding: 0.5em 1em;
+  outline: none;
+  border: none;
+}
+label{
+  margin-right: 0.5em;
+}
+
+input{
+  padding: 0.5em 1em;
+  min-width: 350px;
+  border: 1px solid grey;
+}
+input:hover{
+  border: 1px solid color(secondary);
+}
+input:focus{
+  border: 1px solid color(primary);
+  outline: none;
+}
+
+.form-group{
+  padding: 1em 0;
+}
+
 /** Animation */
 @keyframes fadein {
   from {
@@ -211,7 +251,7 @@ small:lang(en),
 .container {
   position: relative;
   padding: 0 15px 2vh 15px;
-  
+
   .date {
     margin: -0.5em 0 1em 0;
   }
@@ -262,8 +302,8 @@ small:lang(en),
   column-gap: 30px;
 
   /** Fix **/
-  .gatsby-image-wrapper > div:first-child{
-    padding-bottom: 0!important;
+  .gatsby-image-wrapper > div:first-child {
+    padding-bottom: 0 !important;
   }
 
   > *:not(:first-child):not(:nth-child(2)) {
@@ -321,7 +361,6 @@ small:lang(en),
 }
 
 @include size(high-desktop) {
-
   .super-grid {
     > *:not(:first-child):not(:nth-child(2)) {
       grid-column: span 2 !important;

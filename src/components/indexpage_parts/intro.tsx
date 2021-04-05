@@ -1,7 +1,7 @@
 import * as React from "react";
 import { StaticQuery, graphql } from "gatsby";
-import Img from "gatsby-image";
-import style from "./intro.module.scss";
+import { GatsbyImage } from "gatsby-plugin-image";
+import {intro,introText,introImage} from "./intro.module.scss";
 import scrollTo from "@components/scroller";
 
 // Assets
@@ -12,10 +12,7 @@ import email_icon from "@images/ui/outlook.png";
 const query = graphql`
   query {
     authorimage: file(relativePath: { eq: "author.jpg" }) {
-      childImageSharp {
-        fluid(quality: 90, maxWidth: 2048)  {
-          ...GatsbyImageSharpFluid_withWebp
-        }
+      childImageSharp {gatsbyImageData(layout: FULL_WIDTH)
       }
     }
   }
@@ -28,12 +25,12 @@ const Intro: React.FunctionComponent = (props) => {
       render={(data) => {
         const {
           authorimage: {
-            childImageSharp: { fluid: authorFluidImage },
+            childImageSharp: { gatsbyImageData: authorFluidImage },
           },
         } = data;
         return (
-          <div className={"two-asymmetrical-grid " + style.intro}>
-            <div className={style.introText}>
+          <div className={"two-asymmetrical-grid " + intro}>
+            <div className={introText}>
               <h1>Hi ! ผมชื่อ สุทธิศักดิ์</h1>
               <p>จบแพทย์จุฬาลงกรณ์มหาวิทยาลัย รุ่น 66</p>
               <p>
@@ -69,9 +66,9 @@ const Intro: React.FunctionComponent = (props) => {
                 </a></h4>
 
             </div>
-            <Img
-              className={style.introImage}
-              fluid={authorFluidImage}
+            <GatsbyImage
+              className={introImage}
+              image={authorFluidImage}
               alt="author"
             />
           </div>

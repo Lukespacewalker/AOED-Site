@@ -4,10 +4,10 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import Header from "@components/header";
 import Carousal from "@components/carousal";
 
-import {bannerContainer, bannerText,darken} from "./banner.module.scss";
-import {item,video,edgevideo} from "@components/carousal/carousal.module.scss";
+import {bannerContainer, bannerText} from "./banner.module.scss";
+import {item,video,} from "@components/carousal/carousal.module.scss";
 
-import { StaticQuery, graphql } from "gatsby";
+import { StaticQuery, graphql,edgevideo } from "gatsby";
 
 class Banner extends React.Component<{}, {}> {
   constructor(props) {
@@ -33,14 +33,13 @@ class Banner extends React.Component<{}, {}> {
               <Carousal>
                 <div className={item}>
                   <GatsbyImage
-                    imgStyle={{ objectPosition: "center center" }}
+                    imgStyle={{ objectPosition: "center top" }}
                     style={{ height: `100%` }}
                     image={banner}
                   />
-                  <div className={bannerText}>สมาคมโรคจากการประกอบอาชีพและสิ่งแวดล้อมแห่งประเทศไทย สนับสนุนให้บุคลากรทางการแพทย์และประชาชนทุกคน ได้รับวัคซีนป้องกัน COVID-19 อย่างทั่วถึงและครบถ้วนเพื่อลดอัตราตาย การเจ็บป่วย และสามารถกลับมาดำเนินชีวิตและกิจการต่างๆ ได้ใกล้เคียงปกติโดยเร็ว</div>
+                  <div className={bannerText}></div>
                 </div>
               </Carousal>
-              <div className={darken}></div>
             </div>
           );
         }}
@@ -53,7 +52,7 @@ export default Banner;
 
 const query = graphql`
   query {
-    file(relativePath: { eq: "covid.jpg" }) {
+    file(relativePath: { eq: "splash.jpg" }) {
       childImageSharp {gatsbyImageData(layout: FULL_WIDTH)
       }
     }

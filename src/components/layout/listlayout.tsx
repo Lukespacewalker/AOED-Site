@@ -1,13 +1,12 @@
 import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
-import { FluidObject } from "gatsby-image";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import Header from "@components/header";
 import Footer from "@components/footer";
-import style from "./listlayout.module.scss";
+import {container,titleSuperContainer,image as imageStyle,titleContainer,title as titleStyle} from "./listlayout.module.scss";
 
 class ListPage extends React.Component<
-  { title: string; image: FluidObject },
+  { title: string; image: any },
   any
 > {
   constructor(props) {
@@ -19,11 +18,11 @@ class ListPage extends React.Component<
     return (
       <>
         <Header />
-        <div className={style.container}>
-          <div className={style.titleSuperContainer}>
-            <Img fluid={image} alt="background" className={style.image} />
-            <header className={`container ${style.titleContainer}`}>
-              <h1 className={style.title}>{title}</h1>
+        <div className={container}>
+          <div className={titleSuperContainer}>
+            <GatsbyImage image={image} alt="background" className={imageStyle} />
+            <header className={`container ${titleContainer}`}>
+              <h1 className={titleStyle}>{title}</h1>
             </header>
           </div>
         </div>

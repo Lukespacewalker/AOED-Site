@@ -1,4 +1,4 @@
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 export const frontmatter = {
 	type: "news",
@@ -44,4 +44,4 @@ export const frontmatter = {
 [กำหนดการประชุมวิชาการประจำปีสมาคม](</news/2020/november/aoed-conf/กำหนดการประชุมวิชาการประจำปีสมาคมฯ 21-22 ธค 63.pdf>)
 
 # โปสเตอร์
-<Img fluid={props.images[1].childImageSharp.fluid} alt="poster" />
+<GatsbyImage image={props.images[1].childImageSharp.gatsbyImageData} alt="poster" />

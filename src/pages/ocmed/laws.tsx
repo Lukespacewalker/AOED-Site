@@ -1,6 +1,6 @@
 import * as React from "react";
 import { graphql, Link, navigate } from "gatsby";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import ListLayout from "@components/layout/listlayout";
 import Paper from "@components/paper";
 import SEO from "@components/seo";
@@ -17,7 +17,7 @@ class LawsIndex extends React.Component<{ data: any }, {}> {
     const {
       data: {
         file: {
-          childImageSharp: { fluid: image },
+          childImageSharp: { gatsbyImageData: image },
         }
       },
     } = this.props;
@@ -55,10 +55,7 @@ export const pageQuery = graphql`
   query {
     file(relativePath: { eq: "splash/laws.jpg" }) {
       childImageSharp {
-        # Specify the image processing specifications right in the query.
-        fluid(quality: 90, maxWidth: 2048)  {
-          ...GatsbyImageSharpFluid_withWebp
-        }
+        gatsbyImageData(layout: FULL_WIDTH)
       }
     }
   }

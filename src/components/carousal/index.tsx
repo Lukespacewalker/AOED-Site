@@ -2,7 +2,7 @@ import * as React from "react";
 import * as PropTypes from "prop-types";
 import back_icon from "@images/ui/left-arrow.svg";
 import next_icon from "@images/ui/right-arrow.svg"
-import cstyle from "./carousal.module.scss";
+import {container,childrenContainer,back as backStyle,next as nextStyle,nav as navStyle,show as showStyle} from "./carousal.module.scss";
 
 class Carousal extends React.Component<{}, {}> {
     constructor(props) {
@@ -54,17 +54,17 @@ class Carousal extends React.Component<{}, {}> {
         
         
         return (
-            <div className={`${cstyle.container} ${this.maxChildId>0? cstyle.show: ""}`}>
-                <div ref={this.myRef} className={cstyle.childrenContainer}>
+            <div className={`${container} ${this.maxChildId>0? showStyle: ""}`}>
+                <div ref={this.myRef} className={childrenContainer}>
                     {children}
                 </div>
-                <div className={cstyle.back} onClick={this.prev}>
+                <div className={backStyle} onClick={this.prev}>
                     <img src={back_icon} />
                 </div>
-                <div className={cstyle.next} onClick={this.next}>
+                <div className={nextStyle} onClick={this.next}>
                     <img src={next_icon} />
                 </div>
-                <div className={cstyle.nav} >
+                <div className={navStyle} >
                     {navs}
                 </div>
             </div>

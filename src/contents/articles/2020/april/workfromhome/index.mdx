@@ -1,4 +1,4 @@
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 export const frontmatter = {
 	type: "articles",
@@ -26,7 +26,7 @@ export const frontmatter = {
 
 การทำงานที่บ้าน **จะต้องจัด workstation ให้ดี ทั้งเก้าอี้ โต๊ะ คอมพิวเตอร์** วิธีการจัดสามารถหาได้ใน internet ทั่วไป สิ่งที่ต้องดูแลคือ ergonomic ปัญหาสุขภาพอีกเรื่องหนึ่งคือสุขภาพจิต เพราะเหมือนทำงานคนเดียว มีทั้งปัญหาเทคโนโลยี ไม่มีคนคอยชี้แนะการทำงาน ทำให้เกิดความเครืยด
 
-<Img fluid={props.images[1].childImageSharp.fluid} alt="tip" />
+<GatsbyImage image={props.images[1].childImageSharp.gatsbyImageData} alt="tip" />
 
 การทำงานที่บ้าน ถือว่าบ้านเป็น workplace ดังนั้นการเจ็บป่วยหรือได้รับอุบัติเหตุจากการทำงานที่บ้านก็จะได้การชดเชยด้วย
 

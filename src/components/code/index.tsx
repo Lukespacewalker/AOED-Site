@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
-import styles from "./code.module.scss";
+import {code} from "./code.module.scss";
 import Highlight, {defaultProps, Language} from 'prism-react-renderer';
 import Prism from "prism-react-renderer/prism";
 import theme from "prism-react-renderer/themes/vsDark";
@@ -28,7 +28,7 @@ export class Pre extends React.Component<{children:any},{}>{
     let className = this.props.children.props.className || "";
     if(className===""){
       // Just a pre-formatted text
-      return (<div className={styles.code}>
+      return (<div className={code}>
         <pre>{children}</pre>
       </div>)
     }else{

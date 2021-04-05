@@ -63,7 +63,17 @@ module.exports = {
             emphasize: false,
             submenus: [
                 {
-                    order: 1,
+                    order: -2,
+                    name: `ตรวจสอบแพทย์ที่ได้รับวุฒิบัตรฯ และหนังสืออนุมัติฯ สาขาอาชีวเวชศาสตร์`,
+                    link: `https://checkmd.tmc.or.th/`
+                },
+                {
+                    order: -1,
+                    name: `(ทดสอบระบบ) ตรวจสอบแพทย์ที่ผ่านการอบรม`,
+                    link: `ocmed/checkdoctor`
+                },
+                {
+                    order: 0,
                     name: `สมรรถนะแพทย์อาชีวเวชศาสตร์`,
                     link: `ocmed/competencies`
                 },
@@ -164,9 +174,10 @@ module.exports = {
             }
         },
         `gatsby-plugin-typescript`,
-        `gatsby-transformer-sharp`,
         `gatsby-transformer-json`,
+        `gatsby-plugin-image`,
         `gatsby-plugin-sharp`,
+        `gatsby-transformer-sharp`,
         {
             resolve: `gatsby-plugin-manifest`,
             options: {

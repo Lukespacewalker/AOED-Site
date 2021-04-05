@@ -1,4 +1,4 @@
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 export const frontmatter = {
 	type: "news",
@@ -21,4 +21,4 @@ https://w1.med.cmu.ac.th/commed/basic-occupational-medicine-training-course-for-
 
 # Poster
 
-<Img fluid={props.images[1].childImageSharp.fluid} alt="poster" />
+<GatsbyImage image={props.images[1].childImageSharp.gatsbyImageData} alt="poster" />

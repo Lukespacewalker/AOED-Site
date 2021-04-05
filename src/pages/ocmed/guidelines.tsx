@@ -1,6 +1,6 @@
 import * as React from "react";
 import { graphql, Link, navigate } from "gatsby";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import ListLayout from "@components/layout/listlayout";
 import Paper from "@components/paper";
 import SEO from "@components/seo";
@@ -16,16 +16,16 @@ class GuidelinesIndex extends React.Component<{ data: any }, {}> {
     const {
       data: {
         file: {
-          childImageSharp: { fluid: image },
+          childImageSharp: { gatsbyImageData: image },
         },
         spirometry: {
-          childImageSharp: { fixed: spirometry },
+          childImageSharp: { gatsbyImageData: spirometry },
         },
         audiometry: {
-          childImageSharp: { fixed: audiometry },
+          childImageSharp: { gatsbyImageData: audiometry },
         },
         confined: {
-          childImageSharp: { fixed: confined },
+          childImageSharp: { gatsbyImageData: confined },
         },
       },
     } = this.props;
@@ -38,7 +38,7 @@ class GuidelinesIndex extends React.Component<{ data: any }, {}> {
           onClick={()=>this.handleOnClick("/ocmed/guidelines/book_confined.pdf")}
           sbs
           side={
-            <Img fixed={confined}></Img>
+            <GatsbyImage image={confined}></GatsbyImage>
           }
         >
           <div style={{marginTop:`0.5rem`}}>แนวทางการตรวจสุขภาพคนทํางานในที่อับอากาศ พ.ศ.2557</div>
@@ -48,7 +48,7 @@ class GuidelinesIndex extends React.Component<{ data: any }, {}> {
           onClick={()=>this.handleOnClick("/ocmed/guidelines/book_audiometry.pdf")}
           sbs
           side={
-            <Img fixed={audiometry}></Img>
+            <GatsbyImage image={audiometry}></GatsbyImage>
           }
         >
           <div style={{marginTop:`0.5rem`}}>แนวทางการตรวจและแปลผลสมรรถภาพการได้ยิน ในงานอาชีวอนามัย พ.ศ.2558</div>
@@ -58,7 +58,7 @@ class GuidelinesIndex extends React.Component<{ data: any }, {}> {
           onClick={()=>this.handleOnClick("/ocmed/guidelines/book_spirometry.pdf")}
           sbs
           side={
-            <Img fixed={spirometry}></Img>
+            <GatsbyImage image={spirometry}></GatsbyImage>
           }
         >
           <div style={{marginTop:`0.5rem`}}>แนวทางการตรวจและแปลผลสมรรถภาพปอด ด้วยวิธีสไปโรเมตรีย์ในงานอาชีวอนามัย พ.ศ.2557</div>
@@ -73,37 +73,25 @@ export const pageQuery = graphql`
   query {
     file(relativePath: { eq: "splash/guide.jpg" }) {
       childImageSharp {
-        # Specify the image processing specifications right in the query.
-        fluid(quality: 90, maxWidth: 2048)  {
-          ...GatsbyImageSharpFluid_withWebp
-        }
+        gatsbyImageData(layout: FULL_WIDTH)
       }
     }
 
     spirometry: file(relativePath: { eq: "guidelines/book_spirometry-01.jpg" }) {
       childImageSharp {
-        # Specify the image processing specifications right in the query.
-        fixed(quality: 90, height: 350) {
-          ...GatsbyImageSharpFixed_withWebp
-        }
+        gatsbyImageData(layout: FIXED)
       }
     }
 
     audiometry: file(relativePath: { eq: "guidelines/book_audiometry-001.jpg" }) {
       childImageSharp {
-        # Specify the image processing specifications right in the query.
-        fixed(quality: 90, height: 350) {
-          ...GatsbyImageSharpFixed_withWebp
-        }
+        gatsbyImageData(layout: FIXED)
       }
     }
 
     confined: file(relativePath: { eq: "guidelines/book_confined-01.jpg" }) {
       childImageSharp {
-        # Specify the image processing specifications right in the query.
-        fixed(quality: 90, height: 350) {
-          ...GatsbyImageSharpFixed_withWebp
-        }
+        gatsbyImageData(layout: FIXED)
       }
     }
     
