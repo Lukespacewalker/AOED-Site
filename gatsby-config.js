@@ -132,6 +132,7 @@ module.exports = {
         ]
     },
     plugins: [
+	`gatsby-plugin-pnpm`,
         {
             resolve: `gatsby-plugin-canonical-urls`,
             options: {
