@@ -94,7 +94,7 @@ class IndexPage extends React.Component<{ data: any }, {}> {
             `สมาคม`,
           ]}
         />
-        <Header siteTitle="" isFrontPage={true} />
+        <Header isFrontPage={true} />
         <Banner />
         <div className="container" style={{ marginTop: `25px` }}>
           <div id="youtube">
@@ -157,7 +157,7 @@ class IndexPage extends React.Component<{ data: any }, {}> {
             ข่าวสารล่าสุด
             <Link to="/news">
               <span style={{ fontSize: `0.6em` }}> ดูทั้งหมด</span>
-            </Link>{" "}
+            </Link>
           </h1>
           <div className="super-grid">{this.renderArticles(news)}</div>
           <h1 id="project">

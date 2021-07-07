@@ -148,7 +148,6 @@ class Header extends React.Component<IHeaderProps, {}> {
           query MenuQuery {
             site {
               siteMetadata {
-                title
                 menus {
                   order
                   name
@@ -167,7 +166,7 @@ class Header extends React.Component<IHeaderProps, {}> {
           const { isFrontPage } = this.props;
           const {
             site: {
-              siteMetadata: { title, shortTitle, menus },
+              siteMetadata: { menus },
             },
           }: {
             site: {
