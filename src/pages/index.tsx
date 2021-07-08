@@ -68,9 +68,6 @@ class IndexPage extends React.Component<{ data: any }, {}> {
   render() {
     const { data }: { data: any } = this.props;
     const {
-      site: { siteMetadata: meta },
-    } = data; // ECMA6 Destructuring Pattern
-    const {
       news: { nodes: news },
       articles: { nodes: articles },
     } = data;
@@ -194,12 +191,6 @@ export const query = graphql`
   }
 
   query {
-    site {
-      siteMetadata {
-        title
-        author
-      }
-    }
 
     news: allMdx(
       limit: 4
