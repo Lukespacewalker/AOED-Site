@@ -1,3 +1,5 @@
+const esmRequire = require('./esmRequire')
+
 module.exports = {
     siteMetadata: {
         siteUrl: `https://www.aoed.org`,
@@ -10,7 +12,6 @@ module.exports = {
             {
                 order: 1,
                 name: `องค์กร`,
-    
                 submenus: [
                     {
                         order: 1,
@@ -137,7 +138,7 @@ module.exports = {
             options: {
                 extensions: ['.mdx', '.md'],
                 //defaultLayout: require.resolve('./src/components/blog-post-layout.js'),
-                remarkPlugins: [require("remark-slug")],
+                remarkPlugins: [esmRequire("remark-slug").default],
                 rehypePlugins:[]
             }
         },

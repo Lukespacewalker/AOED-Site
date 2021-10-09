@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@mdx-js/mdx': ^1.6.22
   '@mdx-js/react': ^1.6.22
+  esm: ^3.2.25
   gatsby: ^3.14.2
   gatsby-plugin-canonical-urls: ^3.14.0
   gatsby-plugin-image: ^1.14.1
@@ -33,6 +34,7 @@ specifiers:
 dependencies:
   '@mdx-js/mdx': 1.6.22
   '@mdx-js/react': 1.6.22_react@17.0.2
+  esm: 3.2.25
   gatsby: 3.14.2_react-dom@17.0.2+react@17.0.2
   gatsby-plugin-canonical-urls: 3.14.0_gatsby@3.14.2
   gatsby-plugin-image: 1.14.1_13892de880be55f0755e5febdb7b7da0
@@ -5580,6 +5582,11 @@ packages:
       v8-compile-cache: 2.3.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /esm/3.2.25:
+    resolution: {integrity: sha512-U1suiZ2oDVWv4zPO56S0NcR5QriEahGtdN2OR6FiOG4WJvcjBVFB0qI4+eKoWFH483PKGuLuu6V8Z4T5g63UVA==}
+    engines: {node: '>=6'}
     dev: false
 
   /espree/7.3.1:
