@@ -126,7 +126,7 @@ class DoctorChecker extends React.Component<{}, {}> {
     */
     return (
       <>
-        <form onSubmit={this.handleSubmit.bind(this)} style={{display:"flex",gap:"10px",alignItems:"center"}}>
+        <form onSubmit={this.handleSubmit.bind(this)} style={{display:"flex",gap:"10px",alignItems:"center",flexWrap:"wrap"}}>
           <div className="form-group">
             <label for="name">ชื่อ</label>
             <input
