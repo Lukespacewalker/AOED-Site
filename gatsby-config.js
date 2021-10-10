@@ -1,5 +1,6 @@
 const esmRequire = require('./esmRequire')
-
+const a = esmRequire("remark-slug")
+const rs = a.default
 module.exports = {
     siteMetadata: {
         siteUrl: `https://www.aoed.org`,
@@ -23,7 +24,6 @@ module.exports = {
             {
             order: 2,
             name: `ประชาสัมพันธ์`,
-
             submenus: [
                 {
                     order: 1,
@@ -42,13 +42,8 @@ module.exports = {
             emphasize: false,
             submenus: [
                 {
-                    order: -2,
-                    name: `ตรวจสอบแพทย์ที่ได้รับวุฒิบัตรฯ และหนังสืออนุมัติฯ สาขาอาชีวเวชศาสตร์`,
-                    link: `https://checkmd.tmc.or.th/`
-                },
-                {
                     order: -1,
-                    name: `(ทดสอบระบบ) ตรวจสอบแพทย์ที่ผ่านการอบรม`,
+                    name: `ตรวจสอบแพทย์อาชีวเวชศาสตร์`,
                     link: `ocmed/checkdoctor`
                 },
                 {
@@ -138,8 +133,7 @@ module.exports = {
             options: {
                 extensions: ['.mdx', '.md'],
                 //defaultLayout: require.resolve('./src/components/blog-post-layout.js'),
-                remarkPlugins: [esmRequire("remark-slug").default],
-                rehypePlugins:[]
+                remarkPlugins: [rs]
             }
         },
         `gatsby-plugin-no-sourcemaps`,
@@ -178,6 +172,6 @@ module.exports = {
         },
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.app/offline
-        'gatsby-plugin-offline'
+        `gatsby-plugin-remove-serviceworker`
     ]
 };

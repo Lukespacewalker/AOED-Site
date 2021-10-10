@@ -5,7 +5,8 @@ import ListLayout from "@components/layout/listlayout";
 import Paper from "@components/paper";
 import SEO from "@components/seo";
 import DoctorChecker from "@components/doctor-checker";
-
+import aws_lambda from "../../images/aws/AWS Lambda.svg";
+import aws_dynamo from"../../images/aws/AWS DynamoDB.svg";
 
 class CheckDoctorIndex extends React.Component<{ data: any }, {}> {
   constructor(props) {
@@ -22,9 +23,14 @@ class CheckDoctorIndex extends React.Component<{ data: any }, {}> {
     } = this.props;
 
     return (
-      <ListLayout title="ตรวจสอบแพทย์ที่ผ่านการอบรบ หลักสูตรอบรมความรู้พื้นฐานด้านอาชีวเวชศาสตร์สำหรับแพทย์ (หลักสูตร 2 เดือน)" image={image}>
-        <SEO title="ตรวจสอบแพทย์ที่ผ่านการอบรบ หลักสูตรอบรมความรู้พื้นฐานด้านอาชีวเวชศาสตร์สำหรับแพทย์ (หลักสูตร 2 เดือน)" />
-        <h2>ยังอยู่ระหว่างการทดสอบระบบ ยังไม่สามารถนำไปใช้อ้างอิงได้</h2>
+      <ListLayout title="ตรวจสอบแพทย์อาชีวเวชศาสตร์" image={image}>
+        <SEO title="ตรวจสอบแพทย์อาชีวเวชศาสตร์" />
+        <h2>แพทย์ที่ได้รับวุฒิบัตรหรือหนังสืออนุมัติบัตร</h2>
+        <h3>เวชศาสตร์ป้องกันแขนงอาชีวเวชศาสตร์</h3>
+        <a style={{fontSize:"2em"}} href="https://checkmd.tmc.or.th/">ตรวจสอบจากระบบของแพทยสภา</a>
+        <p>โดยทั่วไปจะใช้เวลา 1-2 เดือน ข้อมูลความชำนาญเฉพาะทางในเว็บของแพทย์สภาของแพทย์ที่จบการศึกษาในเดือนกรกฎาคมของปีนั้นๆ ถึงจะได้รับการปรับปรุง</p>
+        <hr />
+        <h2>แพทย์ที่ผ่านการอบรบหลักสูตรอบรมความรู้พื้นฐานด้านอาชีวเวชศาสตร์สำหรับแพทย์ (หลักสูตร 2 เดือน)</h2>
         <DoctorChecker />
         <hr />
         <div style={{ display: `flex` }}>
@@ -43,9 +49,8 @@ class CheckDoctorIndex extends React.Component<{ data: any }, {}> {
               alignItems: `center`,
             }}
           >
-            <StaticImage
-              src="../../images/aws/AWS Lambda.svg"
-              layout="fixed"
+            <img
+              src={aws_lambda}
               height={50}
             />
             <div>Amazon <br/><b>Lambda</b></div>
@@ -58,9 +63,8 @@ class CheckDoctorIndex extends React.Component<{ data: any }, {}> {
               alignItems: `center`,
             }}
           >
-          <StaticImage
-            src="../../images/aws/AWS DynamoDB.svg"
-            layout="fixed"
+          <img
+            src={aws_dynamo}
             height={50}
           />
             <div>Amazon <br/><b>DynamoDB</b></div>

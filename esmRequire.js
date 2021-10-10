@@ -13,10 +13,10 @@
    try {
      return orig(module, filename)
    } catch (e) {
-     if (e.code === 'ERR_REQUIRE_ESM') {
+     //if (e.code === 'ERR_REQUIRE_ESM') {
        const content = fs.readFileSync(filename, 'utf8')
        module._compile(content, filename)
-     }
+    // }
    }
  }
  

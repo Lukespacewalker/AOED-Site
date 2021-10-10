@@ -1,11 +1,9 @@
 ﻿import * as React from "react";
-import * as PropTypes from "prop-types";
 import { GatsbyImage } from "gatsby-plugin-image";
-import Header from "@components/header";
 import Carousal from "@components/carousal";
 
-import {bannerContainer, bannerText,darken} from "./banner.module.scss";
-import {item,video,edgevideo} from "@components/carousal/carousal.module.scss";
+import { bannerContainer, bannerText, darken } from "./banner.module.scss";
+import { item, video } from "@components/carousal/carousal.module.scss";
 
 import { StaticQuery, graphql } from "gatsby";
 
@@ -16,9 +14,6 @@ class Banner extends React.Component<{}, {}> {
 
   render() {
     let videoClassName = video;
-    if (typeof window !== "undefined" && /Edge/.test(navigator.userAgent)) {
-      videoClassName = edgevideo;
-    }
     return (
       <StaticQuery
         query={query}
@@ -37,7 +32,14 @@ class Banner extends React.Component<{}, {}> {
                     style={{ height: `100%` }}
                     image={banner}
                   />
-                  <div className={bannerText}>สมาคมโรคจากการประกอบอาชีพและสิ่งแวดล้อมแห่งประเทศไทย สนับสนุนให้บุคลากรทางการแพทย์และประชาชนทุกคน ได้รับวัคซีนป้องกัน COVID-19 อย่างทั่วถึงและครบถ้วนเพื่อลดอัตราตาย การเจ็บป่วย และสามารถกลับมาดำเนินชีวิตและกิจการต่างๆ ได้ใกล้เคียงปกติโดยเร็ว</div>
+                  <div className={bannerText}>
+                    สมาคมโรคจากการประกอบอาชีพและสิ่งแวดล้อมแห่งประเทศไทย
+                    สนับสนุนให้บุคลากรทางการแพทย์และประชาชนทุกคน
+                    ได้รับวัคซีนป้องกัน COVID-19
+                    อย่างทั่วถึงและครบถ้วนเพื่อลดอัตราตาย การเจ็บป่วย
+                    และสามารถกลับมาดำเนินชีวิตและกิจการต่างๆ
+                    ได้ใกล้เคียงปกติโดยเร็ว
+                  </div>
                 </div>
               </Carousal>
               <div className={darken}></div>
@@ -54,7 +56,8 @@ export default Banner;
 const query = graphql`
   query {
     file(relativePath: { eq: "covid.jpg" }) {
-      childImageSharp {gatsbyImageData(layout: FULL_WIDTH)
+      childImageSharp {
+        gatsbyImageData(layout: FULL_WIDTH)
       }
     }
   }

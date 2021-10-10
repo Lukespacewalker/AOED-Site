@@ -1,4 +1,3 @@
-import { string } from "prop-types";
 import * as React from "react";
 
 class DoctorChecker extends React.Component<{}, {}> {
@@ -7,21 +6,15 @@ class DoctorChecker extends React.Component<{}, {}> {
   }
 
   state: {
-    lang: "en" | "th";
+    lang: "th";
     text: string;
     name: string;
     surname: string;
     working: boolean;
-    checkedLicenseNumber: string;
     result: {
       Title: string;
       Name: string;
       Surname: string;
-      Name_English: string;
-      Surname_English: string;
-      Place: string;
-      CheckedLicenseNumber: number;
-      IsLicenseNumberCorrect: boolean;
       Year: number;
     };
   } = {
@@ -29,29 +22,28 @@ class DoctorChecker extends React.Component<{}, {}> {
     text: "",
     name: "",
     surname: "",
-    checkedLicenseNumber: "",
     working: false,
     result: null,
   };
 
   private checkdoctor(
-    lang: "en" | "th",
+    lang: "th",
     name: string,
     surname: string,
-    checkedLicenseNumber: string = ""
   ) {
     let url;
-    if (checkedLicenseNumber == "") {
+    //if (checkedLicenseNumber == "") {
       url = `https://nmurcj1r6g.execute-api.ap-southeast-1.amazonaws.com/default/occmed-doctor-search?lang=${lang}&name=${encodeURIComponent(
         name
       )}&surname=${encodeURIComponent(surname)}`;
+      /*
     } else {
       url = `https://nmurcj1r6g.execute-api.ap-southeast-1.amazonaws.com/default/occmed-doctor-search?lang=${lang}&name=${encodeURIComponent(
         name
       )}&surname=${encodeURIComponent(
         surname
       )}&checkedLicenseNumber=${checkedLicenseNumber}`;
-    }
+    }*/
     fetch(url)
       .then((response) => {
         if (response.ok) {
@@ -79,8 +71,7 @@ class DoctorChecker extends React.Component<{}, {}> {
     this.checkdoctor(
       this.state.lang,
       this.state.name,
-      this.state.surname,
-      this.state.checkedLicenseNumber
+      this.state.surname
     );
     event.preventDefault();
   }
@@ -92,11 +83,7 @@ class DoctorChecker extends React.Component<{}, {}> {
           {doctor.Title} {doctor.Name} {doctor.Surname}
         </h4>
         <br />
-        <h5 style={{ margin: `0` }}>
-          {doctor.Name_English} {doctor.Surname_English}
-        </h5>
-        <br />
-        อบรมจากสถาบัน <b>{doctor.Place}</b> ปี {doctor.Year}
+        อบรมปี {doctor.Year}
         <br />
         {doctor.CheckedLicenseNumber !== undefined
           ? doctor.IsLicenseNumberCorrect
@@ -108,9 +95,8 @@ class DoctorChecker extends React.Component<{}, {}> {
   }
 
   render() {
-    return (
-      <>
-        <div>ภาษาที่ต้องการค้นหา</div>
+    /*
+            <div>ภาษาที่ต้องการค้นหา</div>
         <button
           type="button"
           className={this.state.lang === "th" ? "selected" : ""}
@@ -125,7 +111,22 @@ class DoctorChecker extends React.Component<{}, {}> {
         >
           อังกฤษ
         </button>
-        <form onSubmit={this.handleSubmit.bind(this)}>
+                  <div className="form-group">
+            <label for="doctorId">เลข ว.</label>
+            <input
+              id="doctorId"
+              type="number"
+              placeholder="ใส่หากต้องการตรวจสอบว่าตรงกับชื่อหรือไม่"
+              value={this.state.checkedLicenseNumber}
+              onChange={(event) =>
+                this.setState({ checkedLicenseNumber: event.target.value })
+              }
+            ></input>
+          </div>
+    */
+    return (
+      <>
+        <form onSubmit={this.handleSubmit.bind(this)} style={{display:"flex",gap:"10px",alignItems:"center"}}>
           <div className="form-group">
             <label for="name">ชื่อ</label>
             <input
@@ -147,18 +148,6 @@ class DoctorChecker extends React.Component<{}, {}> {
               value={this.state.surname}
               onChange={(event) =>
                 this.setState({ surname: event.target.value })
-              }
-            ></input>
-          </div>
-          <div className="form-group">
-            <label for="doctorId">เลข ว.</label>
-            <input
-              id="doctorId"
-              type="number"
-              placeholder="ใส่หากต้องการตรวจสอบว่าตรงกับชื่อหรือไม่"
-              value={this.state.checkedLicenseNumber}
-              onChange={(event) =>
-                this.setState({ checkedLicenseNumber: event.target.value })
               }
             ></input>
           </div>

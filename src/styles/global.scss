@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans");
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+Thai");
 @import url("https://fonts.googleapis.com/css?family=Sarabun");
 @import "./fonts/_fonts.css";
 @import "functions";
@@ -33,7 +34,7 @@ body {
   background: rgb(250, 250, 250);
   line-height: 1.5;
   overflow-x: hidden;
-  font-family: "Segoe UI", "Noto Sans", "Sarabun", sans-serif;
+  font-family: "Noto Sans", "Sarabun", sans-serif;
 }
 
 @media (prefers-color-scheme: light) {
@@ -110,7 +111,7 @@ h4,
 h5 {
   font-weight: normal;
   margin: 0.75em 0 1rem;
-  font-family: "Segoe UI", "Noto Sans", "Sarabun Light", sans-serif;
+  font-family: "Noto Sans", "Noto Sans Thai", sans-serif;
   line-height: 1.15;
 }
 
