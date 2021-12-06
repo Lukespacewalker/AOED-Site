@@ -5,10 +5,9 @@
 }
 
 .card {
-  @apply shadow-md rounded-md overflow-hidden;
+  @apply shadow-md rounded-md overflow-hidden transition-all;
   background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
   flex: 1 1 100%;
-  transition: background 1s ease;
 
   @screen sm {
     flex: 1 1 calc(50% - 1.5rem);
@@ -25,6 +24,7 @@
 
   &.clickable:after {
     content: "";
+    @apply rounded-md transition-all;
     position: absolute;
     left: 0px;
     top: 0px;
@@ -32,7 +32,6 @@
     bottom: 0px;
     background-image: linear-gradient(to right, rgba(150, 201, 61, 0.1), rgba(0, 179, 158, 0.1));
     opacity: 0;
-    transition: all 0.5s ease;
   }
 
   &.clickable:hover:after {

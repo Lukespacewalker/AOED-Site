@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Header from "@components/header";
 import { Footer } from "@components/footer";
-import {container,titleSuperContainer,image as imageStyle,titleContainer,title as titleStyle} from "./listlayout.module.scss";
+import { container, titleSuperContainer, image as imageStyle, titleContainer, title as titleStyle } from "./listlayout.module.scss";
 
 class ListPage extends React.Component<
   { title: string; image: any },
@@ -26,7 +26,7 @@ class ListPage extends React.Component<
             </header>
           </div>
         </div>
-        <main className="container">{children}</main>
+        <main className="max-w-8xl mx-auto px-6">{children}</main>
         <Footer />
       </>
     );

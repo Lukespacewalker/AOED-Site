@@ -7,6 +7,7 @@ import Banner from "@components/banner";
 import { Card } from "@components/card";
 import { ListItem } from "@components/list-item";
 import { GatsbyImage } from "gatsby-plugin-image";
+import { trim, renderListItems,renderCards } from "@utilities";
 
 // Styles
 import yt_icon from "@images/ui/youtube_icon.png";
@@ -23,16 +24,16 @@ class IndexPage extends React.Component<{ data: any }, {}> {
     return (
       <div className="flex gap-6 flex-col xl:flex-row items-start">
         <div style={{ flex: `2 1 0%` }} className="flex gap-6 flex-col">
-          {this.renderArticleCards(nodes.slice(0, 3))}
+          {renderCards(nodes.slice(0, 3))}
         </div>
         <div className="flex gap-3 flex-wrap flex-1 gap-3 items-start">
-          {this.renderArticleSmalls(nodes.slice(3))}
+          {renderListItems(nodes.slice(3),true)}
         </div>
       </div>
     )
   }
 
-  private renderArticleSmalls(nodes: Array<any>) {
+  private renderListItems(nodes: Array<any>) {
     return nodes.map((node, i) => {
       const {
         fields: { slug },
@@ -51,7 +52,7 @@ class IndexPage extends React.Component<{ data: any }, {}> {
     });
   }
 
-  private renderArticleCards(nodes: Array<any>) {
+  private renderCards(nodes: Array<any>) {
     return nodes.map((node, i) => {
       const {
         fields: { slug },
