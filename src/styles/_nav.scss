@@ -1,0 +1,68 @@
+header.app-header {
+    @apply relative z-10;
+
+    > div {
+        @apply flex items-center justify-between sm:max-w-7xl sm:mx-auto;
+    }
+
+    .logo {
+        @apply px-3;
+
+        & > img {
+            @apply h-12 w-auto sm:h-14;
+        }
+    }
+
+    .nav-container {
+        @apply absolute w-full;
+        top: 100%;
+
+        &.hide {
+            visibility: collapse;
+        }
+
+        & > nav {
+            @apply flex flex-col gap-3 rounded-b-md py-6 px-3;
+        }
+    }
+
+    nav a {
+        @apply px-3 py-2 rounded-md;
+    }
+
+    .nested-nav-container {
+        @apply relative flex flex-col;
+        
+        & > nav {
+            @apply flex flex-col;
+            min-width: 320px;
+        }
+
+        & > nav.hide {
+            display: none;
+        }
+    }
+
+    @screen sm {
+        .nav-container {
+            @apply relative w-auto;
+
+            &.hide {
+                visibility: visible;
+            }
+
+            & > nav {
+                @apply flex-row bg-transparent;
+                margin-top: 0;
+            }
+        }
+
+        .nested-nav-container {
+
+            & > nav {
+                @apply absolute bg-white rounded-md shadow-md p-3;
+                top: 100%;
+            }
+        }
+    }
+}

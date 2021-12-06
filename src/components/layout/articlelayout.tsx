@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import { FluidObject } from "gatsby-image";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Header from "@components/header";
-import Footer from "@components/footer";
+import { Footer } from "@components/footer";
 import {title as titleStyle,container} from "./listlayout.module.scss";
 import {aside as asideStyle,contentContainer,mainImage} from "./articlelayout.module.scss";
 

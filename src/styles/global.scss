@@ -1,9 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans");
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+Thai");
 @import url("https://fonts.googleapis.com/css?family=Sarabun");
 @import "./fonts/_fonts.css";
 @import "functions";
 @import "mixins";
+@import "variables";
+@import "typography";
+@import "nav";
 
 /* Variables */
 :root {
@@ -12,6 +19,13 @@
 }
 
 /* Root Element */
+
+body {
+  @apply bg-gray-50;
+  overflow-x: hidden;
+  font-family: "Noto Sans","Sarabun", sans-serif;
+  min-height: 100vh;
+}
 
 html,
 body,
@@ -28,13 +42,6 @@ div#gatsby-focus-wrapper {
 html {
   overflow-y: auto;
   font-size: 16px;
-}
-
-body {
-  background: rgb(250, 250, 250);
-  line-height: 1.5;
-  overflow-x: hidden;
-  font-family: "Noto Sans", "Sarabun", sans-serif;
 }
 
 @media (prefers-color-scheme: light) {
@@ -102,68 +109,6 @@ p {
 p > code {
   padding: 0.25em 0.25em 0.25em 0.5em;
   margin: 0 0.5em;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-weight: normal;
-  margin: 0.75em 0 1rem;
-  font-family: "Noto Sans", "Noto Sans Thai", sans-serif;
-  line-height: 1.15;
-}
-
-h1 {
-  font-size: 3.052em;
-}
-
-h2 {
-  font-size: 2.441em;
-}
-
-h3 {
-  font-size: 1.953em;
-}
-
-h4 {
-  font-size: 1.563em;
-}
-
-h5 {
-  font-size: 1.25em;
-}
-
-small,
-.text_small {
-  font-size: 0.8em;
-}
-
-h1:lang(en) {
-  margin-top: 0;
-  font-size: 2.488em;
-}
-
-h2:lang(en) {
-  font-size: 2.074em;
-}
-
-h3:lang(en) {
-  font-size: 1.728em;
-}
-
-h4:lang(en) {
-  font-size: 1.44em;
-}
-
-h5:lang(en) {
-  font-size: 1.2em;
-}
-
-small:lang(en),
-.text_small:lang(en) {
-  font-size: 0.833em;
 }
 
 /** Form */

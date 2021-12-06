@@ -2,7 +2,7 @@ import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Header from "@components/header";
-import Footer from "@components/footer";
+import { Footer } from "@components/footer";
 import {container,titleSuperContainer,image as imageStyle,titleContainer,title as titleStyle} from "./listlayout.module.scss";
 
 class ListPage extends React.Component<

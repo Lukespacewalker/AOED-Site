@@ -1,10 +1,11 @@
 import * as React from "react";
 import { graphql, Link, navigate } from "gatsby";
-import Footer from "@components/footer";
+import { Footer } from "@components/footer";
 import SEO from "@components/seo";
 import Header from "@components/header";
 import Banner from "@components/banner";
-import Paper from "@components/paper";
+import { Card } from "@components/card";
+import { ListItem } from "@components/list-item";
 import { GatsbyImage } from "gatsby-plugin-image";
 
 // Styles
@@ -18,46 +19,54 @@ class IndexPage extends React.Component<{ data: any }, {}> {
     };
   }
 
-  private renderArticles(nodes: Array<any>) {
+  private renderArticleContainer(nodes: Array<any>) {
+    return (
+      <div className="flex gap-6 flex-col xl:flex-row items-start">
+        <div style={{ flex: `2 1 0%` }} className="flex gap-6 flex-col">
+          {this.renderArticleCards(nodes.slice(0, 3))}
+        </div>
+        <div className="flex gap-3 flex-wrap flex-1 gap-3 items-start">
+          {this.renderArticleSmalls(nodes.slice(3))}
+        </div>
+      </div>
+    )
+  }
+
+  private renderArticleSmalls(nodes: Array<any>) {
     return nodes.map((node, i) => {
       const {
         fields: { slug },
         frontmatter: { excerpt, title, date, attachments },
       } = node;
-      if (
+      const image = (
         attachments !== undefined &&
         attachments != null &&
         attachments.length > 0 &&
         attachments[0] != null
-      ) {
-        return (
-          <Paper
-            style={{ cursor: `pointer` }}
-            key={i}
-            onClick={this.navigationHandler(slug)}
-            side={
-              <GatsbyImage
-                style={{ height: `100%` }}
-                image={attachments[0].childImageSharp.gatsbyImageData}
-                alt={title}
-              />
-            }
-          >
-            <h1>{title}</h1>
-            <div className="date">{date}</div>
-            <p>{excerpt}</p>
-            <Link to={slug}>อ่านต่อ</Link>
-          </Paper>
-        );
-      } else
-        return (
-          <Paper key={i}>
-            <h1>{title}</h1>
-            <div className="date">{date}</div>
-            <p>{excerpt}</p>
-            <Link to={slug}>อ่านต่อ</Link>
-          </Paper>
-        );
+      ) ? attachments[0].childImageSharp.gatsbyImageData : null;
+      return (<ListItem trim={true} style={{ flex: `1 1 50%` }} image={image}
+        header={title} superHeader={date} to={slug}>
+        <p>{excerpt}</p>
+      </ListItem>)
+    });
+  }
+
+  private renderArticleCards(nodes: Array<any>) {
+    return nodes.map((node, i) => {
+      const {
+        fields: { slug },
+        frontmatter: { excerpt, title, date, attachments },
+      } = node;
+      const image = (
+        attachments !== undefined &&
+        attachments != null &&
+        attachments.length > 0 &&
+        attachments[0] != null
+      ) ? attachments[0].childImageSharp.gatsbyImageData : null;
+      return (<Card image={image} superHeader={date}
+        header={title} to={slug}>
+        <p>{excerpt}</p>
+      </Card>)
     });
   }
 
@@ -93,78 +102,82 @@ class IndexPage extends React.Component<{ data: any }, {}> {
         />
         <Header isFrontPage={true} />
         <Banner />
-        <div className="container" style={{ marginTop: `25px` }}>
-          <div id="youtube">
-            <a href="https://www.youtube.com/channel/UCqfU3FdLjGk3mdW-IbJ-1uA">
-              <img id="youtube" src={yt_icon} />
-            </a>
-            <a href="https://www.youtube.com/channel/UCqfU3FdLjGk3mdW-IbJ-1uA">
-              <h1>iOccHealth Channel</h1>
-            </a>
-          </div>
-          <div className="youtube-grid">
-            <div className="youtube-container">
-              <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/-Ahai-K6crA"
-                frameBorder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-            <div>
-              <h3>
-                วิดีโอบันทึกงาน Online Occupational Medicine Open House ครั้งที่
-                2.5
-              </h3>
-              <p>
-                สาขา Occupational Medicine นั้น คืออะไร เรียนอะไรบ้าง
-                จบแล้วทำงานอะไร และการอบรม 2 เดือนต่างจากเรียน 3 ปี อย่างไร
-              </p>
-            </div>
-          </div>
-          <div className="youtube-grid" style={{marginTop:`2em`}}>
-            <div className="youtube-container">
-              <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/fhpn1LGRz-8"
-                frameBorder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-
-            <div>
-              <h3>การรับมือกับไวรัส COVID19 ในที่ทำงาน</h3>
-              <p>
-                ผลกระทบที่บริษัท จะได้รับจากการระบาดของไวรัสโควิดในปีนี้มีมากมาย
-                ไม่ว่าจะเป็น การลาป่วย ของพนักงานทั้งจากการเจ็บป่วย และความกังวล
-                ทำให้ขาดคนทำงาน ความต้องการสินต้าประเภท ที่เกี่ยวข้องกับ
-                อุปกรณ์ป้องกันเชื้อโรคมีมากขึ้น หรือปัญหาการขนส่งสินค้าของ
-                supplier ทำให้บริษัท ไม่ได้รับสินค้าตามกำหนด ผู้ประกอบการ
-                จึงต้องเตรียม แผนรับมือ เอาไว้ เพื่อให้เกิดความเสียหายน้อยที่สุด{" "}
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="container">
-          <h1 id="news">
-            ข่าวสารล่าสุด
+        <section className="max-w-8xl mx-auto px-6 my-6">
+          <h1 id="news" className="text-color-gradient">
+            ข่าวสาร
             <Link to="/news">
-              <span style={{ fontSize: `0.6em` }}> ดูทั้งหมด</span>
+              <span className="text-sm"> ดูทั้งหมด</span>
             </Link>
           </h1>
-          <div className="super-grid">{this.renderArticles(news)}</div>
-          <h1 id="project">
+          {this.renderArticleContainer(news)}
+        </section>
+        <div id="youtube-section" className="text-white">
+          <section className="max-w-8xl mx-auto px-6 my-6">
+            <div id="youtube">
+              <a href="https://www.youtube.com/channel/UCqfU3FdLjGk3mdW-IbJ-1uA">
+                <img id="youtube" src={yt_icon} />
+              </a>
+              <a href="https://www.youtube.com/channel/UCqfU3FdLjGk3mdW-IbJ-1uA">
+                <h1>iOccHealth Channel</h1>
+              </a>
+            </div>
+            <div className="youtube-grid">
+              <div className="youtube-container">
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/-Ahai-K6crA"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+              <div>
+                <h3>
+                  วิดีโอบันทึกงาน Online Occupational Medicine Open House ครั้งที่
+                  2.5
+                </h3>
+                <p>
+                  สาขา Occupational Medicine นั้น คืออะไร เรียนอะไรบ้าง
+                  จบแล้วทำงานอะไร และการอบรม 2 เดือนต่างจากเรียน 3 ปี อย่างไร
+                </p>
+              </div>
+            </div>
+            <div className="youtube-grid" style={{ marginTop: `2em` }}>
+              <div className="youtube-container">
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/fhpn1LGRz-8"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+
+              <div>
+                <h3>การรับมือกับไวรัส COVID19 ในที่ทำงาน</h3>
+                <p>
+                  ผลกระทบที่บริษัท จะได้รับจากการระบาดของไวรัสโควิดในปีนี้มีมากมาย
+                  ไม่ว่าจะเป็น การลาป่วย ของพนักงานทั้งจากการเจ็บป่วย และความกังวล
+                  ทำให้ขาดคนทำงาน ความต้องการสินต้าประเภท ที่เกี่ยวข้องกับ
+                  อุปกรณ์ป้องกันเชื้อโรคมีมากขึ้น หรือปัญหาการขนส่งสินค้าของ
+                  supplier ทำให้บริษัท ไม่ได้รับสินค้าตามกำหนด ผู้ประกอบการ
+                  จึงต้องเตรียม แผนรับมือ เอาไว้ เพื่อให้เกิดความเสียหายน้อยที่สุด{" "}
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+        <section className="max-w-8xl mx-auto px-6 my-6">
+          <h1 id="articles" className="text-color-gradient">
             บทความ
             <Link to="/articles">
-              <span style={{ fontSize: `0.6em` }}> ดูทั้งหมด</span>
+              <span className="text-sm"> ดูทั้งหมด</span>
             </Link>
           </h1>
-          <div className="super-grid">{this.renderArticles(articles)}</div>
-        </div>
+          {this.renderArticleContainer(articles)}
+        </section>
         <Footer />
       </>
     );
@@ -193,7 +206,7 @@ export const query = graphql`
   query {
 
     news: allMdx(
-      limit: 4
+      limit: 8
       sort: { fields: frontmatter___date, order: DESC }
       filter: { frontmatter: { type: { eq: "news" } } }
     ) {

@@ -34,11 +34,6 @@ class Banner extends React.Component<{}, {}> {
                   />
                   <div className={bannerText}>
                     สมาคมโรคจากการประกอบอาชีพและสิ่งแวดล้อมแห่งประเทศไทย
-                    สนับสนุนให้บุคลากรทางการแพทย์และประชาชนทุกคน
-                    ได้รับวัคซีนป้องกัน COVID-19
-                    อย่างทั่วถึงและครบถ้วนเพื่อลดอัตราตาย การเจ็บป่วย
-                    และสามารถกลับมาดำเนินชีวิตและกิจการต่างๆ
-                    ได้ใกล้เคียงปกติโดยเร็ว
                   </div>
                 </div>
               </Carousal>
@@ -55,7 +50,7 @@ export default Banner;
 
 const query = graphql`
   query {
-    file(relativePath: { eq: "covid.jpg" }) {
+    file(relativePath: { eq: "splash.jpg" }) {
       childImageSharp {
         gatsbyImageData(layout: FULL_WIDTH)
       }

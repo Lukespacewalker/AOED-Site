@@ -92,27 +92,9 @@ module.exports = {
                 }
             ]
         }
-            /*, {
-            order: 4,
-            name: `ดาวน์โหลด`,
-            emphasize: true,
-            submenus: [
-                {
-                    order: 1,
-                    name: `เอกสารวิชาการ`,
-                    link: `download/docs`
-                },
-                {
-                    order: 2,
-                    name: `สไลด์การเรียนการสอนแพทย์`,
-                    link: `download/slides`
-                }
-            ]
-        }*/
         ]
     },
     plugins: [
-	`gatsby-plugin-pnpm`,
         {
             resolve: `gatsby-plugin-canonical-urls`,
             options: {

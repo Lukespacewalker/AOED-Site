@@ -1,0 +1,56 @@
+@import "mixins";
+
+.card-container {
+  @apply flex flex-row flex-wrap gap-6;
+}
+
+.card {
+  @apply shadow-md rounded-md overflow-hidden;
+  background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+  flex: 1 1 100%;
+  transition: background 1s ease;
+
+  @screen sm {
+    flex: 1 1 calc(50% - 1.5rem);
+  }
+
+  @screen xl {
+    flex: 1 1 calc(33.33333% - 1.5rem);
+  }
+
+  &.clickable {
+    cursor: pointer;
+    position: relative;
+  }
+
+  &.clickable:after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-image: linear-gradient(to right, rgba(150, 201, 61, 0.1), rgba(0, 179, 158, 0.1));
+    opacity: 0;
+    transition: all 0.5s ease;
+  }
+
+  &.clickable:hover:after {
+    opacity: 1;
+  }
+}
+
+.card-content {
+  @apply p-6;
+
+  h2 {
+    @apply text-2xl py-2;
+  }
+}
+
+.card-image {
+  height: 15rem;
+  @screen sm {
+    height: 20rem;
+  }
+}

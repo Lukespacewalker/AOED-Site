@@ -1,12 +1,59 @@
-$theme: ( 'primary': rgb(48, 112, 74), 'secondary': rgb(70,163,107), 'base': rgb(37,51,43));
+@layer utilities {
+  .text-color-gradient {
+    background: linear-gradient(to right, #96c93d, #00b09b);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
 
-$breakpoints: ( 'phone': (min-width:480px), 'portait-tablet': (min-width:600px), 'landscape-tablet': (min-width:801px), 'desktop': (min-width:1025px), 'high-desktop': (min-width:1281px), 'higher-desktop': (min-width:1500px)) !default;
+  .text-color-primary {
+    @apply text-green-600;
+  }
+
+  .bg-color-gradient {
+    background: linear-gradient(to right, #96c93d, #00b09b);
+  }
+}
+
+$theme: (
+  "primary": rgb(48, 112, 74),
+  "secondary": rgb(70, 163, 107),
+  "base": rgb(37, 51, 43),
+);
+
+$breakpoints: (
+  "phone": (
+    min-width: 480px,
+  ),
+  "portait-tablet": (
+    min-width: 600px,
+  ),
+  "landscape-tablet": (
+    min-width: 801px,
+  ),
+  "desktop": (
+    min-width: 1025px,
+  ),
+  "high-desktop": (
+    min-width: 1281px,
+  ),
+  "higher-desktop": (
+    min-width: 1500px,
+  ),
+) !default;
 
 $XSpacing: 10vw;
 
-$shadow:('small': 0px 0px 10px 1px rgba(0, 0, 0, 0.15),'large': 0px 0px 40px 1px rgba(0, 0, 0, 0.15),'large-dark': 0px 0px 40px 1px rgba(0, 0, 0, 0.25));
+$shadow: (
+  "small": 0px 0px 10px 1px rgba(0, 0, 0, 0.15),
+  "large": 0px 0px 40px 1px rgba(0, 0, 0, 0.15),
+  "large-dark": 0px 0px 40px 1px rgba(0, 0, 0, 0.25),
+);
 
-$glow:('small': 0px 0px 10px 1px rgba(70,163,107, 0.15),'large': 0px 0px 40px 1px rgba(70,163,107, 0.15),'large-dark': 0px 0px 40px 1px rgba(70,163,107, 0.25));
+$glow: (
+  "small": 0px 0px 10px 1px rgba(70, 163, 107, 0.15),
+  "large": 0px 0px 40px 1px rgba(70, 163, 107, 0.15),
+  "large-dark": 0px 0px 40px 1px rgba(70, 163, 107, 0.25),
+);
 
-$light-factor:5%;
-$light-factor-more:15%;
+$light-factor: 5%;
+$light-factor-more: 15%;
