@@ -8,6 +8,7 @@ export class ListItem extends React.Component<
     header?: string;
     tagLine?: string;
     to?: string;
+    isExternal?: boolean;
     image?: IGatsbyImageData
     imgStyle?: {}
     style?: {}
@@ -21,8 +22,15 @@ export class ListItem extends React.Component<
 
   onClickHandler: React.MouseEventHandler = (event: React.MouseEvent) => {
     event.preventDefault();
+    const isBrowser = typeof window !== "undefined";
     if (this.props.to !== undefined) {
-      navigate(this.props.to);
+      if(this.props.isExternal){
+        if(isBrowser){
+          window.location.href = this.props.to;
+        }
+      }else{
+        navigate(this.props.to);
+      }
     }
   };
 

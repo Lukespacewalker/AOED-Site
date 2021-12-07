@@ -8,6 +8,7 @@ export class Card extends React.Component<
     header?: string;
     tagLine?: string;
     to?: string;
+    className?: string;
     image?: IGatsbyImageData
     imgStyle?: {}
   },
@@ -25,25 +26,27 @@ export class Card extends React.Component<
   };
 
   render() {
+    const {children,image,imgStyle, tagLine, header, className, ...other} = this.props
     return (
       <div
-        className={`${card} ${(this.props.to !== undefined ? clickable : "")}`}
+        className={`${className} ${card} ${(this.props.to !== undefined ? clickable : "")}`}
         onClick={this.onClickHandler}
+        {...other}
       >
-        {(this.props.image !== undefined && this.props.image != null) ? (
+        {(image !== undefined && image != null) ? (
           <GatsbyImage
             className={cardImage}
-            image={this.props.image}
-            imgStyle={this.props.imgStyle}
-            alt={this.props.header}
+            image={image}
+            imgStyle={imgStyle}
+            alt={header}
           />
         ) : (
           <></>
         )}
         <div className={cardContent}>
-          {this.props.tagLine !== undefined ? <div className="tagline">{this.props.tagLine.toLocaleUpperCase()}</div> : <></>}
-          {this.props.header !== undefined ? <h2 className="text-color-primary">{this.props.header}</h2> : <></>}
-          <article>{this.props.children}</article>
+          {tagLine !== undefined ? <div className="tagline">{tagLine.toLocaleUpperCase()}</div> : <></>}
+          {header !== undefined ? <h2 className="text-color-primary">{header}</h2> : <></>}
+          <article>{children}</article>
         </div>
       </div>
     );

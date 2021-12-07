@@ -32,18 +32,21 @@ class GuidelinesIndex extends React.Component<{ data: any }, {}> {
         <div className="flex flex-col gap-6">
           <ListItem
             tagLine="2557"
+            isExternal={true}
             header="แนวทางการตรวจสุขภาพคนทํางานในที่อับอากาศ พ.ศ.2557"
             to="/ocmed/guidelines/book_confined.pdf"
             image={confined}
           />
           <ListItem
             tagLine="2558"
+            isExternal={true}
             header="แนวทางการตรวจและแปลผลสมรรถภาพการได้ยิน ในงานอาชีวอนามัย พ.ศ.2558"
             to="/ocmed/guidelines/book_audiometry.pdf"
             image={audiometry}
           />
           <ListItem
             tagLine="2557"
+            isExternal={true}
             header="แนวทางการตรวจและแปลผลสมรรถภาพปอด ด้วยวิธีสไปโรเมตรีย์ในงานอาชีวอนามัย พ.ศ.2557"
             to="/ocmed/guidelines/book_spirometry.pdf"
             image={spirometry}

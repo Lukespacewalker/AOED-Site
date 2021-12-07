@@ -18,13 +18,13 @@ class DoctorChecker extends React.Component<{}, {}> {
       Year: number;
     };
   } = {
-    lang: "th",
-    text: "",
-    name: "",
-    surname: "",
-    working: false,
-    result: null,
-  };
+      lang: "th",
+      text: "",
+      name: "",
+      surname: "",
+      working: false,
+      result: null,
+    };
 
   private checkdoctor(
     lang: "th",
@@ -33,17 +33,17 @@ class DoctorChecker extends React.Component<{}, {}> {
   ) {
     let url;
     //if (checkedLicenseNumber == "") {
-      url = `https://nmurcj1r6g.execute-api.ap-southeast-1.amazonaws.com/default/occmed-doctor-search?lang=${lang}&name=${encodeURIComponent(
-        name
-      )}&surname=${encodeURIComponent(surname)}`;
-      /*
-    } else {
-      url = `https://nmurcj1r6g.execute-api.ap-southeast-1.amazonaws.com/default/occmed-doctor-search?lang=${lang}&name=${encodeURIComponent(
-        name
-      )}&surname=${encodeURIComponent(
-        surname
-      )}&checkedLicenseNumber=${checkedLicenseNumber}`;
-    }*/
+    url = `https://nmurcj1r6g.execute-api.ap-southeast-1.amazonaws.com/default/occmed-doctor-search?lang=${lang}&name=${encodeURIComponent(
+      name
+    )}&surname=${encodeURIComponent(surname)}`;
+    /*
+  } else {
+    url = `https://nmurcj1r6g.execute-api.ap-southeast-1.amazonaws.com/default/occmed-doctor-search?lang=${lang}&name=${encodeURIComponent(
+      name
+    )}&surname=${encodeURIComponent(
+      surname
+    )}&checkedLicenseNumber=${checkedLicenseNumber}`;
+  }*/
     fetch(url)
       .then((response) => {
         if (response.ok) {
@@ -67,6 +67,7 @@ class DoctorChecker extends React.Component<{}, {}> {
   }
 
   private handleSubmit(event) {
+    console.log("submit");
     this.setState({ working: true, text: "", result: null });
     this.checkdoctor(
       this.state.lang,
@@ -126,32 +127,26 @@ class DoctorChecker extends React.Component<{}, {}> {
     */
     return (
       <>
-        <form onSubmit={this.handleSubmit.bind(this)} style={{display:"flex",gap:"10px",alignItems:"center",flexWrap:"wrap"}}>
-          <div className="form-group">
-            <label for="name">ชื่อ</label>
-            <input
-              id="name"
-              type="text"
-              placeholder="ชื่อ"
-              required
-              value={this.state.name}
-              onChange={(event) => this.setState({ name: event.target.value })}
-            ></input>
-          </div>
-          <div className="form-group">
-            <label for="surname">นามสกุล</label>
-            <input
-              id="surname"
-              type="text"
-              placeholder="นามสกุล"
-              required
-              value={this.state.surname}
-              onChange={(event) =>
-                this.setState({ surname: event.target.value })
-              }
-            ></input>
-          </div>
-          <button type="submit">ค้นหา</button>
+        <form onSubmit={event => this.handleSubmit(event)} className="flex gap-6 justify-items-center items-center flex-wrap">
+          <input
+          className="flex-1"
+            id="name"
+            type="text"
+            placeholder="ชื่อ"
+            value={this.state.name}
+            onChange={(event) => this.setState({ name: event.target.value })}
+          ></input>
+          <input
+          className="flex-1"
+            id="surname"
+            type="text"
+            placeholder="นามสกุล"
+            value={this.state.surname}
+            onChange={(event) =>
+              this.setState({ surname: event.target.value })
+            }
+          ></input>
+          <button className="flex-0" type="submit" onClick={event => this.handleSubmit(event)}>ค้นหา</button>
         </form>
         {this.state.working ? (
           <div className="emphasize" style={{ display: `block` }}>

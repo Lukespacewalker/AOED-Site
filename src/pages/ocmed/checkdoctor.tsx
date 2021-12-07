@@ -6,7 +6,8 @@ import Paper from "@components/paper";
 import SEO from "@components/seo";
 import DoctorChecker from "@components/doctor-checker";
 import aws_lambda from "../../images/aws/AWS Lambda.svg";
-import aws_dynamo from"../../images/aws/AWS DynamoDB.svg";
+import aws_dynamo from "../../images/aws/AWS DynamoDB.svg";
+import { Card } from "@components/card";
 
 class CheckDoctorIndex extends React.Component<{ data: any }, {}> {
   constructor(props) {
@@ -25,52 +26,38 @@ class CheckDoctorIndex extends React.Component<{ data: any }, {}> {
     return (
       <ListLayout title="ตรวจสอบแพทย์อาชีวเวชศาสตร์" image={image}>
         <SEO title="ตรวจสอบแพทย์อาชีวเวชศาสตร์" />
-        <h2>แพทย์ที่ได้รับวุฒิบัตรหรือหนังสืออนุมัติบัตร</h2>
-        <h3>เวชศาสตร์ป้องกันแขนงอาชีวเวชศาสตร์</h3>
-        <a style={{fontSize:"2em"}} href="https://checkmd.tmc.or.th/">ตรวจสอบจากระบบของแพทยสภา</a>
-        <p>โดยทั่วไปจะใช้เวลา 1-2 เดือน ข้อมูลความชำนาญเฉพาะทางในเว็บของแพทย์สภาของแพทย์ที่จบการศึกษาในเดือนกรกฎาคมของปีนั้นๆ ถึงจะได้รับการปรับปรุง</p>
-        <hr />
-        <h2>แพทย์ที่ผ่านการอบรบหลักสูตรอบรมความรู้พื้นฐานด้านอาชีวเวชศาสตร์สำหรับแพทย์ (หลักสูตร 2 เดือน)</h2>
-        <DoctorChecker />
-        <hr />
-        <div style={{ display: `flex` }}>
-          <a href="https://aws.amazon.com/what-is-cloud-computing">
-            <img
-              src="https://d0.awsstatic.com/logos/powered-by-aws.png"
-              height={50}
-              alt="Powered by AWS Cloud Computing"
-            />
-          </a>
-          <div
-            style={{
-              display: `flex`,
-              marginLeft:`1em`,
-              flexDirection: `row`,
-              alignItems: `center`,
-            }}
-          >
-            <img
-              src={aws_lambda}
-              height={50}
-            />
-            <div>Amazon <br/><b>Lambda</b></div>
-          </div>
-          <div
-            style={{
-              display: `flex`,
-              marginLeft:`1em`,
-              flexDirection: `row`,
-              alignItems: `center`,
-            }}
-          >
-          <img
-            src={aws_dynamo}
-            height={50}
-          />
-            <div>Amazon <br/><b>DynamoDB</b></div>
-          </div>
+        <Card tagLine="วุฒิบัตรหรือหนังสืออนุมัติบัตร" header="เวชศาสตร์ป้องกันแขนงอาชีวเวชศาสตร์">
+          <a className="text-xl underline" href="https://checkmd.tmc.or.th/">ตรวจสอบจากระบบของแพทยสภา</a>
+          <p className="text-sm">โดยทั่วไปจะใช้เวลา 1-2 เดือน ข้อมูลความชำนาญเฉพาะทางในเว็บของแพทย์สภาของแพทย์ที่จบการศึกษาในเดือนกรกฎาคมของปีนั้นๆ ถึงจะได้รับการปรับปรุง</p>
+        </Card>
 
-        </div>
+        <Card className="my-6" tagLine="หลักสูตร 2 เดือน" header="ผ่านการอบรบหลักสูตรอบรมความรู้พื้นฐานด้านอาชีวเวชศาสตร์สำหรับแพทย์">
+          <DoctorChecker />
+          <hr className="bg-green-500 h-0.5 my-3" />
+          <div className="flex flex-row flex-wrap">
+            <a href="https://aws.amazon.com/what-is-cloud-computing">
+              <img
+                src="https://d0.awsstatic.com/logos/powered-by-aws.png"
+                className="h-12"
+                alt="Powered by AWS Cloud Computing"
+              />
+            </a>
+            <div className="flex flex-row">
+              <img
+                src={aws_lambda}
+                className="h-12"
+              />
+              <div>Amazon <br /><b>Lambda</b></div>
+            </div>
+            <div className="flex flex-row">
+              <img
+                src={aws_dynamo}
+                className="h-12"
+              />
+              <div>Amazon <br /><b>DynamoDB</b></div>
+            </div>
+          </div>
+        </Card>
       </ListLayout>
     );
   }
