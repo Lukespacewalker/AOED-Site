@@ -6,7 +6,7 @@ import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 export class Card extends React.Component<
   {
     header?: string;
-    superHeader?: string;
+    tagLine?: string;
     to?: string;
     image?: IGatsbyImageData
     imgStyle?: {}
@@ -41,7 +41,7 @@ export class Card extends React.Component<
           <></>
         )}
         <div className={cardContent}>
-          {this.props.superHeader !== undefined ? <div className="bg-color-gradient text-white rounded inline-block py-1 px-2 text-sm">{this.props.superHeader.toLocaleUpperCase()}</div> : <></>}
+          {this.props.tagLine !== undefined ? <div className="tagline">{this.props.tagLine.toLocaleUpperCase()}</div> : <></>}
           {this.props.header !== undefined ? <h2 className="text-color-primary">{this.props.header}</h2> : <></>}
           <article>{this.props.children}</article>
         </div>

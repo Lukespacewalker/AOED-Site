@@ -7,7 +7,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import { Pre } from "@components/code";
 import scrollTo, { scrollToId } from "@components/scroller";
 import ArticleLayout from "@components/layout/articlelayout";
-import {H1,H2,H3,H4, DetailTocItem, IAuthor, TOCItem} from "./template";
+import { H1, H2, H3, H4, DetailTocItem, IAuthor, TOCItem } from "./template";
 import ImagesView from "@components/imagesview";
 
 import "./information-page-style.scss";
@@ -16,14 +16,14 @@ class InformationPage extends React.Component<{ data: any }, {}> {
     super(props);
     if (typeof window !== "undefined") {
       this.target = decodeURIComponent(window.location.hash),
-      this.target = this.target.replace('#', '');
+        this.target = this.target.replace('#', '');
       // delete hash so the page won't scroll to it
       window.location.hash = "";
     }
   }
   private useTOC = false;
-  
-  private target : string;
+
+  private target: string;
 
   renderAuthors(authorsList: Array<IAuthor>) {
     const nodes = authorsList.map((author, index) => {
@@ -31,20 +31,20 @@ class InformationPage extends React.Component<{ data: any }, {}> {
         <div key={index}>{pos}</div>
       ));
       return (
-        <div className="author" key={index}>
-          <div className="image-container">
-            <GatsbyImage
-              style={{ borderRadius: `50%` }}
-              image={author.avatar.childImageSharp.gatsbyImageData}
-              alt={author.name}
-            />
+        <div className="flex md:flex-col flex-row gap-3 items-center" key={index}>
+          <GatsbyImage
+            className="flex-0 h-24 w-24 md:h-36 md:w-36 rounded-full shadow-md"
+            image={author.avatar.childImageSharp.gatsbyImageData}
+            alt={author.name}
+          />
+          <div className="flex-1">
+            <div className="text-center text-color-primary font-bold text-sm">{author.name}</div>
+            <div className="text-center text-sm">{positions}</div>
           </div>
-          <div className="title-container">{author.name}</div>
-          <div className="positions-container">{positions}</div>
         </div>
       );
     });
-    return <div className="author-container">{nodes}</div>;
+    return <div className="flex md:flex-col flex-row justify-items-center items-center mb-6 md:mb-0 md:mr-6">{nodes}</div>;
   }
 
   private renderTOCItem(tocs: Array<TOCItem>, parentIndex = 0) {
@@ -84,10 +84,10 @@ class InformationPage extends React.Component<{ data: any }, {}> {
     }
   }
 
-  componentDidMount(){
-    if(this.target!==""){
+  componentDidMount() {
+    if (this.target !== "") {
       scrollToId(this.target)
-    }else{
+    } else {
       this.target = "";
     }
   }
@@ -97,8 +97,8 @@ class InformationPage extends React.Component<{ data: any }, {}> {
       data: {
         mdx: {
           tableOfContents: { items },
-          frontmatter: { title, type, attachments, useGallery,date, authors: a, excerpt },
-          
+          frontmatter: { title, type, attachments, useGallery, date, authors: a, excerpt },
+
           body,
         },
       },
@@ -137,17 +137,17 @@ class InformationPage extends React.Component<{ data: any }, {}> {
       <ArticleLayout
         title={title}
         date={date}
-        
-        image={!useGallery?image:null}
+
+        image={!useGallery ? image : null}
         aside={asideContent}
       >
         {excerpt != null ? (
-          <SEO title={title} description={excerpt} imageUrl={ogImage.publicURL} imageWidth={ogImage.childImageSharp.original.width} imageHeight={ogImage.childImageSharp.original.height}/>
+          <SEO title={title} description={excerpt} imageUrl={ogImage.publicURL} imageWidth={ogImage.childImageSharp.original.width} imageHeight={ogImage.childImageSharp.original.height} />
         ) : (
           <SEO title={title} description={excerpt} />
         )}
         <div className="MDXRenderer-body">
-        {useGallery ? (
+          {useGallery ? (
             <ImagesView
               fluids={attachments.map((a) => a.childImageSharp.gatsbyImageData)}
             ></ImagesView>

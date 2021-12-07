@@ -1,16 +1,13 @@
 import * as React from "react";
-import { graphql, Link, navigate } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { graphql } from "gatsby";
 import ListLayout from "@components/layout/listlayout";
-import Paper from "@components/paper";
 import SEO from "@components/seo";
+import { ListItem } from "@components/list-item";
 
 class GuidelinesIndex extends React.Component<{ data: any }, {}> {
   constructor(props) {
     super(props);
   }
-
-  handleOnClick = (target) => window.open(target);
 
   render() {
     const {
@@ -32,37 +29,25 @@ class GuidelinesIndex extends React.Component<{ data: any }, {}> {
     return (
       <ListLayout title="แนวทางเวชปฏิบัติ" image={image}>
         <SEO title="แนวทางเวชปฏิบัติ" />
-        <div className="two-grid">
-        <Paper
-          style={{ cursor: `pointer` }}
-          onClick={()=>this.handleOnClick("/ocmed/guidelines/book_confined.pdf")}
-          sbs
-          side={
-            <GatsbyImage image={confined}></GatsbyImage>
-          }
-        >
-          <div style={{marginTop:`0.5rem`}}>แนวทางการตรวจสุขภาพคนทํางานในที่อับอากาศ พ.ศ.2557</div>
-        </Paper>
-        <Paper
-          style={{ cursor: `pointer` }}
-          onClick={()=>this.handleOnClick("/ocmed/guidelines/book_audiometry.pdf")}
-          sbs
-          side={
-            <GatsbyImage image={audiometry}></GatsbyImage>
-          }
-        >
-          <div style={{marginTop:`0.5rem`}}>แนวทางการตรวจและแปลผลสมรรถภาพการได้ยิน ในงานอาชีวอนามัย พ.ศ.2558</div>
-        </Paper>
-        <Paper
-          style={{ cursor: `pointer` }}
-          onClick={()=>this.handleOnClick("/ocmed/guidelines/book_spirometry.pdf")}
-          sbs
-          side={
-            <GatsbyImage image={spirometry}></GatsbyImage>
-          }
-        >
-          <div style={{marginTop:`0.5rem`}}>แนวทางการตรวจและแปลผลสมรรถภาพปอด ด้วยวิธีสไปโรเมตรีย์ในงานอาชีวอนามัย พ.ศ.2557</div>
-        </Paper>
+        <div className="flex flex-col gap-6">
+          <ListItem
+            tagLine="2557"
+            header="แนวทางการตรวจสุขภาพคนทํางานในที่อับอากาศ พ.ศ.2557"
+            to="/ocmed/guidelines/book_confined.pdf"
+            image={confined}
+          />
+          <ListItem
+            tagLine="2558"
+            header="แนวทางการตรวจและแปลผลสมรรถภาพการได้ยิน ในงานอาชีวอนามัย พ.ศ.2558"
+            to="/ocmed/guidelines/book_audiometry.pdf"
+            image={audiometry}
+          />
+          <ListItem
+            tagLine="2557"
+            header="แนวทางการตรวจและแปลผลสมรรถภาพปอด ด้วยวิธีสไปโรเมตรีย์ในงานอาชีวอนามัย พ.ศ.2557"
+            to="/ocmed/guidelines/book_spirometry.pdf"
+            image={spirometry}
+          />
         </div>
       </ListLayout>
     );
@@ -79,19 +64,19 @@ export const pageQuery = graphql`
 
     spirometry: file(relativePath: { eq: "guidelines/book_spirometry-01.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FIXED)
+        gatsbyImageData(layout: FULL_WIDTH)
       }
     }
 
     audiometry: file(relativePath: { eq: "guidelines/book_audiometry-001.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FIXED)
+        gatsbyImageData(layout: FULL_WIDTH)
       }
     }
 
     confined: file(relativePath: { eq: "guidelines/book_confined-01.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FIXED)
+        gatsbyImageData(layout: FULL_WIDTH)
       }
     }
     

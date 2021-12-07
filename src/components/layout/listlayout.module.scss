@@ -1,45 +1,11 @@
-@import "functions";
-@import "mixins";
-
-.container{
-    margin-top: 121px;
-
-    :global {
-        .gatsby-image-wrapper > div:first-child{
-            padding-bottom: 0!important;
-          }
-    }
-}
-
-.title-super-container{
-    position: relative;
-    margin-bottom: 40px;
-
-    .title-container{
-        position: absolute;
-        bottom: 0;
-    }
-
-    .title{
-        font-family: "Convection","Noto Sans Thai";
-        font-size: 4em;
-        color:white;
-        padding: 0.25em;
-        text-shadow: 0 0 6px black;
-    }
-}
+@import "variables";
 
 .image{
-    height: 300px;
+    @apply h-40 md:h-60;
+    filter: brightness(0.3);
 }
 
-@include size(desktop) {
-    .container{
-        margin-top: 141px;
-    
-    }
-
-    .image{
-        height: 450px;
-    }
+.title{
+    @apply absolute left-1/2 top-1/2 text-4xl md:text-6xl text-color-gradient text-center mb-6;
+    transform: translateX(-50%) translateY(-60%);
 }

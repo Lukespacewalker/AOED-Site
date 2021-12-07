@@ -1,13 +1,7 @@
-@import "functions";
-@import "mixins";
-
-.emphasize,
-.emphasize2 {
-  padding: 1rem 1.5rem;
-}
-
 .toc-container {
-  padding: 0 1.5rem 1rem 0;
+  @apply pt-3 pr-2;
+  margin-top: calc(0.5rem / 2);
+  margin-bottom: calc(0.5rem / 2);
 
   > ul {
     margin: 0;
@@ -22,17 +16,34 @@
     > a {
       margin-left: -4px;
     }
-
-    margin-top: calc(0.5rem/2);
-    margin-bottom: calc(0.5rem/2);
   }
 
-  details{
-    margin-top: calc(0.5rem/2);
-    margin-bottom: calc(0.5rem/2);
+  details {
+    margin-top: calc(0.5rem / 2);
+    margin-bottom: calc(0.5rem / 2);
   }
 }
 
+.MDXRenderer-body {
+
+  ul{
+    @apply list-disc ml-12;
+  }
+
+  ol{
+    @apply list-decimal ml-12;
+  }
+
+  p {
+    @apply my-6;
+    line-height: 2;
+  }
+
+  li{
+    line-height: 2;
+  }
+}
+/*
 .author-container {
   display: grid;
   grid-row-gap: 1.5rem;
@@ -72,11 +83,7 @@
   }
 }
 
-.MDXRenderer-side {
-  border-bottom: 1px solid color(secondary);
-  margin-bottom: 1.5rem;
-}
-
+/*
 .MDXRenderer-body {
   > h1:first-child {
     padding-top: 0;
@@ -93,8 +100,9 @@
     margin-bottom: 1.5rem;
   }
 
-  ul,ol{
-    margin-left:2.9rem;
+  ul,
+  ol {
+    margin-left: 2.9rem;
   }
 }
 
@@ -110,12 +118,5 @@
     justify-self: unset;
   }
 
-  .author {
-    grid-template-areas: "image" "title" "positions";
-    grid-template-columns: auto;
-    justify-items: center;
-    grid-row-gap: 1rem;
-    grid-column-gap: unset;
-    border-bottom: 1px solid color(secondary);
-  }
 }
+*/

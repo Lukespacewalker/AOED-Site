@@ -27,9 +27,3 @@
     @warn "Unknown `#{$key}` in $glow.";
     @return null;
 }
-
-@layer utilities{
-    .max-w-8xl{
-        max-width:90rem;
-    }
-}

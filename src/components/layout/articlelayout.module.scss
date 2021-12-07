@@ -1,49 +1,22 @@
 @import "functions";
 @import "mixins";
 
-.content-container {
-    width: 100%;
-    
-    p {
-        text-indent: 2.5em;
-        line-height: 2;
-    }
+@import "variables";
 
-    li {
-        line-height: 1.8;
-    }
+.title{
+    @apply text-2xl md:text-4xl xl:text-5xl text-color-gradient text-center mt-3 mb-6;
 }
 
 .main-image{
-    max-height: 550px;
-    box-shadow: shadow(large-dark);
-    margin-bottom: 1.5rem;
+    @apply rounded-md shadow-md overflow-hidden mb-6;
+    max-height: 40rem;
 }
-
-@media (prefers-color-scheme: dark) {
-    .main-image{
-        box-shadow: glow(large-dark);
-    }
-  }
 
 .aside{
-    border-bottom: 1px solid color(secondary);
-    margin-bottom: 1.5rem;
+    @apply border-green-400 border-b-2 mb-3 md:mb-0 md:border-b-0 md:border-r-2 md:mr-3 ;
+    flex: 0 1 auto;
 }
 
-@include size(desktop) {
-    .aside{
-        border-bottom: unset;
-        margin-bottom: unset;
-        font-size: 0.8rem;
-        border-right: 1px solid color(secondary);
-    }
-
-    .content-container { 
-        display: grid;
-        grid-template-columns: fit-content(250px) minmax(0, 1fr);
-        column-gap: 2em;
-        /*max-width: 85vw;*/
-        margin: 0 auto;
-    }
+.main{
+    flex: 1 1 auto;
 }

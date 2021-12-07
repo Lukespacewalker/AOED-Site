@@ -1,11 +1,9 @@
 import * as React from "react";
-import { graphql, useStaticQuery } from "gatsby";
 import { FluidObject } from "gatsby-image";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Header from "@components/header";
 import { Footer } from "@components/footer";
-import {title as titleStyle,container} from "./listlayout.module.scss";
-import {aside as asideStyle,contentContainer,mainImage} from "./articlelayout.module.scss";
+import { title as titleStyle, aside as asideStyle, main as mainStyle, mainImage } from "./articlelayout.module.scss";
 
 class ArticleLayout extends React.Component<
   {
@@ -25,26 +23,27 @@ class ArticleLayout extends React.Component<
     return (
       <>
         <Header />
-        <header className={`container ${container}`}>
-          <h1 className={titleStyle}>{title}</h1>
-          <span>{date}</span>
-        </header>
-        <div className={`container ${contentContainer}`}>
-          <aside className={asideStyle}>{aside}</aside>
-          <main>
-            {image != null ? (
-              <div>
-                <GatsbyImage
-                  className={mainImage}
-                  image={image}
-                  alt="background"
-                />
-              </div>
-            ) : (
-              <></>
-            )}
-            {children}
-          </main>
+        <div className="container" style={{ marginTop: `141px` }}>
+          {image != null ? (
+            <GatsbyImage
+              className={mainImage}
+              image={image}
+              alt="background"
+            />
+          ) : (
+            <></>
+          )}
+          <header className="flex flex-col items-center">
+            <div className="tagline">{date}</div>
+            <h1 className={titleStyle}>{title}</h1>
+          </header>
+          <div className="flex flex-col md:flex-row">
+            <aside className={asideStyle}>{aside}</aside>
+            <main className={mainStyle}>
+              {children}
+            </main>
+          </div>
+
         </div>
         <Footer />
       </>

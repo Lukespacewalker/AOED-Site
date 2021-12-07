@@ -6,7 +6,7 @@ import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 export class ListItem extends React.Component<
   {
     header?: string;
-    superHeader?: string;
+    tagLine?: string;
     to?: string;
     image?: IGatsbyImageData
     imgStyle?: {}
@@ -43,7 +43,7 @@ export class ListItem extends React.Component<
         ) : (
           <></>
         )}
-        {this.props.superHeader !== undefined ? <div className="bg-color-gradient text-white rounded inline-block py-1 px-2 text-sm">{this.props.superHeader.toLocaleUpperCase()}</div> : <></>}
+        {this.props.tagLine !== undefined ? <div className="bg-color-gradient text-white rounded inline-block py-1 px-2 text-sm">{this.props.tagLine.toLocaleUpperCase()}</div> : <></>}
         {this.props.header !== undefined ? <h2 className="text-color-primary">{this.props.header}</h2> : <></>}
         <div className={articleContainer}>
           <article className={this.props.trim? enableTrim : ""}>{this.props.children}</article>

@@ -5,12 +5,19 @@
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans");
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+Thai");
 @import url("https://fonts.googleapis.com/css?family=Sarabun");
-@import "./fonts/_fonts.css";
 @import "functions";
 @import "mixins";
 @import "variables";
 @import "typography";
 @import "nav";
+
+.tagline {
+  @apply bg-color-gradient text-white rounded inline-block py-1 px-2 text-sm;
+}
+
+.container{
+  @apply max-w-8xl mx-auto px-6;
+}
 
 /* Variables */
 :root {
@@ -23,7 +30,7 @@
 body {
   @apply bg-gray-50;
   overflow-x: hidden;
-  font-family: "Noto Sans","Sarabun", sans-serif;
+  font-family: "Noto Sans", "Sarabun", sans-serif;
   min-height: 100vh;
 }
 
@@ -119,31 +126,32 @@ button {
   transition: all 0.5s ease;
 }
 
-button:hover,button.selected {
+button:hover,
+button.selected {
   background: color(primary);
   color: white;
   padding: 0.5em 1em;
   outline: none;
   border: none;
 }
-label{
+label {
   margin-right: 0.5em;
 }
 
-input{
+input {
   padding: 0.5em 1em;
   min-width: 350px;
   border: 1px solid grey;
 }
-input:hover{
+input:hover {
   border: 1px solid color(secondary);
 }
-input:focus{
+input:focus {
   border: 1px solid color(primary);
   outline: none;
 }
 
-.form-group{
+.form-group {
   padding: 1em 0;
 }
 
@@ -158,27 +166,7 @@ input:focus{
   }
 }
 
-@media (max-width: 1026px) {
-  html {
-    font-size: 14px;
-  }
-}
 
-@media (max-width: 600px) {
-  html {
-    font-size: 12px;
-  }
-}
-
-
-.container {
-  position: relative;
-  padding: 0 15px 2vh 15px;
-
-  .date {
-    margin: -0.5em 0 1em 0;
-  }
-}
 
 .two-flex {
   display: flex;
@@ -256,9 +244,6 @@ input:focus{
 }
 
 @include size(desktop) {
-  .container {
-    padding: 0 var(--XSpacing) 2vh var(--XSpacing);
-  }
 
   .two-asymmetrical-grid {
     grid-template: auto / auto 1fr;

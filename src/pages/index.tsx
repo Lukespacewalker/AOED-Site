@@ -46,7 +46,7 @@ class IndexPage extends React.Component<{ data: any }, {}> {
         attachments[0] != null
       ) ? attachments[0].childImageSharp.gatsbyImageData : null;
       return (<ListItem trim={true} style={{ flex: `1 1 50%` }} image={image}
-        header={title} superHeader={date} to={slug}>
+        header={title} tagLine={date} to={slug}>
         <p>{excerpt}</p>
       </ListItem>)
     });
@@ -64,7 +64,7 @@ class IndexPage extends React.Component<{ data: any }, {}> {
         attachments.length > 0 &&
         attachments[0] != null
       ) ? attachments[0].childImageSharp.gatsbyImageData : null;
-      return (<Card image={image} superHeader={date}
+      return (<Card image={image} tagLine={date}
         header={title} to={slug}>
         <p>{excerpt}</p>
       </Card>)
@@ -103,7 +103,7 @@ class IndexPage extends React.Component<{ data: any }, {}> {
         />
         <Header isFrontPage={true} />
         <Banner />
-        <section className="max-w-8xl mx-auto px-6 my-6">
+        <section className="container my-6">
           <h1 id="news" className="text-color-gradient">
             ข่าวสาร
             <Link to="/news">
@@ -113,7 +113,7 @@ class IndexPage extends React.Component<{ data: any }, {}> {
           {this.renderArticleContainer(news)}
         </section>
         <div id="youtube-section" className="text-white">
-          <section className="max-w-8xl mx-auto px-6 my-6">
+          <section className="container my-6">
             <div id="youtube">
               <a href="https://www.youtube.com/channel/UCqfU3FdLjGk3mdW-IbJ-1uA">
                 <img id="youtube" src={yt_icon} />
@@ -170,7 +170,7 @@ class IndexPage extends React.Component<{ data: any }, {}> {
             </div>
           </section>
         </div>
-        <section className="max-w-8xl mx-auto px-6 my-6">
+        <section className="container my-6">
           <h1 id="articles" className="text-color-gradient">
             บทความ
             <Link to="/articles">

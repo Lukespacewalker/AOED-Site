@@ -21,7 +21,7 @@ export function renderListItems(nodes: Array<any>, trim = false) {
             attachments[0] != null
         ) ? attachments[0].childImageSharp.gatsbyImageData : null;
         return (<ListItem trim={trim} image={image}
-            header={title} superHeader={date} to={slug}>
+            header={title} tagLine={date} to={slug}>
             <p>{excerpt}</p>
         </ListItem>)
     });
@@ -39,7 +39,7 @@ export function renderCards(nodes: Array<any>) {
             attachments.length > 0 &&
             attachments[0] != null
         ) ? attachments[0].childImageSharp.gatsbyImageData : null;
-        return (<Card image={image} superHeader={date}
+        return (<Card image={image} tagLine={date}
             header={title} to={slug}>
             <p>{excerpt}</p>
         </Card>)
