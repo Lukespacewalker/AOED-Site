@@ -1,11 +1,9 @@
-@import "variables";
-
 .image{
     @apply h-40 md:h-60;
     filter: brightness(0.3);
 }
 
 .title{
-    @apply absolute left-1/2 top-1/2 text-4xl md:text-6xl text-color-gradient text-center mb-6;
+    @apply absolute left-1/2 top-1/2 text-4xl md:text-6xl text-center mb-6;
     transform: translateX(-50%) translateY(-60%);
 }

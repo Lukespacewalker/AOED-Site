@@ -11,12 +11,57 @@
 @import "typography";
 @import "nav";
 
+@layer utilities {
+  .text-color-gradient {
+    background: linear-gradient(to right, #96c93d, #00b09b);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .text-color-primary {
+    @apply text-green-600;
+  }
+
+  .bg-color-gradient {
+    background: linear-gradient(to right, #96c93d, #00b09b);
+  }
+  .max-w-8xl {
+    max-width: 90rem;
+  }
+}
+
 .tagline {
   @apply bg-color-gradient text-white rounded inline-block py-1 px-2 text-sm;
 }
 
 .container{
   @apply max-w-8xl mx-auto px-6;
+}
+
+.youtube-grid {
+  display: grid;
+  grid-template: auto auto / auto;
+  justify-items: center;
+  align-items: center;
+  row-gap: 1em;
+
+  > .youtube-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 3px;
+    padding-top: 56.25%;
+  }
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 /* Variables */
@@ -49,18 +94,6 @@ div#gatsby-focus-wrapper {
 html {
   overflow-y: auto;
   font-size: 16px;
-}
-
-@media (prefers-color-scheme: light) {
-  body {
-    background: rgb(250, 250, 250);
-  }
-}
-@media (prefers-color-scheme: dark) {
-  body {
-    background: rgb(30, 30, 30);
-    color: white;
-  }
 }
 
 /* Anchor */

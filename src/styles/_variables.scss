@@ -1,21 +1,4 @@
-@layer utilities {
-  .text-color-gradient {
-    background: linear-gradient(to right, #96c93d, #00b09b);
-    -webkit-background-clip: text;
-    color: transparent;
-  }
 
-  .text-color-primary {
-    @apply text-green-600;
-  }
-
-  .bg-color-gradient {
-    background: linear-gradient(to right, #96c93d, #00b09b);
-  }
-  .max-w-8xl{
-    max-width:90rem;
-}
-}
 
 $theme: (
   "primary": rgb(48, 112, 74),

@@ -19,7 +19,7 @@ class ListPage extends React.Component<
         <Header />
         <div className="relative pb-6" style={{ marginTop: `141px` }}>
           <GatsbyImage image={image} alt="background" className={imageStyle} />
-          <h1 className={titleStyle}>{title}</h1>
+          <h1 className={titleStyle+" text-color-gradient"}>{title}</h1>
         </div>
         <main className="container">{children}</main>
         <Footer />

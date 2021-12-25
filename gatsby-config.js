@@ -107,7 +107,11 @@ module.exports = {
                 sassOptions:{
                     includePaths: ['src/styles']
                 },
-                implementation: require('sass')
+                implementation: require('sass'),
+                postCssPlugins: [
+                    require("tailwindcss"),
+                    require("./tailwind.config.js"), // Optional: Load custom Tailwind CSS configuration
+                  ],
             }
         },
         {

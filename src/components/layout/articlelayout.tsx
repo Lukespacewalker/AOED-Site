@@ -35,7 +35,7 @@ class ArticleLayout extends React.Component<
           )}
           <header className="flex flex-col items-center">
             <div className="tagline">{date}</div>
-            <h1 className={titleStyle}>{title}</h1>
+            <h1 className={titleStyle+" text-color-gradient"}>{title}</h1>
           </header>
           <div className="flex flex-col md:flex-row">
             <aside className={asideStyle}>{aside}</aside>
