@@ -152,25 +152,36 @@ p > code {
 }
 
 /** Form */
-button {
-  @apply relative bg-color-gradient rounded px-2 py-1 outline-none border-0 transition-all text-white;
-}
+  button {
+    @apply relative bg-color-gradient rounded px-2 py-1 outline-none border-0 transition-all text-white;
+  }
 
-button::after{
-  @apply bg-white transition-all;
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-}
+  .button {
+    @apply relative bg-color-gradient rounded px-2 py-1 outline-none border-0 transition-all text-white;
+  }
 
-button:hover::after,
-button.selected::after {
-  opacity: 0.3;
-}
+  .button[disabled]{
+    --tw-bg-opacity: 1;
+    background: rgb(156 163 175 / var(--tw-bg-opacity));
+  }
+
+
+  button::after{
+    @apply bg-white transition-all;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+
+  button:hover::after,
+  button.selected::after {
+    opacity: 0.3;
+  }
+
 label {
   margin-right: 0.5em;
 }

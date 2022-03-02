@@ -5,8 +5,8 @@ import ListLayout from "@components/layout/listlayout";
 import Paper from "@components/paper";
 import SEO from "@components/seo";
 import DoctorChecker from "@components/doctor-checker";
-import aws_lambda from "../../images/aws/AWS Lambda.svg";
-import aws_dynamo from "../../images/aws/AWS DynamoDB.svg";
+import google_sheet from "../../images/google/sheet.png";
+import google_app_script from "../../images/google/app_script.png";
 import { Card } from "@components/card";
 
 class CheckDoctorIndex extends React.Component<{ data: any }, {}> {
@@ -34,27 +34,19 @@ class CheckDoctorIndex extends React.Component<{ data: any }, {}> {
         <Card className="my-6" tagLine="หลักสูตร 2 เดือน" header="ผ่านการอบรบหลักสูตรอบรมความรู้พื้นฐานด้านอาชีวเวชศาสตร์สำหรับแพทย์">
           <DoctorChecker />
           <hr className="bg-green-500 h-0.5 my-3" />
-          <div className="flex flex-row flex-wrap">
-            <a href="https://aws.amazon.com/what-is-cloud-computing">
-              <img
-                src="https://d0.awsstatic.com/logos/powered-by-aws.png"
-                className="h-12"
-                alt="Powered by AWS Cloud Computing"
-              />
-            </a>
+          <div className="flex flex-row flex-wrap items-center">
+            <div className="text-gray-400 text-sm font-bold">Powered by </div>
             <div className="flex flex-row">
               <img
-                src={aws_lambda}
-                className="h-12"
+                src={google_sheet}
+                className="h-20"
               />
-              <div>Amazon <br /><b>Lambda</b></div>
             </div>
             <div className="flex flex-row">
               <img
-                src={aws_dynamo}
-                className="h-12"
+                src={google_app_script}
+                className="h-20"
               />
-              <div>Amazon <br /><b>DynamoDB</b></div>
             </div>
           </div>
         </Card>
