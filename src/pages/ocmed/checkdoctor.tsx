@@ -24,14 +24,14 @@ class CheckDoctorIndex extends React.Component<{ data: any }, {}> {
     } = this.props;
 
     return (
-      <ListLayout title="ตรวจสอบแพทย์อาชีวเวชศาสตร์" image={image}>
-        <SEO title="ตรวจสอบแพทย์อาชีวเวชศาสตร์" />
-        <Card tagLine="วุฒิบัตรหรือหนังสืออนุมัติบัตร" header="เวชศาสตร์ป้องกันแขนงอาชีวเวชศาสตร์">
+      <ListLayout title="ตรวจสอบรายชื่อแพทย์" image={image}>
+        <SEO title="ตรวจสอบรายชื่อแพทย์" />
+        <Card tagLine="แพทย์อาชีวเวชศาสตร์" header="แพทย์ที่ได้รับวุฒิบัตรหรือหนังสืออนุมัติบัตร เวชศาสตร์ป้องกันแขนงอาชีวเวชศาสตร์">
           <a className="text-xl underline" href="https://checkmd.tmc.or.th/">ตรวจสอบจากระบบของแพทยสภา</a>
           <p className="text-sm">โดยทั่วไปจะใช้เวลา 1-2 เดือน ข้อมูลความชำนาญเฉพาะทางในเว็บของแพทย์สภาของแพทย์ที่จบการศึกษาในเดือนกรกฎาคมของปีนั้นๆ ถึงจะได้รับการปรับปรุง</p>
         </Card>
 
-        <Card className="my-6" tagLine="หลักสูตร 2 เดือน" header="ผ่านการอบรบหลักสูตรอบรมความรู้พื้นฐานด้านอาชีวเวชศาสตร์สำหรับแพทย์">
+        <Card className="my-6" tagLine="แพทย์ที่ผ่านการอบรบหลักสูตร 2 เดือน" header="หลักสูตรอบรมความรู้พื้นฐานด้านอาชีวเวชศาสตร์สำหรับแพทย์">
           <DoctorChecker />
           <hr className="bg-green-500 h-0.5 my-3" />
           <div className="flex flex-row flex-wrap items-center">
