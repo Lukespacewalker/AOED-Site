@@ -38,12 +38,12 @@ module.exports = {
             ]
         }, {
             order: 4,
-            name: `แพทย์อาชีวเวชศาสตร์`,
+            name: `แพทย์`,
             emphasize: false,
             submenus: [
                 {
                     order: -1,
-                    name: `ตรวจสอบแพทย์อาชีวเวชศาสตร์`,
+                    name: `ตรวจสอบรายชื่อแพทย์`,
                     link: `ocmed/checkdoctor`
                 },
                 {
