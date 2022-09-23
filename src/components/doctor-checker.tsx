@@ -39,7 +39,7 @@ class DoctorChecker extends React.Component<{}, {}> {
     let url;
     //if (checkedLicenseNumber == "") {
     url =
-      "https://script.google.com/macros/s/AKfycbzh7UVsqpKJgc8iDISDs3_oQflfB-K72cQXxJeYehp-XlLir2bngcJVqSjNN2Ml6rR8/exec";
+      "https://script.google.com/macros/s/AKfycbwJzPUSImBO7-UzM1UL_pkmbdq8AdHjevfS6roDzbQ-_ylko4nGd0bt9eYUusgRKmQ/exec";
     /*
   } else {
     url = `https://nmurcj1r6g.execute-api.ap-southeast-1.amazonaws.com/default/occmed-doctor-search?lang=${lang}&name=${encodeURIComponent(
@@ -80,13 +80,18 @@ class DoctorChecker extends React.Component<{}, {}> {
   }
 
   private renderDoctor(doctor) {
+    if(doctor.courseCompletionDate){
+      if(doctor.courseCompletionDate.toString().trim() === ""){
+        doctor.courseCompletionDate = undefined
+      }
+    }
     return (
       <div key={doctor.Name}>
         <h4 style={{ margin: `0` }}>
           {doctor.title} {doctor.name} {doctor.surname}
         </h4>
         <br />
-        ผ่านการอบรม 2 เดือน เมื่อปี พ.ศ. {doctor.courseCompletionDate}
+        ผ่านการอบรม 2 เดือน จาก {doctor.institute} รุ่น {doctor.batch} {doctor.courseCompletionDate && "เมื่อปี พ.ศ. "+doctor.courseCompletionDate}
         <br />
         {doctor.CheckedLicenseNumber !== undefined
           ? doctor.IsLicenseNumberCorrect
