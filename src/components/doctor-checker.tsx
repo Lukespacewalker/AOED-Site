@@ -29,10 +29,12 @@ class DoctorChecker extends React.Component<{}, {}> {
   };
 
   private setCanSubmit = () => {
-    this.setState({canSubmit:!(
-      this.state.name.match(/^\s*$/) !== null &&
-      this.state.surname.match(/^\s*$/) !== null
-    )});
+    this.setState({
+      canSubmit: !(
+        this.state.name.match(/^\s*$/) !== null &&
+        this.state.surname.match(/^\s*$/) !== null
+      ),
+    });
   };
 
   private checkdoctor(lang: "th", name: string, surname: string) {
@@ -50,9 +52,9 @@ class DoctorChecker extends React.Component<{}, {}> {
   }*/
 
     fetch(
-      `${url}?name=${encodeURIComponent(name)}&surname=${encodeURIComponent(
-        surname
-      )}`
+      `${url}?name=${encodeURIComponent(
+        name.trim()
+      )}&surname=${encodeURIComponent(surname.trim())}`
     )
       .then((response) => response.json())
       .then((json) => {
@@ -80,18 +82,20 @@ class DoctorChecker extends React.Component<{}, {}> {
   }
 
   private renderDoctor(doctor) {
-    if(doctor.courseCompletionDate){
-      if(doctor.courseCompletionDate.toString().trim() === ""){
-        doctor.courseCompletionDate = undefined
+    if (doctor.courseCompletionDate) {
+      if (doctor.courseCompletionDate.toString().trim() === "") {
+        doctor.courseCompletionDate = undefined;
       }
     }
     return (
       <div key={doctor.Name}>
         <h4 style={{ margin: `0` }}>
-          {doctor.title} {doctor.name} {doctor.surname}
+          {doctor.name} {doctor.surname}
         </h4>
         <br />
-        ผ่านการอบรม 2 เดือน จาก {doctor.institute} รุ่น {doctor.batch} {doctor.courseCompletionDate && "เมื่อปี พ.ศ. "+doctor.courseCompletionDate}
+        ผ่านการอบรม 2 เดือน จาก {doctor.institute} รุ่น {doctor.batch}{" "}
+        {doctor.courseCompletionDate &&
+          "เมื่อปี พ.ศ. " + doctor.courseCompletionDate}
         <br />
         {doctor.CheckedLicenseNumber !== undefined
           ? doctor.IsLicenseNumberCorrect
