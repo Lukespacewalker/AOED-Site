@@ -21,35 +21,33 @@ class NewsIndex extends React.Component<{ data: any }, {}> {
   }
 }
 
-export const pageQuery = graphql`
-  query {
-    articles: allMdx(
-      sort: { fields: frontmatter___date, order: DESC }
-      filter: { frontmatter: { type: { eq: "news" } } }
-    ) {
-      nodes {
-        fields {
-          slug
-        }
-        frontmatter {
-          title
-          excerpt
-          date(formatString: "dddd, DD MMMM YYYY", locale: "th")
-          attachments {
-            childImageSharp {gatsbyImageData(layout: FULL_WIDTH)
-            }
+export const pageQuery = graphql`{
+  articles: allMdx(
+    sort: {frontmatter: {date: DESC}}
+    filter: {frontmatter: {type: {eq: "news"}}}
+  ) {
+    nodes {
+      fields {
+        slug
+      }
+      frontmatter {
+        title
+        excerpt
+        date(formatString: "dddd, DD MMMM YYYY", locale: "th")
+        attachments {
+          childImageSharp {
+            gatsbyImageData(layout: FULL_WIDTH)
           }
         }
       }
     }
-
-    file(relativePath: { eq: "splash/news.jpg" }) {
-      publicURL
-      childImageSharp {
-        gatsbyImageData(layout: FULL_WIDTH)
-      }
+  }
+  file(relativePath: {eq: "splash/news.jpg"}) {
+    publicURL
+    childImageSharp {
+      gatsbyImageData(layout: FULL_WIDTH)
     }
   }
-`;
+}`;
 
 export default NewsIndex;

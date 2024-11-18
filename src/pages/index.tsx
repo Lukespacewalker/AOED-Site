@@ -185,46 +185,41 @@ class IndexPage extends React.Component<{ data: any }, {}> {
   }
 }
 
-export const query = graphql`
-  fragment MDXFragment on MdxConnection {
-    nodes {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-        excerpt
-        date(formatString: "dddd, DD MMMM YYYY", locale: "th")
-        attachments {
-          childImageSharp {
-            gatsbyImageData(layout: FULL_WIDTH)
-          }
+export const query = graphql`fragment MDXFragment on MdxConnection {
+  nodes {
+    fields {
+      slug
+    }
+    frontmatter {
+      title
+      excerpt
+      date(formatString: "dddd, DD MMMM YYYY", locale: "th")
+      attachments {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH)
         }
       }
     }
   }
+}
 
-  query {
-
-    news: allMdx(
-      limit: 8
-      sort: { fields: frontmatter___date, order: DESC }
-      filter: { frontmatter: { type: { eq: "news" } } }
-    ) {
-      ...MDXFragment
-    }
-
-    articles: allMdx(
-      limit: 10
-      sort: { fields: frontmatter___date, order: DESC }
-      filter: { frontmatter: { type: { eq: "articles" } } }
-    ) {
-      ...MDXFragment
-    }
-
-    ogimage: file(relativePath: { eq: "main_ogimage.png" }) {
-      publicURL
-    }
+{
+  news: allMdx(
+    limit: 8
+    sort: {frontmatter: {date: DESC}}
+    filter: {frontmatter: {type: {eq: "news"}}}
+  ) {
+    ...MDXFragment
   }
-`;
+  articles: allMdx(
+    limit: 10
+    sort: {frontmatter: {date: DESC}}
+    filter: {frontmatter: {type: {eq: "articles"}}}
+  ) {
+    ...MDXFragment
+  }
+  ogimage: file(relativePath: {eq: "main_ogimage.png"}) {
+    publicURL
+  }
+}`;
 export default IndexPage;

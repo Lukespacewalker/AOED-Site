@@ -4,23 +4,25 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-const path = require(`path`);
-const { createFilePath } = require(`gatsby-source-filesystem`);
+import { resolve, dirname } from "path";
+import { createFilePath } from "gatsby-source-filesystem";
+import { fileURLToPath } from "url"
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
-exports.onCreateWebpackConfig = ({ actions }) => {
+export function onCreateWebpackConfig({ actions }) {
     actions.setWebpackConfig({
         resolve: {
             alias: {
-                "@components": path.resolve(__dirname, "src/components"),
-                "@utilities": path.resolve(__dirname, "src/utilities"),
-                "@images": path.resolve(__dirname, "src/images"),
-                "@authors": path.resolve(__dirname, "src/contents/authors"),
+                "@components": resolve(__dirname, "src/components"),
+                "@utilities": resolve(__dirname, "src/utilities"),
+                "@images": resolve(__dirname, "src/images"),
+                "@authors": resolve(__dirname, "src/contents/authors"),
             }
         }
     });
-};
+}
 
-exports.onCreateNode = ({ node, getNode, actions }) => {
+export function onCreateNode({ node, getNode, actions }) {
     const { createNodeField } = actions;
     if (node.internal.type === `Mdx`) {
         const slug = createFilePath({ node, getNode, basePath: `pages` });
@@ -30,9 +32,9 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
             value: slug
         });
     }
-};
+}
 
-exports.createPages = ({ graphql, actions }) => {
+export function createPages({ graphql, actions }) {
     const { createPage } = actions;
     return graphql(`
     {
@@ -42,6 +44,9 @@ exports.createPages = ({ graphql, actions }) => {
             fields {
               slug
             }
+            internal {
+              contentFilePath
+            }
           }
         }
       }
@@ -50,7 +55,7 @@ exports.createPages = ({ graphql, actions }) => {
         result.data.allMdx.edges.forEach(({ node }) => {
             createPage({
                 path: node.fields.slug,
-                component: path.resolve(`./src/templates/information-page.tsx`),
+                component: `${resolve(`./src/templates/information-page.tsx`)}?__contentFilePath=${node.internal.contentFilePath}`,
                 context: {
                     // Data passed to context is available
                     // in page queries as GraphQL variables.
@@ -59,13 +64,15 @@ exports.createPages = ({ graphql, actions }) => {
             });
         });
     });
-};
+}
 
-exports.createSchemaCustomization = ({ actions, schema }) => {
+
+export function createSchemaCustomization({ actions, schema }) {
     const { createTypes } = actions;
     const typeDefs = [
         "type Mdx implements Node { frontmatter: MdxFrontmatter }",
         `type MdxFrontmatter {
+            useGallery: Boolean
             authors: [AuthorslistJson] @link(by: "unique") 
         }`
         //date: Date @dateformat(formatString: "dddd, DD MMMM YYYY", locale: "th")

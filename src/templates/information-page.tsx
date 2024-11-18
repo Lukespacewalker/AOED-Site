@@ -1,7 +1,6 @@
 import * as React from "react";
 import { graphql } from "gatsby";
 import SEO from "@components/seo";
-import { MDXRenderer } from "gatsby-plugin-mdx";
 import { MDXProvider } from "@mdx-js/react";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { Pre } from "@components/code";
@@ -98,10 +97,8 @@ class InformationPage extends React.Component<{ data: any }, {}> {
         mdx: {
           tableOfContents: { items },
           frontmatter: { title, type, attachments, useGallery, date, authors: a, excerpt },
-
-          body,
         },
-      },
+      }, children
     } = this.props;
     const authors: Array<IAuthor> = a;
     const tocs = items as Array<TOCItem>;
@@ -164,7 +161,7 @@ class InformationPage extends React.Component<{ data: any }, {}> {
               pre: Pre,
             }}
           >
-            <MDXRenderer images={attachments}>{body}</MDXRenderer>
+            {children}
           </MDXProvider>
         </div>
       </ArticleLayout>
