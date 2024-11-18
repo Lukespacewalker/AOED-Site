@@ -1,8 +1,9 @@
+@use "sass:map";
 @import "variables";
 
 @function color($key) {
-    @if map-has-key($theme, $key) {
-        @return map-get($theme, $key);
+    @if map.has-key($theme, $key) {
+        @return map.get($theme, $key);
     }
 
     @warn "Unknown `#{$key}` in $colors.";
@@ -10,8 +11,8 @@
 }
 
 @function shadow($key) {
-    @if map-has-key($shadow, $key) {
-        @return map-get($shadow, $key);
+    @if map.has-key($shadow, $key) {
+        @return map.get($shadow, $key);
     }
 
     @warn "Unknown `#{$key}` in $shadow.";
@@ -20,8 +21,8 @@
 
 
 @function glow($key) {
-    @if map-has-key($glow, $key) {
-        @return map-get($glow, $key);
+    @if map.has-key($glow, $key) {
+        @return map.get($glow, $key);
     }
 
     @warn "Unknown `#{$key}` in $glow.";

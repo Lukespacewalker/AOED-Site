@@ -1,3 +1,4 @@
+@use "sass:color";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -120,12 +121,12 @@ a:hover {
 
 @media (prefers-color-scheme: dark) {
   a {
-    color: lighten(color(primary), 15%);
+    color: color.adjust(color(primary), $lightness: 15%);
   }
 
   a:hover {
-    color: lighten(color(secondary), $light-factor-more);
-    text-shadow: 0px 0px 7px lighten(color(secondary), $light-factor-more);
+    color: color.adjust(color(secondary), $lightness: $light-factor-more);
+    text-shadow: 0px 0px 7px color.adjust(color(secondary), $lightness: $light-factor-more);
   }
 }
 
