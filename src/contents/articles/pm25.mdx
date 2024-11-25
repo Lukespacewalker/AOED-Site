@@ -12,7 +12,7 @@ attachments:
   - pm25.2.jpg
   - pm25.3.jpg
 ---
-import { GatsbyImage } from "gatsby-plugin-image";
+
 
 
 
@@ -20,8 +20,8 @@ import { GatsbyImage } from "gatsby-plugin-image";
 
 เรื่องข้อแนะนำการรับมือภาวะที่มีฝุ่น จากกองโรคจากการประกอบอาชีพและสิ่งแวดล้อม กรมควบคุมโรค กระทรวงสาธารณสุข
 
-<GatsbyImage image={props.images[1].childImageSharp.gatsbyImageData} alt="pm25" />
+<GatsbyImage image={props.pageContext.images[1].childImageSharp.gatsbyImageData} alt="pm25" />
 <br/>
-<GatsbyImage image={props.images[2].childImageSharp.gatsbyImageData} alt="pm25" />
+<GatsbyImage image={props.pageContext.images[2].childImageSharp.gatsbyImageData} alt="pm25" />
 <br/>
-<GatsbyImage image={props.images[3].childImageSharp.gatsbyImageData} alt="pm25" />
+<GatsbyImage image={props.pageContext.images[3].childImageSharp.gatsbyImageData} alt="pm25" />

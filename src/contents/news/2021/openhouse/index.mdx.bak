@@ -9,7 +9,7 @@ attachments:
   - poster.jpg
   - poster_old.jpg
 ---
-import { GatsbyImage } from "gatsby-plugin-image";
+
 
 
 # วิดีโอบันทึก
@@ -49,8 +49,8 @@ import { GatsbyImage } from "gatsby-plugin-image";
 
 [ดาวน์โหลด Poster](/news/2021/poster_openhouse.pdf) ในรูปแบบของ Interactive PDF ซึ่งจะสามารถคลิกที่ลิงค์ในไฟล์โปสเตอร์ได้
 
-<GatsbyImage image={props.images[1].childImageSharp.gatsbyImageData} alt="poster" />
+<GatsbyImage image={props.pageContext.images[1].childImageSharp.gatsbyImageData} alt="poster" />
 
 ## เก่า
 
-<GatsbyImage image={props.images[2].childImageSharp.gatsbyImageData} alt="poster" />
+<GatsbyImage image={props.pageContext.images[2].childImageSharp.gatsbyImageData} alt="poster" />

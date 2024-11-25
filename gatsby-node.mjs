@@ -47,6 +47,19 @@ export function createPages({ graphql, actions }) {
             internal {
               contentFilePath
             }
+            frontmatter{
+                attachments {
+                    name
+                    publicURL
+                    childImageSharp {
+                        gatsbyImageData(layout: FULL_WIDTH)
+                        original {
+                        height
+                        width
+                        }
+                    }
+                }
+            }
           }
         }
       }
@@ -59,7 +72,8 @@ export function createPages({ graphql, actions }) {
                 context: {
                     // Data passed to context is available
                     // in page queries as GraphQL variables.
-                    slug: node.fields.slug
+                    slug: node.fields.slug,
+                    images: node.frontmatter.attachments
                 }
             });
         });
@@ -72,8 +86,7 @@ export function createSchemaCustomization({ actions, schema }) {
     const typeDefs = [
         "type Mdx implements Node { frontmatter: MdxFrontmatter }",
         `type MdxFrontmatter {
-            useGallery: Boolean
-            authors: [AuthorslistJson] @link(by: "unique") 
+            authors: [AuthorslistJson] @link(by: "id") 
         }`
         //date: Date @dateformat(formatString: "dddd, DD MMMM YYYY", locale: "th")
     ];

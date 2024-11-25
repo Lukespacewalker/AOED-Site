@@ -16,7 +16,7 @@ attachments:
   - mask.png
   - barrier.png
 ---
-import { GatsbyImage } from "gatsby-plugin-image";
+
 
 
 
@@ -27,7 +27,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 - หน้ากากผ้าจะลดการแพร่ของเชื้อไวรัสเมื่อมีการใช้อย่างแพร่หลายในที่สาธารณะ
 - เด็กอายุน้อยกว่า 2 ปี ไม่ควรใส่หน้ากากผ้า และใครที่ใส่แล้วหายใจลำบาก หมดสติ หรือไม่สามารถเอาหน้ากากออกได้ด้วยตนเองได้
 
-<GatsbyImage image={props.images[1].childImageSharp.gatsbyImageData} alt="barrier" />
+<GatsbyImage image={props.pageContext.images[1].childImageSharp.gatsbyImageData} alt="barrier" />
 
 # หลักฐานเกี่ยวกับประสิทธิภาพของหน้ากากผ้า
 

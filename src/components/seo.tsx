@@ -130,6 +130,7 @@ export default SEO;
 
 const detailsQuery = graphql`
   query DefaultSEOQuery {
+  
     site {
       siteMetadata {
         title
@@ -145,7 +146,7 @@ const detailsQuery = graphql`
               height
               width
             }
-          }
+        }
     }
   }
 `;

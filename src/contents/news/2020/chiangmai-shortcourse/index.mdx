@@ -11,7 +11,7 @@ attachments:
   - shortcorse_bg.jpg
   - shortcourse_poster.jpg
 ---
-import { GatsbyImage } from "gatsby-plugin-image";
+
 
 
 
@@ -27,4 +27,4 @@ https://w1.med.cmu.ac.th/commed/basic-occupational-medicine-training-course-for-
 
 # Poster
 
-<GatsbyImage image={props.images[1].childImageSharp.gatsbyImageData} alt="poster" />
+<GatsbyImage image={props.pageContext.images[1].childImageSharp.gatsbyImageData} alt="poster" />

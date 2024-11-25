@@ -11,7 +11,7 @@ attachments:
   - bg.jpg
   - poster.jpg
 ---
-import { GatsbyImage } from "gatsby-plugin-image";
+
 
 
 
@@ -36,4 +36,4 @@ import { GatsbyImage } from "gatsby-plugin-image";
 
 # ต้นฉบับประกาศ
 
-<GatsbyImage image={props.images[1].childImageSharp.gatsbyImageData} alt="tip" />
+<GatsbyImage image={props.pageContext.images[1].childImageSharp.gatsbyImageData} alt="tip" />

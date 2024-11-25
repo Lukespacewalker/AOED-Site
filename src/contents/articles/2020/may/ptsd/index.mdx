@@ -18,13 +18,13 @@ attachments:
   - ptsd.jpg
   - ptsd_info.jpg
 ---
-import { GatsbyImage } from "gatsby-plugin-image";
+
 
 
 
 จากเหตุการณ์ COVID-19 มีการ Lock down และมีข่าวคนเจ็บ คนตายทั่วโลกเป็นจำนวนล้าน เกิดภาวะว่างงาน ขาดเงิน ขาดรายได้ แบบฉับพลัน ซึ่งเป็นเหตุการณ์ที่คนรุ่นปัจจุบัน ไม่เคยประสบมาก่อน ถือเป็นเหตุการณ์ร้ายแรงตั้งแต่ปานกลางถึงมากตามประสบการณ์ของแต่ละคน ซึ่งทำให้เกิดอาการทางจิตสังคมหลายแบบ เช่น วิตกกังวล ซึมเศร้า แต่มีโรคหนึ่ง ซึ่งเกิดจากเหตุการณ์สะเทือนขวัญอย่างรุนแรง ซึ่งมีชื่อภาษาอังกฤษว่า **PTSD (Post-traumatic stress disorder)**
 
-<GatsbyImage image={props.images[1].childImageSharp.gatsbyImageData} alt="ptsd symtomp" />
+<GatsbyImage image={props.pageContext.images[1].childImageSharp.gatsbyImageData} alt="ptsd symtomp" />
 
 # โรคเครียดหลังประสบเหตุการณ์ร้ายแรง (Post-traumatic stress disorder; PTSD)
 
@@ -106,4 +106,4 @@ import { GatsbyImage } from "gatsby-plugin-image";
 
 # Inforgraphic กรมสุขภาพจิต
 
-<GatsbyImage image={props.images[2].childImageSharp.gatsbyImageData} alt="poster" />
+<GatsbyImage image={props.pageContext.images[2].childImageSharp.gatsbyImageData} alt="poster" />

@@ -10,7 +10,7 @@ attachments:
   - bg.jpg
   - 1.jpg
 ---
-import { GatsbyImage } from "gatsby-plugin-image";
+
 import Paper from "@components/paper";
 
 
@@ -21,7 +21,7 @@ import Paper from "@components/paper";
 
 ---
 
-<GatsbyImage image={props.images[1].childImageSharp.gatsbyImageData} alt="poster" />
+<GatsbyImage image={props.pageContext.images[1].childImageSharp.gatsbyImageData} alt="poster" />
 
 # เวลาและสถานที่
 

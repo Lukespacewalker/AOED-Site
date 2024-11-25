@@ -152,6 +152,7 @@ class InformationPage extends React.Component<{ data: any }, {}> {
             ""
           )}
           <MDXProvider
+            text=""
             components={{
               // Map HTML element tag to React component
               h1: (props) => <H1 useToc={this.useTOC} {...props}></H1>,
@@ -159,6 +160,7 @@ class InformationPage extends React.Component<{ data: any }, {}> {
               h3: (props) => <H3 useToc={this.useTOC} {...props}></H3>,
               h4: (props) => <H4 useToc={this.useTOC} {...props}></H4>,
               pre: Pre,
+              GatsbyImage
             }}
           >
             {children}

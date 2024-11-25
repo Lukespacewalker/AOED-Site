@@ -27,8 +27,8 @@ export class H1 extends React.Component<{ useToc: boolean }, {}> {
         <h1 {...other}>
           {useToc ? (
             <a className="inline-block mr-2" href="#toc" onClick={scrollTo}>
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" onClick={scrollTo}>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7" />
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" onClick={scrollTo}>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 11l7-7 7 7M5 19l7-7 7 7" />
               </svg>
             </a>
           ) : (
@@ -51,8 +51,8 @@ export class H2 extends React.Component<{ useToc: boolean }, {}> {
       <h2 {...other}>
         {useToc ? (
           <a className="inline-block mr-2" href="#toc" onClick={scrollTo}>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" onClick={scrollTo}>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7" />
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" onClick={scrollTo}>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 11l7-7 7 7M5 19l7-7 7 7" />
             </svg>
           </a>
         ) : (
@@ -75,8 +75,8 @@ export class H3 extends React.Component<{ useToc: boolean }, {}> {
       <h3 {...other}>
         {useToc ? (
           <a className="inline-block mr-2" href="#toc" onClick={scrollTo}>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" onClick={scrollTo}>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7" />
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" onClick={scrollTo}>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 11l7-7 7 7M5 19l7-7 7 7" />
             </svg>
           </a>
         ) : (
@@ -99,8 +99,8 @@ export class H4 extends React.Component<{ useToc: boolean }, {}> {
       <h4 {...other}>
         {useToc ? (
           <a className="inline-block mr-2" href="#toc" onClick={scrollTo}>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" onClick={scrollTo}>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7" />
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" onClick={scrollTo}>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 11l7-7 7 7M5 19l7-7 7 7" />
             </svg>
           </a>
         ) : (

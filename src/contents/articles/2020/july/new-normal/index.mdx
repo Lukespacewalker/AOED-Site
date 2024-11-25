@@ -16,7 +16,7 @@ attachments:
   - the-new-normal-times.jpg
   - change.png
 ---
-import { GatsbyImage } from "gatsby-plugin-image";
+
 
 
 
@@ -24,7 +24,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 
 COVID-19 มาเพื่อ Disrupt ระบบ ทั้งหมด คงต้องมาคิดแล้วว่าสิ่งที่ทำอยู่มันคุ้มค่า พอเพียงหรือไม่ ไม่อย่างงั้นคิดว่าเป็นแค่การ social distancing ล้างมือ ใส่หน้ากาก มันไม่ใช่ new normal แต่มันเป็น self protection พอมันเลิกระบาดแล้วก็กลับมา normal (ดูประเทศไทยตอนนี้)
 
-<GatsbyImage image={props.images[1].childImageSharp.gatsbyImageData} alt="new normal" />
+<GatsbyImage image={props.pageContext.images[1].childImageSharp.gatsbyImageData} alt="new normal" />
 
 # ด้านอาชีวอนามัย
 ถ้าดูกิจกรรมที่น่าจะทำให้เกิดการแพร่กระจายเชื้อโรคได้ ก็มีทั้ง ในงานสายพาน การรวมกลุ่มกันตอนเช้าเพื่อทำกิจกรรมคุณภาพ การพัก การเลิกงาน (เพราะคนทำงานจะกรูกันออกจากโรงงาน) การตรวจสุขภาพ ต้องมาคิดใหม่ว่าจะมีทางเลือกจากสิ่งเหล่านี้ได้อย่างไร (alternative ways)

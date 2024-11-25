@@ -14,7 +14,7 @@ attachments:
   - bg.jpg
   - poster.png
 ---
-import { GatsbyImage } from "gatsby-plugin-image";
+
 
 
 
@@ -48,4 +48,4 @@ Face shield หรือ goggle และ FFP2/N95 respirator รวมทั้
 
 ## ภาพประกาศ
 
-<GatsbyImage image={props.images[1].childImageSharp.gatsbyImageData} alt="tip" />
+<GatsbyImage image={props.pageContext.images[1].childImageSharp.gatsbyImageData} alt="tip" />

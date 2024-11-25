@@ -16,7 +16,7 @@ attachments:
 
 
 import { Card } from "@components/card";
-import { GatsbyImage } from "gatsby-plugin-image";
+
 
 # Date
 
@@ -216,4 +216,4 @@ Available at [Google Drive](https://drive.google.com/drive/u/0/folders/16wjdQUEt
 
 # Poster
 
-<GatsbyImage image={props.images[1].childImageSharp.gatsbyImageData} alt="poster"/>
+<GatsbyImage image={props.pageContext.images[1].childImageSharp.gatsbyImageData} alt="poster"/>
