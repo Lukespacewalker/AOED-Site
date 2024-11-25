@@ -14,8 +14,8 @@ class InformationPage extends React.Component<{ data: any }, {}> {
   constructor(props) {
     super(props);
     if (typeof window !== "undefined") {
-      this.target = decodeURIComponent(window.location.hash),
-        this.target = this.target.replace('#', '');
+      (this.target = decodeURIComponent(window.location.hash)),
+        (this.target = this.target.replace("#", ""));
       // delete hash so the page won't scroll to it
       window.location.hash = "";
     }
@@ -30,20 +30,29 @@ class InformationPage extends React.Component<{ data: any }, {}> {
         <div key={index}>{pos}</div>
       ));
       return (
-        <div className="flex md:flex-col flex-row gap-3 items-center" key={index}>
+        <div
+          className="flex md:flex-col flex-row gap-3 items-center"
+          key={index}
+        >
           <GatsbyImage
             className="flex-0 h-24 w-24 md:h-36 md:w-36 rounded-full shadow-md"
             image={author.avatar.childImageSharp.gatsbyImageData}
             alt={author.name}
           />
           <div className="flex-1">
-            <div className="text-center text-color-primary font-bold text-sm">{author.name}</div>
+            <div className="text-center text-color-primary font-bold text-sm">
+              {author.name}
+            </div>
             <div className="text-center text-sm">{positions}</div>
           </div>
         </div>
       );
     });
-    return <div className="flex md:flex-col flex-row justify-items-center items-center mb-6 md:mb-0 md:mr-6">{nodes}</div>;
+    return (
+      <div className="flex md:flex-col flex-row justify-items-center items-center mb-6 md:mb-0 md:mr-6">
+        {nodes}
+      </div>
+    );
   }
 
   private renderTOCItem(tocs: Array<TOCItem>, parentIndex = 0) {
@@ -85,7 +94,7 @@ class InformationPage extends React.Component<{ data: any }, {}> {
 
   componentDidMount() {
     if (this.target !== "") {
-      scrollToId(this.target)
+      scrollToId(this.target);
     } else {
       this.target = "";
     }
@@ -96,9 +105,18 @@ class InformationPage extends React.Component<{ data: any }, {}> {
       data: {
         mdx: {
           tableOfContents: { items },
-          frontmatter: { title, type, attachments, useGallery, date, authors: a, excerpt },
+          frontmatter: {
+            title,
+            type,
+            attachments,
+            useGallery,
+            date,
+            authors: a,
+            excerpt,
+          },
         },
-      }, children
+      },
+      children,
     } = this.props;
     const authors: Array<IAuthor> = a;
     const tocs = items as Array<TOCItem>;
@@ -134,12 +152,17 @@ class InformationPage extends React.Component<{ data: any }, {}> {
       <ArticleLayout
         title={title}
         date={date}
-
         image={!useGallery ? image : null}
         aside={asideContent}
       >
         {excerpt != null ? (
-          <SEO title={title} description={excerpt} imageUrl={ogImage.publicURL} imageWidth={ogImage.childImageSharp.original.width} imageHeight={ogImage.childImageSharp.original.height} />
+          <SEO
+            title={title}
+            description={excerpt}
+            imageUrl={ogImage.publicURL}
+            imageWidth={ogImage.childImageSharp.original.width}
+            imageHeight={ogImage.childImageSharp.original.height}
+          />
         ) : (
           <SEO title={title} description={excerpt} />
         )}
@@ -160,7 +183,7 @@ class InformationPage extends React.Component<{ data: any }, {}> {
               h3: (props) => <H3 useToc={this.useTOC} {...props}></H3>,
               h4: (props) => <H4 useToc={this.useTOC} {...props}></H4>,
               pre: Pre,
-              GatsbyImage
+              GatsbyImage,
             }}
           >
             {children}
@@ -172,7 +195,7 @@ class InformationPage extends React.Component<{ data: any }, {}> {
 }
 
 export const pageQuery = graphql`
-  query($slug: String!) {
+  query ($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
       body
       tableOfContents
@@ -188,7 +211,7 @@ export const pageQuery = graphql`
           position
           avatar {
             childImageSharp {
-              gatsbyImageData(layout: CONSTRAINED,width:200,height:200)
+              gatsbyImageData(layout: CONSTRAINED, width: 200, height: 200)
             }
           }
         }
