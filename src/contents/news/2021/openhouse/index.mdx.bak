@@ -1,12 +1,16 @@
+---
+type: news
+tag: openhouse
+date: '2021-04-18'
+title: '[ดูย้อนหลัง] The 2.5th Online Occupational Medicine Open House'
+excerpt: วิดีโอบันทึกงาน Online Occupational Medicine Open House ครั้งที่ 2.5
+attachments:
+  - bg.jpg
+  - poster.jpg
+  - poster_old.jpg
+---
 import { GatsbyImage } from "gatsby-plugin-image";
-export const frontmatter = {
-	type: "news",
-	tag: "openhouse",
-	date: "2021-04-18",
-	title: "[ดูย้อนหลัง] The 2.5th Online Occupational Medicine Open House",
-	excerpt: "วิดีโอบันทึกงาน Online Occupational Medicine Open House ครั้งที่ 2.5",
-	attachments: ["bg.jpg","poster.jpg","poster_old.jpg"]
-}
+
 
 # วิดีโอบันทึก
 

@@ -1,12 +1,16 @@
-export const frontmatter = {
-	type: "articles",
-	tag: "chef-heatlh",
-	date: "2020-06-12 21:29",
-    title: "Basic physical demands in Fit for work",
-    authors: ["nrhioem"],
-	excerpt: "การตรวจเพื่อดู fit for work (ความพร้อมในการทำงาน) นั้น ต้องตรวจตามลักษณะงานที่ทำ แต่ก็มีลักษณะพื้นฐานที่พบได้ในงาน ซึ่งมีลักษณะสำคัญดังนี้",
-	attachments: ["punch.jpg"]
-}
+---
+type: articles
+tag: chef-heatlh
+date: '2020-06-12 21:29'
+title: Basic physical demands in Fit for work
+authors:
+  - nrhioem
+excerpt: การตรวจเพื่อดู fit for work (ความพร้อมในการทำงาน) นั้น
+  ต้องตรวจตามลักษณะงานที่ทำ แต่ก็มีลักษณะพื้นฐานที่พบได้ในงาน
+  ซึ่งมีลักษณะสำคัญดังนี้
+attachments:
+  - punch.jpg
+---
 
 การตรวจเพื่อดู fit for work (ความพร้อมในการทำงาน) นั้น ต้องตรวจตามลักษณะงานที่ทำ แต่ก็มีลักษณะพื้นฐานที่พบได้ในงาน ซึ่งมีลักษณะสำคัญดังนี้
 

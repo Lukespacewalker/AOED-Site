@@ -1,8 +1,9 @@
-export const frontmatter = {
-	type: "information",
-	tag: "wfme-plan-extra2",
-	title: "ภาคผนวกที่ 2 เนื้อหาสังเขปของการฝึกอบรม"
-}
+---
+type: information
+tag: 'wfme-plan-extra2'
+title: ภาคผนวกที่ 2 เนื้อหาสังเขปของการฝึกอบรม
+---
+
 import "./special.scss"
 
 <div id="special">
