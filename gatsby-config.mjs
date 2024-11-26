@@ -4,8 +4,6 @@ import tailwindConfig from "./tailwind.config.mjs";
 import tailwindCss from "tailwindcss";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
-import remarkFrontmatter from "remark-frontmatter";
-import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 export const siteMetadata = {
   siteUrl: `https://www.aoed.org`,
