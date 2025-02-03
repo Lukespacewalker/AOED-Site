@@ -41,7 +41,7 @@ class DoctorChecker extends React.Component<{}, {}> {
     let url;
     //if (checkedLicenseNumber == "") {
     url =
-      "https://script.google.com/macros/s/AKfycbwJzPUSImBO7-UzM1UL_pkmbdq8AdHjevfS6roDzbQ-_ylko4nGd0bt9eYUusgRKmQ/exec";
+      "https://script.google.com/macros/s/AKfycbxaSqVOA6JV-HpIvezknuYOvxFmDtFE8uAVUH8FnfFjBIuY-f6Or1GSDwqKXCR_8eNP/exec";
     /*
   } else {
     url = `https://nmurcj1r6g.execute-api.ap-southeast-1.amazonaws.com/default/occmed-doctor-search?lang=${lang}&name=${encodeURIComponent(
