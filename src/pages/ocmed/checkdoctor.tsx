@@ -33,8 +33,6 @@ class CheckDoctorIndex extends React.Component<{ data: any }, {}> {
 
         <Card className="my-6" tagLine="แพทย์ที่ผ่านการอบรบหลักสูตร 2 เดือน" header="หลักสูตรอบรมความรู้พื้นฐานด้านอาชีวเวชศาสตร์สำหรับแพทย์">
           <DoctorChecker />
-          <hr className="bg-green-500 h-0.5 my-3" />
-          <div>* เฉพาะผู้ที่ผ่านการอบรบหลักสูตร 2 เดือน ของโรงพยาบาลนพรัตนราชธานี, มหาวิทยาลัยเชียงใหม่, และมหาวิทยาลัยบูรพา</div>
           <div className="flex flex-row flex-wrap items-center">
             <div className="text-gray-400 text-sm font-bold">Powered by </div>
             <div className="flex flex-row">
