@@ -1,6 +1,6 @@
 {
   "name": "AOED-Site",
-  "packageManager": "yarn@4.5.3",
+  "packageManager": "yarn@4.9.2",
   "description": "Thailand Association of Occupational and Environmental Disease",
   "version": "2.0.0",
   "author": "Suttisak Denduangchai <suttisak.lukesp@outlook.com>",
