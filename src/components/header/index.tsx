@@ -1,8 +1,8 @@
 ﻿import * as React from "react";
-import { StaticQuery, graphql, Link } from "gatsby";
+import { useStaticQuery, StaticQuery, graphql, Link } from "gatsby";
 import { IMenu, ISubmenu } from "./Imenu";
 import { Menu, SubMenu } from "./menu";
-import {show,hide,mainMenu,subMenu,menuToggle,dark as darkStyle,siteHeader,showingNav,headerContainer,titleContainer,notTop,logo} from "./header.module.scss";
+import { show, hide, mainMenu, subMenu, menuToggle, dark as darkStyle, siteHeader, showingNav, headerContainer, titleContainer, notTop, logo } from "./header.module.scss";
 import { scrollToTop } from "@components/scroller";
 
 interface IHeaderMenuProps {
@@ -11,210 +11,149 @@ interface IHeaderMenuProps {
   onPaneToggle: (isPaneOpen: boolean) => void;
 }
 
-/* Unable to use StaticQuery in class */
-class HeaderMenu extends React.Component<IHeaderMenuProps, {}> {
-  constructor(props) {
-    super(props);
-  }
+const HeaderMenu: React.FC<IHeaderMenuProps> = ({ menus, dark, onPaneToggle }) => {
+  const [selectedMenu, setSelectedMenu] = React.useState(0);
+  const [isPaneOpen, setIsPaneOpen] = React.useState(false);
 
-  windowResizeHandler() {
-    if (window.innerWidth > 800) {
-      this.setState({ isPaneOpen: false });
-      this.props.onPaneToggle(false);
-    }
-  }
+  React.useEffect(() => {
+    const windowResizeHandler = () => {
+      if (window.innerWidth > 800) {
+        setIsPaneOpen(false);
+        onPaneToggle(false);
+      }
+    };
+    window.addEventListener("resize", windowResizeHandler);
+    return () => {
+      window.removeEventListener("resize", windowResizeHandler);
+    };
+  }, [onPaneToggle]);
 
-  componentDidMount() {
-    window.addEventListener("resize", this.windowResizeHandler.bind(this));
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.windowResizeHandler.bind(this));
-  }
-
-  state = {
-    selectedMenu: 0,
-    isPaneOpen: false,
+  const onSelectedMenuHandler = (menuId: number) => {
+    setSelectedMenu(menuId === selectedMenu ? 0 : menuId);
   };
 
-  onSelectedMenuHandler = (menuId: number) => {
-    if (menuId === this.state.selectedMenu) menuId = 0;
-    this.setState({
-      selectedMenu: menuId,
-    });
+  const onClick = () => {
+    const nextPaneOpen = !isPaneOpen;
+    setIsPaneOpen(nextPaneOpen);
+    onPaneToggle(nextPaneOpen);
   };
 
-  onClick = () => {
-    let isPaneOpen = !this.state.isPaneOpen;
-    this.setState({
-      isPaneOpen: isPaneOpen,
-    });
+  let className = isPaneOpen ? show + " " + mainMenu : mainMenu;
 
-    this.props.onPaneToggle(isPaneOpen);
-  };
-
-  render() {
-    const { menus, dark } = this.props;
-    let className = this.state.isPaneOpen
-      ? show + " " + mainMenu
-      : mainMenu;
-    return (
-      <>
-        <nav className={className}>
-          {menus.map((menu) => {
-            const submenu =
-              menu.submenus != null ? (
-                <nav
-                  className={
-                    subMenu +
-                    ` ${
-                      menu.order === this.state.selectedMenu
-                        ? show
-                        : hide
-                    }`
-                  }
-                >
-                  <SubMenu
-                    isMenuOpen={this.state.isPaneOpen}
-                    items={menu.submenus}
-                  />
-                </nav>
-              ) : null;
-            return (
-              <React.Fragment key={menu.order}>
-                <Menu
-                  dark={dark}
-                  item={menu}
-                  onSelectedItem={this.onSelectedMenuHandler}
+  return (
+    <>
+      <nav className={className}>
+        {menus.map((menu) => {
+          const submenu =
+            menu.submenus != null ? (
+              <nav
+                className={
+                  subMenu +
+                  ` ${menu.order === selectedMenu ? show : hide}`
+                }
+              >
+                <SubMenu
+                  isMenuOpen={isPaneOpen}
+                  items={menu.submenus}
                 />
-                {submenu}
-              </React.Fragment>
-            );
-          })}
-        </nav>
-        <div
-          id={menuToggle}
-          className={dark ? darkStyle : ""}
-          onClick={this.onClick.bind(this)}
-        >
-          <input type="checkbox" checked={this.state.isPaneOpen} />
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </>
-    );
-  }
-}
+              </nav>
+            ) : null;
+          return (
+            <React.Fragment key={menu.order}>
+              <Menu
+                dark={dark}
+                item={menu}
+                onSelectedItem={onSelectedMenuHandler}
+              />
+              {submenu}
+            </React.Fragment>
+          );
+        })}
+      </nav>
+      <div
+        id={menuToggle}
+        className={dark ? darkStyle : ""}
+        onClick={onClick}
+      >
+        <input type="checkbox" checked={isPaneOpen} readOnly />
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </>
+  );
+};
 
 interface IHeaderProps {
   isFrontPage: boolean;
 }
 
-class Header extends React.Component<IHeaderProps, {}> {
-  constructor(props) {
-    super(props);
-  }
-
-  state = {
-    isPaneOpen: false,
-    isOnTop: true,
-  };
-
-  onPaneToggleHandler = (isPaneOpen) => {
-    this.setState({ isPaneOpen: isPaneOpen });
-  };
-
-  handleScroll(event: any) {
-    if (window.scrollY > 10) {
-      this.setState({ isOnTop: false });
-    } else {
-      this.setState({ isOnTop: true });
-    }
-  }
-
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll.bind(this));
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll.bind(this));
-  }
-
-  render() {
-    return (
-      <StaticQuery
-        query={graphql`
-          query MenuQuery {
-            site {
-              siteMetadata {
-                menus {
-                  order
-                  name
-                  emphasize
-                  submenus {
-                    order
-                    name
-                    link
-                    }
-                }
-              }
+const Header: React.FC<IHeaderProps> = ({ isFrontPage }) => {
+  const data = useStaticQuery(graphql`
+    query MenuQuery {
+      site {
+        siteMetadata {
+          menus {
+            order
+            name
+            emphasize
+            submenus {
+              order
+              name
+              link
             }
           }
-        `}
-        render={(data) => {
-          const { isFrontPage } = this.props;
-          const {
-            site: {
-              siteMetadata: { menus },
-            },
-          }: {
-            site: {
-              siteMetadata: {
-                title: string;
-                shortTitle: string;
-                menus: IMenu[];
-              };
-            };
-          } = data;
+        }
+      }
+    }
+  `);
 
-          let headerClassname = `${siteHeader} ${
-            isFrontPage ? "" : ""
-          } ${this.state.isPaneOpen ? showingNav : ""}`;
-          let isDark =
-            true || this.state.isPaneOpen || isFrontPage || !this.state.isOnTop;
-          return (
-            <div
-              className={
-                headerContainer +
-                " " +
-                (this.state.isOnTop ? "" : notTop)
-              }
-            >
-              <header className={headerClassname}>
-                <div className={titleContainer}>
-                  <div className={logo}>
-                    {isFrontPage ? (
-                      <a onClick={scrollToTop}>
-                      </a>
-                    ) : (
-                      <Link to="/">
-                      </Link>
-                    )}
-                  </div>
-                </div>
-                <HeaderMenu
-                  menus={menus}
-                  dark={isDark}
-                  onPaneToggle={this.onPaneToggleHandler}
-                />
-              </header>
-            </div>
-          );
-        }}
-      />
-    );
-  }
-}
+  const [isPaneOpen, setIsPaneOpen] = React.useState(false);
+  const [isOnTop, setIsOnTop] = React.useState(true);
+
+  const onPaneToggleHandler = (open: boolean) => {
+    setIsPaneOpen(open);
+  };
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsOnTop(window.scrollY <= 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const {
+    site: {
+      siteMetadata: { menus },
+    },
+  }: {
+    site: {
+      siteMetadata: {
+        menus: IMenu[];
+      };
+    };
+  } = data;
+
+  let headerClassname = `${siteHeader} ${isFrontPage ? "" : ""} ${isPaneOpen ? showingNav : ""}`;
+  let isDark = true || isPaneOpen || isFrontPage || !isOnTop;
+
+  return (
+    <div className={headerContainer + " " + (isOnTop ? "" : notTop)}>
+      <header className={headerClassname}>
+        <div className={titleContainer}>
+          <div className={logo}>
+            {isFrontPage ? (
+              <a onClick={scrollToTop}></a>
+            ) : (
+              <Link to="/"></Link>
+            )}
+          </div>
+        </div>
+        <HeaderMenu menus={menus} dark={isDark} onPaneToggle={onPaneToggleHandler} />
+      </header>
+    </div>
+  );
+};
 
 export default Header;

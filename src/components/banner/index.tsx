@@ -5,46 +5,35 @@ import Carousal from "@components/carousal";
 import { bannerContainer, bannerText, darken } from "./banner.module.scss";
 import { item, video } from "@components/carousal/carousal.module.scss";
 
-import { StaticQuery, graphql } from "gatsby";
+import { useStaticQuery, StaticQuery, graphql } from "gatsby";
 
-class Banner extends React.Component<{}, {}> {
-  constructor(props) {
-    super(props);
-  }
+const Banner: React.FC = () => {
+  const data = useStaticQuery(query);
+  const {
+    file: {
+      childImageSharp: { gatsbyImageData: banner },
+    },
+  } = data;
 
-  render() {
-    let videoClassName = video;
-    return (
-      <StaticQuery
-        query={query}
-        render={(data) => {
-          const {
-            file: {
-              childImageSharp: { gatsbyImageData: banner },
-            },
-          } = data;
-          return (
-            <div className={bannerContainer}>
-              <Carousal>
-                <div className={item}>
-                  <GatsbyImage
-                    imgStyle={{ objectPosition: "center center" }}
-                    style={{ height: `100%` }}
-                    image={banner}
-                  />
-                  <div className={bannerText}>
-                    สมาคมโรคจากการประกอบอาชีพและสิ่งแวดล้อมแห่งประเทศไทย
-                  </div>
-                </div>
-              </Carousal>
-              <div className={darken}></div>
-            </div>
-          );
-        }}
-      />
-    );
-  }
-}
+  return (
+    <div className={bannerContainer}>
+      <Carousal>
+        <div className={item}>
+          <GatsbyImage
+            alt="Banner Image"
+            imgStyle={{ objectPosition: "center center" }}
+            style={{ height: `100%` }}
+            image={banner}
+          />
+          <div className={bannerText}>
+            สมาคมโรคจากการประกอบอาชีพและสิ่งแวดล้อมแห่งประเทศไทย
+          </div>
+        </div>
+      </Carousal>
+      <div className={darken}></div>
+    </div>
+  );
+};
 
 export default Banner;
 

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { StaticQuery, graphql, Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { selected, rootGrid, mainArea, childrenArea, imagelistArea, imagelistWrapper, zoom, cover, contain, back,next  } from "./imagesview.module.scss";
 
@@ -16,7 +15,6 @@ enum SwipeDirection {
   Right,
 }
 
-/* Unable to use StaticQuery in class */
 class ImagesView extends React.Component<IImageViewProps, {}> {
   constructor(props) {
     super(props);
@@ -140,7 +138,7 @@ class ImagesView extends React.Component<IImageViewProps, {}> {
             <svg
               version="1.1"
               viewBox="0 0 129 129"
-              enable-background="new 0 0 129 129"
+              enableBackground="new 0 0 129 129"
             >
               <g>
                 <path
@@ -153,7 +151,7 @@ class ImagesView extends React.Component<IImageViewProps, {}> {
             <svg
               version="1.1"
               viewBox="0 0 129 129"
-              enable-background="new 0 0 129 129"
+              enableBackground="new 0 0 129 129"
             >
               <g>
                 <path
