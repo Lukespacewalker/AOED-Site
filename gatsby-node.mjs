@@ -67,14 +67,16 @@ export function createPages({ graphql, actions }) {
     }
   `).then((result) => {
     result.data.allMdx.edges.forEach(({ node }) => {
+      console.log(
+        `Creating page for ${node.fields.slug} with content file path ${node.internal.contentFilePath}`
+      );
       createPage({
         path: node.fields.slug,
         component: `${resolve(
           `./src/templates/information-page.tsx`
         )}?__contentFilePath=${node.internal.contentFilePath}`,
         context: {
-          // Data passed to context is available
-          // in page queries as GraphQL variables.
+          // Data passed to context is available in page queries as GraphQL variables.
           slug: node.fields.slug,
           images: node.frontmatter.attachments,
         },
