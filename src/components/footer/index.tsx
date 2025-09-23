@@ -24,7 +24,6 @@ export const Footer: React.FunctionComponent = (props) => {
           <br /> Made with <a href="https://www.gatsbyjs.org/">Gatsby</a> + <a href="https://tailwindcss.com/">Tailwind CSS</a>
           | Developed with{" "}
           <a href="https://visualstudio.microsoft.com/">Visual Studio Code Insider</a>
-          <br /> Hosted on <a href="https://app.netlify.com/sites/aoed/deploys"><img className="inline"  style={{ verticalAlign: `text-top` }} src="https://api.netlify.com/api/v1/badges/9b9b26c3-6609-4db6-b771-53c2a995256f/deploy-status" /></a>
         </div>
       </div>
     </footer>

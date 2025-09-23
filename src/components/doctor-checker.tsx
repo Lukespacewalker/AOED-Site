@@ -1,5 +1,11 @@
 import * as React from "react";
 
+interface DoctorData {
+  name: string;
+  surname: string;
+  type: string;
+}
+
 class DoctorChecker extends React.Component<{}, {}> {
   constructor(props) {
     super(props);
@@ -12,10 +18,7 @@ class DoctorChecker extends React.Component<{}, {}> {
     name: string;
     surname: string;
     working: boolean;
-    result: Array<{
-      name: string;
-      type: string;
-    }>;
+    result: Array<DoctorData>;  
   } = {
       lang: "th",
       canSubmit: false,
@@ -37,9 +40,7 @@ class DoctorChecker extends React.Component<{}, {}> {
 
   private checkdoctor(lang: "th", name: string, surname: string) {
     let url;
-    url =
-      //"https://script.google.com/macros/s/AKfycbxaSqVOA6JV-HpIvezknuYOvxFmDtFE8uAVUH8FnfFjBIuY-f6Or1GSDwqKXCR_8eNP/exec";
-      `https://script.google.com/macros/s/AKfycbzZ8O1PyQLMzpzef913yXNYPS66mle6GTnxBZbPRt1i3YwoWs7_m0bMCYe_UnI3g5ldRw/callback?nocache_id=${new Date().getTime()}`;
+    url = "https://script.google.com/macros/s/AKfycbzh7UVsqpKJgc8iDISDs3_oQflfB-K72cQXxJeYehp-XlLir2bngcJVqSjNN2Ml6rR8/exec";
     fetch(
       `${url}?name=${encodeURIComponent(
         name.trim()
@@ -48,14 +49,14 @@ class DoctorChecker extends React.Component<{}, {}> {
       .then((response) => response.json())
       .then((json) => {
         if (json.statusCode === 200) {
-          let data = JSON.parse(json[0][1]);
-          if (data.length === 0) {
-            throw new Error("ไม่พบข้อมูลแพทย์ที่ค้นหา");
-          }
-          this.setState({ working: false, result: data });
+          this.setState({ working: false, result: json.data });
+        } else if (json.statusCode === 400) {
+          throw new Error("กรอกฟอร์มไม่ถูกต้อง กรุณากรอกใหม่อีกครั้ง");
+        } else if (json.statusCode === 404) {
+          throw new Error("ไม่พบแพทย์ที่ท่านค้นหา");
         } else {
           throw new Error("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง หากยังมีปัญหา กรุณาติดต่อผู้ดูแลระบบ");
-        } 
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -71,15 +72,16 @@ class DoctorChecker extends React.Component<{}, {}> {
     event.preventDefault();
   }
 
-  private renderDoctor(doctors: Array<{ name: string, type: string }>) {
+  private renderDoctor(doctors: Array<DoctorData>) {
 
     return doctors.map(doctor =>
-      <div key={doctor.name}>
+      <div key={doctor.name} className="mt-3 p-3 rounded bg-lime-100"
+              style={{ display: `block` }}>
         <h4 style={{ margin: `0` }}>
-          {doctor.name}
+          <span>{doctor.name}</span>
+          <span style={{marginLeft:`0.5em`}}>{doctor.surname}</span>
         </h4>
-        <br />
-        {doctor.type}
+        <div>{doctor.type}</div>
       </div>
     );
   }
@@ -122,7 +124,7 @@ class DoctorChecker extends React.Component<{}, {}> {
         >
           <div className="flex-1">
             <label className="ml-2 mb-2" htmlFor="name">
-              ชื่อ*
+              ชื่อ* (บางส่วนก็ได้)
             </label>
             <input
               id="name"
@@ -139,7 +141,7 @@ class DoctorChecker extends React.Component<{}, {}> {
           </div>
           <div className="flex-1">
             <label className="ml-2 mb-2" htmlFor="surname">
-              นามสกุล*
+              นามสกุล* (บางส่วนก็ได้)
             </label>
             <input
               className="w-full"
@@ -179,12 +181,7 @@ class DoctorChecker extends React.Component<{}, {}> {
           </div>
         ) : this.state.result != null ? (
           <>
-            <div
-              className="mt-3 p-3 rounded bg-lime-100"
-              style={{ display: `block` }}
-            >
               {this.renderDoctor(this.state.result)}
-            </div>
           </>
         ) : (
           ""
