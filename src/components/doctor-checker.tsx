@@ -12,21 +12,19 @@ class DoctorChecker extends React.Component<{}, {}> {
     name: string;
     surname: string;
     working: boolean;
-    result: {
-      Title: string;
-      Name: string;
-      Surname: string;
-      Year: number;
-    };
+    result: Array<{
+      name: string;
+      type: string;
+    }>;
   } = {
-    lang: "th",
-    canSubmit: false,
-    text: "",
-    name: "",
-    surname: "",
-    working: false,
-    result: null,
-  };
+      lang: "th",
+      canSubmit: false,
+      text: "",
+      name: "",
+      surname: "",
+      working: false,
+      result: null,
+    };
 
   private setCanSubmit = () => {
     this.setState({
@@ -39,18 +37,9 @@ class DoctorChecker extends React.Component<{}, {}> {
 
   private checkdoctor(lang: "th", name: string, surname: string) {
     let url;
-    //if (checkedLicenseNumber == "") {
     url =
-      "https://script.google.com/macros/s/AKfycbxaSqVOA6JV-HpIvezknuYOvxFmDtFE8uAVUH8FnfFjBIuY-f6Or1GSDwqKXCR_8eNP/exec";
-    /*
-  } else {
-    url = `https://nmurcj1r6g.execute-api.ap-southeast-1.amazonaws.com/default/occmed-doctor-search?lang=${lang}&name=${encodeURIComponent(
-      name
-    )}&surname=${encodeURIComponent(
-      surname
-    )}&checkedLicenseNumber=${checkedLicenseNumber}`;
-  }*/
-
+      //"https://script.google.com/macros/s/AKfycbxaSqVOA6JV-HpIvezknuYOvxFmDtFE8uAVUH8FnfFjBIuY-f6Or1GSDwqKXCR_8eNP/exec";
+      `https://script.google.com/macros/s/AKfycbzZ8O1PyQLMzpzef913yXNYPS66mle6GTnxBZbPRt1i3YwoWs7_m0bMCYe_UnI3g5ldRw/callback?nocache_id=${new Date().getTime()}`;
     fetch(
       `${url}?name=${encodeURIComponent(
         name.trim()
@@ -59,13 +48,14 @@ class DoctorChecker extends React.Component<{}, {}> {
       .then((response) => response.json())
       .then((json) => {
         if (json.statusCode === 200) {
-          console.log(json);
-          this.setState({ working: false, result: json });
-        } else if (json.statusCode === 400) {
-          throw new Error("กรอกฟอร์มไม่ถูกต้อง กรุณากรอกใหม่อีกครั้ง");
-        } else if (json.statusCode === 404) {
-          throw new Error("ไม่พบแพทย์ที่ท่านค้นหา");
-        }
+          let data = JSON.parse(json[0][1]);
+          if (data.length === 0) {
+            throw new Error("ไม่พบข้อมูลแพทย์ที่ค้นหา");
+          }
+          this.setState({ working: false, result: data });
+        } else {
+          throw new Error("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง หากยังมีปัญหา กรุณาติดต่อผู้ดูแลระบบ");
+        } 
       })
       .catch((error) => {
         console.log(error);
@@ -81,27 +71,15 @@ class DoctorChecker extends React.Component<{}, {}> {
     event.preventDefault();
   }
 
-  private renderDoctor(doctor) {
-    if (doctor.courseCompletionDate) {
-      if (doctor.courseCompletionDate.toString().trim() === "") {
-        doctor.courseCompletionDate = undefined;
-      }
-    }
-    return (
-      <div key={doctor.Name}>
+  private renderDoctor(doctors: Array<{ name: string, type: string }>) {
+
+    return doctors.map(doctor =>
+      <div key={doctor.name}>
         <h4 style={{ margin: `0` }}>
-          {doctor.name} {doctor.surname}
+          {doctor.name}
         </h4>
         <br />
-        ผ่านการอบรม 2 เดือน จาก {doctor.institute} รุ่น {doctor.batch}{" "}
-        {doctor.courseCompletionDate &&
-          "เมื่อปี พ.ศ. " + doctor.courseCompletionDate}
-        <br />
-        {doctor.CheckedLicenseNumber !== undefined
-          ? doctor.IsLicenseNumberCorrect
-            ? `เลข ว. ${doctor.CheckedLicenseNumber} ตรงกับแพทย์ท่านนี้`
-            : `เลข ว. ${doctor.CheckedLicenseNumber} ไม่ตรงกับแพทย์ท่านนี้`
-          : ""}
+        {doctor.type}
       </div>
     );
   }
@@ -143,7 +121,7 @@ class DoctorChecker extends React.Component<{}, {}> {
           className="flex gap-6 justify-items-center items-end flex-wrap"
         >
           <div className="flex-1">
-            <label className="ml-2 mb-2" for="name">
+            <label className="ml-2 mb-2" htmlFor="name">
               ชื่อ*
             </label>
             <input
@@ -160,7 +138,7 @@ class DoctorChecker extends React.Component<{}, {}> {
             ></input>
           </div>
           <div className="flex-1">
-            <label className="ml-2 mb-2" for="surname">
+            <label className="ml-2 mb-2" htmlFor="surname">
               นามสกุล*
             </label>
             <input
